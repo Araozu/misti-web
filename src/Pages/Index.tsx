@@ -7,16 +7,16 @@ const e = StyleSheet.create({
         paddingRight: "4rem",
     },
     reasonsTitle: {
-        fontSize: "2.5rem",
+        fontSize: "2rem",
         fontWeight: "bold",
         paddingTop: "2rem",
         paddingBottom: "4rem"
     },
     reason: {
-        fontSize: "3.5rem"
+        fontSize: "3rem"
     },
     reasonDescription: {
-        fontSize: "2rem"
+        fontSize: "1.5rem"
     },
     separator: {
         height: "1rem",
@@ -41,8 +41,8 @@ function JSFizzBuzz() {
         e: {
             whiteSpace: "pre",
             fontFamily: "Ubuntu Mono, monospace",
-            fontSize: "1.5rem",
-            lineHeight: "2rem",
+            fontSize: "1.25rem",
+            lineHeight: "1.75rem",
             color: "var(--code-color)",
         }
     })

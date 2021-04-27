@@ -22,5 +22,8 @@
     "Safari 11",
     "Edge 17",
     "Node 10"
-  ]
+  ],
+  "dependencies": {
+    "railroad-diagrams": "^1.0.0"
+  }
 }

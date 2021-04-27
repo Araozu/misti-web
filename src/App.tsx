@@ -14,10 +14,7 @@ const Learn = lazy(async () => {
     return import("./Pages/Learn")
 });
 
-const Grammar = lazy(async () => {
-    await time(1000);
-    return import("./Pages/Grammar")
-})
+const Grammar = lazy(() => import("./Pages/Grammar"));
 
 function Separator() {
     const e = StyleSheet.create({

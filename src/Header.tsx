@@ -8,13 +8,13 @@ const e = StyleSheet.create({
         color: "#fefefe"
     },
     motto: {
-        paddingTop: "4rem",
+        paddingTop: "3rem",
         paddingBottom: "1rem",
-        fontSize: "4rem"
+        fontSize: "3rem"
     },
     motto2: {
         padding: "0 4rem",
-        fontSize: "2rem"
+        fontSize: "1.25rem"
     },
     padded: {
         paddingLeft: "4rem",
@@ -25,11 +25,11 @@ const e = StyleSheet.create({
 function MainButton(props: { text: string, color: string, onClick?: () => void }) {
     const e = StyleSheet.create({
         e: {
-            padding: "0.8rem 1.25rem",
-            fontSize: "1.25rem",
+            padding: "0.6rem 1rem",
+            fontSize: "1rem",
             // fontWeight: "bold",
             marginRight: "1rem",
-            marginBottom: "5rem",
+            marginBottom: "2rem",
             border: `solid 3px ${props.color}`,
             textDecorationLine: "underline",
             backgroundColor: "var(--bg-color)",
@@ -76,7 +76,6 @@ export function Header(props: { setColorMode: (v: string) => string }) {
                 </div>
 
                 <p className={css(e.motto2)}>Convert your JavaScript today!</p>
-                <br/>
 
                 <div className={css(e.padded)}>
                     <RouterLink to={"/learn/"} onClick={() => setAnimationActive(true)}>

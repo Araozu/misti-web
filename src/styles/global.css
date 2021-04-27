@@ -20,6 +20,10 @@
     --code-color: #073642;
 }
 
+html {
+    font-size: 22px;
+}
+
 body {
     font-family: Inter, sans-serif;
     background-color: var(--bg-color);
