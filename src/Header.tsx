@@ -1,6 +1,6 @@
 import { css, StyleSheet } from "aphrodite/no-important";
 import { RouterLink } from "./Router";
-import { LoadingScreenStatus } from "./LoadingScreen";
+import { setAnimationActive } from "./loadingAnimationGlobal";
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -51,7 +51,7 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
     )
 }
 
-export function Header(props: { setLoadingState: (v: LoadingScreenStatus) => LoadingScreenStatus, setColorMode: (v: string) => string }) {
+export function Header(props: { setColorMode: (v: string) => string }) {
 
     const changeColorScheme = () => {
         const currentMode = localStorage?.getItem("color-mode") ?? "dark";
@@ -79,11 +79,11 @@ export function Header(props: { setLoadingState: (v: LoadingScreenStatus) => Loa
                 <br/>
 
                 <div className={css(e.padded)}>
-                    <RouterLink to={"/learn/"} onClick={() => props.setLoadingState(LoadingScreenStatus.ENABLED)}>
+                    <RouterLink to={"/learn/"} onClick={() => setAnimationActive(true)}>
                         <MainButton text={"Learn"} color={"#04abfc"}/>
                     </RouterLink>
                     <MainButton text={"Install"} color={"#e7b711"}/>
-                    <RouterLink to={"/grammar/"} onClick={() => props.setLoadingState(LoadingScreenStatus.ENABLED)}>
+                    <RouterLink to={"/grammar/"} onClick={() => setAnimationActive(true)}>
                         <MainButton text={"Grammar"} color={"#39b487"}/>
                     </RouterLink>
                     <MainButton text={"Change colors"} color={"var(--c3)"} onClick={changeColorScheme}/>

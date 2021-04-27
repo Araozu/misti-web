@@ -1,9 +1,9 @@
-import { lazy, Suspense, Switch, Match, createSignal, createEffect } from "solid-js";
+import { lazy, Suspense, Switch, Match, createSignal, createEffect, untrack } from "solid-js";
 import { useRouter } from "./Router";
 import Index from "./Pages/Index";
 import { Header } from "./Header";
 import { StyleSheet, css } from "aphrodite/no-important";
-import { LoadingScreen, LoadingScreenStatus } from "./LoadingScreen";
+import { animationActive, setAnimationActive } from "./loadingAnimationGlobal";
 
 const time = (t: number) => new Promise(resolve => {
     setTimeout(resolve, t)
@@ -37,42 +37,47 @@ function Separator() {
     });
 
     const [position, setPosition] = createSignal(0);
-    const [animationActive, setAnimationActive] = createSignal(false);
+    const [animationActiveLocal, setAnimationActiveLocal] = createSignal(true);
 
     const animate = async () => {
-        setAnimationActive(true);
-        const tick = 30;
-        let pos = position();
+        untrack(async () => {
+            const tick = 30;
+            let pos = position();
 
-        let variance = 0.06;
+            let variance = 0.06;
 
-        // accelerate
-        while (true) {
-            if (pos >= 50) pos = 0;
+            // accelerate
+            while (true) {
+                if (pos >= 50) pos = 0;
 
-            setPosition(pos + variance);
-            if (variance < 1) {
-                variance *= 1.5;
-            } else {
-                variance = 1;
+                setPosition(pos + variance);
+                if (variance < 1) {
+                    variance *= 1.5;
+                } else {
+                    variance = 1;
+                }
+                pos += variance;
+                await time(tick);
+                if (!animationActive()) break;
             }
-            pos += variance;
-            await time(tick);
-            if (!animationActive()) break;
-        }
 
-        // deaccelerate
-        while (variance > 0.09) {
-            if (pos >= 50) pos = 0;
+            // deaccelerate
+            while (variance > 0.09) {
+                if (pos >= 50) pos = 0;
 
-            setPosition(pos + variance);
-            variance /= 1.5;
-            pos += variance;
-            await time(tick);
-        }
-
-        return;
+                setPosition(pos + variance);
+                variance /= 1.5;
+                pos += variance;
+                await time(tick);
+            }
+        });
     }
+
+    createEffect(() => {
+        if (animationActive()) {
+            animate();
+        }
+    });
 
     const animateHelper = () => {
         if (animationActive()) {
@@ -94,8 +99,6 @@ function Separator() {
 
 function App() {
     const route = useRouter();
-    const [loadingState, setLoadingState] = createSignal(LoadingScreenStatus.DISABLED);
-
     const [colorMode, setColorMode] = createSignal(localStorage?.getItem("color-mode") ?? "dark");
 
     createEffect(() => {
@@ -105,20 +108,19 @@ function App() {
 
     return (
         <div>
-            <LoadingScreen status={loadingState()}/>
-            <Header setLoadingState={setLoadingState} setColorMode={setColorMode}/>
+            <Header setColorMode={setColorMode}/>
             <Separator/>
 
-            <Suspense fallback={<LoadingScreen status={loadingState()}/>}>
+            <Suspense fallback={<p>Loading...</p>}>
                 <Switch fallback={<p>404!</p>}>
                     <Match when={route() === "/"}>
                         <Index/>
                     </Match>
                     <Match when={route() === "/learn/"}>
-                        <Learn setLoadingState={setLoadingState}/>
+                        <Learn/>
                     </Match>
                     <Match when={route() === "/grammar/"}>
-                        <Grammar setLoadingState={setLoadingState}/>
+                        <Grammar/>
                     </Match>
                 </Switch>
             </Suspense>

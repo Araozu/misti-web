@@ -1,9 +1,8 @@
-import { LoadingScreenStatus } from "../LoadingScreen";
+import {setAnimationActive} from "../loadingAnimationGlobal";
 
+export default function () {
 
-export default function (props: { setLoadingState: (v: LoadingScreenStatus) => LoadingScreenStatus }) {
-
-    props.setLoadingState(LoadingScreenStatus.DISABLING);
+    setAnimationActive(false);
 
     return (
         <div>
