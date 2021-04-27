@@ -3,7 +3,7 @@ import { StyleSheet, css } from "aphrodite/no-important";
 const e = StyleSheet.create({
     title: {
         fontWeight: "normal",
-        fontSize: "3rem"
+        fontSize: "2.5rem"
     }
 });
 
