@@ -22,7 +22,7 @@ const e = StyleSheet.create({
     },
 });
 
-function MainButton(props: { text: string, color: string }) {
+function MainButton(props: { text: string, color: string, onClick?: () => void }) {
     const e = StyleSheet.create({
         e: {
             padding: "0.8rem 1.25rem",
@@ -32,24 +32,34 @@ function MainButton(props: { text: string, color: string }) {
             marginBottom: "5rem",
             border: `solid 3px ${props.color}`,
             textDecorationLine: "underline",
-            // textDecorationColor: props.color,
+            backgroundColor: "var(--bg-color)",
+            color: "var(--color)",
             borderRadius: "2px",
             cursor: "pointer",
             ":hover": {
-                color: "white"
+                color: "white",
+                backgroundColor: props.color,
             }
         }
     });
     const c = css(e.e);
 
     return (
-        <button className={c}>
+        <button className={c} onClick={props.onClick}>
             {props.text}
         </button>
     )
 }
 
-export function Header(props: { setLoadingState: (v: LoadingScreenStatus) => LoadingScreenStatus }) {
+export function Header(props: { setLoadingState: (v: LoadingScreenStatus) => LoadingScreenStatus, setColorMode: (v: string) => string }) {
+
+    const changeColorScheme = () => {
+        const currentMode = localStorage?.getItem("color-mode") ?? "dark";
+        const newMode = currentMode === "dark" ? "light" : "dark";
+        localStorage.setItem("color-mode", newMode);
+        props.setColorMode(newMode);
+    };
+
     return (
         <div>
             <div>
@@ -73,7 +83,10 @@ export function Header(props: { setLoadingState: (v: LoadingScreenStatus) => Loa
                         <MainButton text={"Learn"} color={"#04abfc"}/>
                     </RouterLink>
                     <MainButton text={"Install"} color={"#e7b711"}/>
-                    <MainButton text={"Grammar"} color={"#39b487"}/>
+                    <RouterLink to={"/grammar/"} onClick={() => props.setLoadingState(LoadingScreenStatus.ENABLED)}>
+                        <MainButton text={"Grammar"} color={"#39b487"}/>
+                    </RouterLink>
+                    <MainButton text={"Change colors"} color={"var(--c3)"} onClick={changeColorScheme}/>
                 </div>
             </div>
         </div>

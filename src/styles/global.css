@@ -1,7 +1,29 @@
-html {
+:root {
+    --c1: #e7b711;
+    --c2: #04abfc;
+    --c3: #fca8d1;
+    --c4: #f44336;
+    --c5: #39b487;
+}
+
+.dark-theme {
+    --bg-color: #212121;
+    --color: #dedede;
+    --code-bg-color: #151515;
+    --code-color: #bababa;
+}
+
+.light-theme {
+    --bg-color: #ffffff;
+    --color: #404040;
+    --code-bg-color: #fdf6e3;
+    --code-color: #073642;
+}
+
+body {
     font-family: Inter, sans-serif;
-    background-color: #212121;
-    color: #dedede;
+    background-color: var(--bg-color);
+    color: var(--color);
 }
 
 @keyframes gradientBG {

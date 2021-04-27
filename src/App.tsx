@@ -14,6 +14,11 @@ const Learn = lazy(async () => {
     return import("./Pages/Learn")
 });
 
+const Grammar = lazy(async () => {
+    await time(1000);
+    return import("./Pages/Grammar")
+})
+
 function Separator() {
     const e = StyleSheet.create({
         container: {
@@ -42,10 +47,17 @@ function App() {
     const route = useRouter();
     const [loadingState, setLoadingState] = createSignal(LoadingScreenStatus.DISABLED);
 
+    const [colorMode, setColorMode] = createSignal(localStorage?.getItem("color-mode") ?? "dark");
+
+    createEffect(() => {
+        const mode = colorMode();
+        document.body.className = `${mode}-theme`;
+    });
+
     return (
         <div>
             <LoadingScreen status={loadingState()}/>
-            <Header setLoadingState={setLoadingState}/>
+            <Header setLoadingState={setLoadingState} setColorMode={setColorMode}/>
             <Separator/>
 
             <Suspense fallback={<LoadingScreen status={loadingState()}/>}>
@@ -55,6 +67,9 @@ function App() {
                     </Match>
                     <Match when={route() === "/learn/"}>
                         <Learn setLoadingState={setLoadingState}/>
+                    </Match>
+                    <Match when={route() === "/grammar/"}>
+                        <Grammar setLoadingState={setLoadingState}/>
                     </Match>
                 </Switch>
             </Suspense>

@@ -22,7 +22,7 @@ export function LoadingScreen(props: { status: LoadingScreenStatus }) {
             left: 0,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#212121",
+            backgroundColor: "var(--bg-color)",
             transform: "translateX(-100%)",
             transition: "transform 200ms ease-in-out",
             borderRight: "5px solid",

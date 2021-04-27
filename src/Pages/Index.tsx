@@ -1,6 +1,5 @@
 import { StyleSheet, css } from "aphrodite/no-important";
 import { JSX } from "solid-js";
-import { RouterLink } from "../Router";
 
 const e = StyleSheet.create({
     padded: {
@@ -28,7 +27,7 @@ const e = StyleSheet.create({
 
 function R(props: { children: JSX.Element }) {
     return (
-        <span style={{"color": "#f44336", "font-weight": "bold"}}>{props.children}</span>
+        <span style={{"color": "var(--c4)", "font-weight": "bold"}}>{props.children}</span>
     )
 }
 
@@ -36,7 +35,7 @@ function JSFizzBuzz() {
     const e = StyleSheet.create({
         container: {
             padding: "2rem",
-            backgroundColor: "#151515",
+            backgroundColor: "var(--code-bg-color)",
             borderRadius: "10px"
         },
         e: {
@@ -44,7 +43,7 @@ function JSFizzBuzz() {
             fontFamily: "Ubuntu Mono, monospace",
             fontSize: "1.5rem",
             lineHeight: "2rem",
-            color: "#bababa",
+            color: "var(--code-color)",
         }
     })
     const container = css(e.container);
@@ -71,7 +70,6 @@ function JSFizzBuzz() {
 function JSSwitch() {
 
 }
-
 
 export default function Index() {
     return (
