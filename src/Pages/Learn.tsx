@@ -1,9 +1,9 @@
-import { LoadingState } from "../App";
+import { LoadingScreenStatus } from "../LoadingScreen";
 
 
-export default function (props: { setLoadingState: (v: LoadingState) => LoadingState }) {
+export default function (props: { setLoadingState: (v: LoadingScreenStatus) => LoadingScreenStatus }) {
 
-    props.setLoadingState(LoadingState.NORMAL);
+    props.setLoadingState(LoadingScreenStatus.DISABLING);
 
     return (
         <div>

@@ -3,6 +3,7 @@ import { useRouter } from "./Router";
 import Index from "./Pages/Index";
 import { Header } from "./Header";
 import { StyleSheet, css } from "aphrodite/no-important";
+import { LoadingScreen, LoadingScreenStatus } from "./LoadingScreen";
 
 const time = (t: number) => new Promise(resolve => {
     setTimeout(resolve, t)
@@ -13,22 +14,7 @@ const Learn = lazy(async () => {
     return import("./Pages/Learn")
 });
 
-function LoadingScreen() {
-    return (
-        <div>
-            Loading...
-        </div>
-    )
-}
-
-export enum LoadingState {
-    LOADING,
-    NORMAL
-}
-
-function Separator(props: { loadingState: LoadingState }) {
-    const [isAnimating, setIsAnimating] = createSignal(false);
-
+function Separator() {
     const e = StyleSheet.create({
         container: {
             width: "100%",
@@ -45,21 +31,6 @@ function Separator(props: { loadingState: LoadingState }) {
         }
     });
 
-    const beginLoadingCycle = () => {
-        // TODO: Implement animation in JS
-        // setIsAnimating(true);
-    };
-
-    const endLoadingCycle = () => {
-        // setIsAnimating(false);
-    };
-
-    createEffect(() => {
-        const v = props.loadingState;
-        if (v === LoadingState.NORMAL) endLoadingCycle();
-        else beginLoadingCycle();
-    });
-
     return (
         <div className={css(e.container)}>
             <div className={css(e.separator) + " rainbow-separator"}/>
@@ -69,14 +40,15 @@ function Separator(props: { loadingState: LoadingState }) {
 
 function App() {
     const route = useRouter();
-    const [loadingState, setLoadingState] = createSignal(LoadingState.NORMAL);
+    const [loadingState, setLoadingState] = createSignal(LoadingScreenStatus.DISABLED);
 
     return (
         <div>
+            <LoadingScreen status={loadingState()}/>
             <Header setLoadingState={setLoadingState}/>
-            <Separator loadingState={loadingState()}/>
+            <Separator/>
 
-            <Suspense fallback={<LoadingScreen/>}>
+            <Suspense fallback={<LoadingScreen status={loadingState()}/>}>
                 <Switch fallback={<p>404!</p>}>
                     <Match when={route() === "/"}>
                         <Index/>

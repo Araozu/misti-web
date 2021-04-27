@@ -1,6 +1,6 @@
 import { css, StyleSheet } from "aphrodite/no-important";
 import { RouterLink } from "./Router";
-import { LoadingState } from "./App";
+import { LoadingScreenStatus } from "./LoadingScreen";
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -49,7 +49,7 @@ function MainButton(props: { text: string, color: string }) {
     )
 }
 
-export function Header(props: { setLoadingState: (v: LoadingState) => LoadingState }) {
+export function Header(props: { setLoadingState: (v: LoadingScreenStatus) => LoadingScreenStatus }) {
     return (
         <div>
             <div>
@@ -69,7 +69,7 @@ export function Header(props: { setLoadingState: (v: LoadingState) => LoadingSta
                 <br/>
 
                 <div className={css(e.padded)}>
-                    <RouterLink to={"/learn/"} onClick={() => props.setLoadingState(LoadingState.LOADING)}>
+                    <RouterLink to={"/learn/"} onClick={() => props.setLoadingState(LoadingScreenStatus.ENABLED)}>
                         <MainButton text={"Learn"} color={"#04abfc"}/>
                     </RouterLink>
                     <MainButton text={"Install"} color={"#e7b711"}/>
