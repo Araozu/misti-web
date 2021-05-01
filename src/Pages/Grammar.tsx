@@ -3,29 +3,9 @@ import { globalStyles } from "../globalStyles";
 import { css } from "aphrodite/no-important";
 import { Title } from "../components/Title";
 
-const R = require("railroad-diagrams/railroad-diagrams");
 const hljs = require("highlight.js/lib/core");
 const ebnf = require("highlight.js/lib/languages/ebnf");
 hljs.registerLanguage("ebnf", ebnf);
-
-function Number() {
-    const el = <div/>
-    const diagram = R.Diagram(
-        R.Sequence(
-            R.OneOrMore("digit"),
-            R.Optional(
-                R.Sequence(
-                    ".",
-                    R.OneOrMore("digit")
-                )
-            )
-        )
-    );
-
-    return <div>
-        {diagram.toSVG()}
-    </div>
-}
 
 export default function () {
     setAnimationActive(false);
@@ -39,8 +19,6 @@ export default function () {
             <div className={css(globalStyles.padded)}>
                 <Title title={"Grammar"}/>
 
-                <p>This is no formal grammar, this justs represents the language.</p>
-
                 <p>When grouping many rules:</p>
 
                 <p><code>{" [ ]  "}</code> means zero or one</p>
@@ -48,7 +26,6 @@ export default function () {
                 <p><code>{" { }  "}</code> means zero or more</p>
 
                 <h2>Number</h2>
-
                 <pre>
                     <code class="language-ebnf">
                         digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
@@ -56,8 +33,6 @@ export default function () {
                         number = {`{digit} ["." {digit}]`}
                     </code>
                 </pre>
-
-                <Number/>
 
                 <h2>String</h2>
                 <pre>
@@ -130,7 +105,7 @@ export default function () {
                 <h2>Function declaration</h2>
                 <pre>
                     <code className="language-ebnf">
-                        function_declaration = "fun" identifier (unit | identifier+) "=" (expression | block)
+                        function_declaration = "fun" identifier (unit | [|identifier|]) "=" (expression | block)
                     </code>
                 </pre>
 
@@ -145,6 +120,20 @@ export default function () {
                 <pre>
                     <code className="language-ebnf">
                         operator_application = expression operator expression
+                    </code>
+                </pre>
+
+                <h2>Array</h2>
+                <pre>
+                    <code className="language-ebnf">
+                        array = "[" [expression {`{"," expression}`} ] "]"
+                    </code>
+                </pre>
+
+                <h2>Object</h2>
+                <pre>
+                    <code className="language-ebnf">
+                        object = {`"{" [identifier [expression] {"," identifier [expression]}] "}"`}
                     </code>
                 </pre>
 
@@ -193,6 +182,44 @@ export default function () {
                         for_in = "for" expression "in" expression "do" (expression | block)
                         <br/>
                         for_of = "for" expression "of" expression "do" (expression | block)
+                    </code>
+                </pre>
+
+                <h2>Anonymous function</h2>
+                <pre>
+                    <code className="language-ebnf">
+                        anonymous_function = "fn" (unit | [|identifier|]) "-&gt;" (expression | block)
+                    </code>
+                </pre>
+
+                <h2>Lambda</h2>
+                <pre>
+                    <code className="language-ebnf">
+                        lambda = "#(" expression ")"
+                    </code>
+                </pre>
+
+                <h2>Import</h2>
+                <pre>
+                    <code className="language-ebnf">
+                        import_from = "from" string "import" object
+                        <br/>
+                        import_path = "import" string
+                        <br/>
+                        import = import_from | import_path
+                    </code>
+                </pre>
+
+                <h2>Classes</h2>
+                <pre>
+                    <code className="language-ebnf">
+                        field = "@" identifier
+                        <br/>
+                        class = "class" identifier {`{field | identifier}`} ["="
+                        <br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{`{indentation function_declaration}`}
+                        <br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
                     </code>
                 </pre>
 
