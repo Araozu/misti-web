@@ -1,6 +1,7 @@
 import { css, StyleSheet } from "aphrodite/no-important";
-import { RouterLink } from "./Router";
+import { RouterLink, useRoute } from "./Router";
 import { setAnimationActive } from "./loadingAnimationGlobal";
+import { Show } from "solid-js";
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -30,6 +31,7 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
             // fontWeight: "bold",
             marginRight: "1rem",
             marginBottom: "2rem",
+            marginTop: "2rem",
             border: `solid 3px ${props.color}`,
             textDecorationLine: "underline",
             backgroundColor: "var(--bg-color)",
@@ -52,6 +54,7 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
 }
 
 export function Header(props: { setColorMode: (v: string) => string }) {
+    const route = useRoute();
 
     const changeColorScheme = () => {
         const currentMode = localStorage?.getItem("color-mode") ?? "dark";
@@ -63,19 +66,21 @@ export function Header(props: { setColorMode: (v: string) => string }) {
     return (
         <div>
             <div>
-                <div className={css(e.motto, e.padded)}>
-                    A&nbsp;
-                    <span style={{color: "#e7b711", "font-weight": "bold"}}>F</span>
-                    <span style={{color: "#04abfc", "font-weight": "bold"}}>A</span>
-                    <span style={{color: "#fca8d1", "font-weight": "bold"}}>N</span>
-                    <span style={{color: "#f44336", "font-weight": "bold"}}>C</span>
-                    <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
-                    &nbsp;programming language
-                    <br/>
-                    that increases productivity
-                </div>
+                <Show when={route() === "/"}>
+                    <div className={css(e.motto, e.padded)}>
+                        A&nbsp;
+                        <span style={{color: "#e7b711", "font-weight": "bold"}}>F</span>
+                        <span style={{color: "#04abfc", "font-weight": "bold"}}>A</span>
+                        <span style={{color: "#fca8d1", "font-weight": "bold"}}>N</span>
+                        <span style={{color: "#f44336", "font-weight": "bold"}}>C</span>
+                        <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
+                        &nbsp;programming language
+                        <br/>
+                        that increases productivity
+                    </div>
 
-                <p className={css(e.motto2)}>Convert your JavaScript today!</p>
+                    <p className={css(e.motto2)}>Convert your JavaScript today!</p>
+                </Show>
 
                 <div className={css(e.padded)}>
                     <RouterLink to={"/learn/"} onClick={() => setAnimationActive(true)}>

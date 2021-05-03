@@ -1,5 +1,5 @@
 import { lazy, Suspense, Switch, Match, createSignal, createEffect, untrack } from "solid-js";
-import { useRouter } from "./Router";
+import { useRoute } from "./Router";
 import Index from "./Pages/Index";
 import { Header } from "./Header";
 import { StyleSheet, css } from "aphrodite/no-important";
@@ -9,10 +9,7 @@ const time = (t: number) => new Promise(resolve => {
     setTimeout(resolve, t)
 });
 
-const Learn = lazy(async () => {
-    await time(2000)
-    return import("./Pages/Learn")
-});
+const Learn = lazy(async () => import("./Pages/Learn"));
 
 const Grammar = lazy(() => import("./Pages/Grammar"));
 
@@ -95,7 +92,7 @@ function Separator() {
 }
 
 function App() {
-    const route = useRouter();
+    const route = useRoute();
     const [colorMode, setColorMode] = createSignal(localStorage?.getItem("color-mode") ?? "dark");
 
     createEffect(() => {

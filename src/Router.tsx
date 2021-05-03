@@ -1,6 +1,6 @@
 import { createSignal, JSX } from "solid-js";
 
-export const useRouter = (): () => string => {
+const [route, setRoute] = (() => {
     let rutaPrevia = window.location.hash
 
     if (rutaPrevia === "") {
@@ -19,8 +19,11 @@ export const useRouter = (): () => string => {
 
     window.addEventListener("hashchange", fnEffect)
 
-    return rutaActual
-}
+    const v: [() => string, (v: string) => string] = [rutaActual, setRutaActual];
+    return v;
+})();
+
+export const useRoute = () => route;
 
 export function RouterLink(props: { to: string, children: JSX.Element, onClick?: () => void }) {
     return (

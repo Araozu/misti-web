@@ -9,6 +9,7 @@
     "normalize.css": "^8.0.1",
     "solid-js": "^0.26.2",
     "solid-scripts": "0.0.55",
+    "split-grid": "^1.0.11",
     "typescript": "4.2.4"
   },
   "scripts": {

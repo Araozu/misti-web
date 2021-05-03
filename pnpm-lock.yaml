@@ -8,6 +8,7 @@ devDependencies:
   normalize.css: 8.0.1
   solid-js: 0.26.2
   solid-scripts: 0.0.55
+  split-grid: 1.0.11
   typescript: 4.2.4
 lockfileVersion: 5.2
 packages:
@@ -8915,6 +8916,10 @@ packages:
       supports-color: '*'
     resolution:
       integrity: sha512-r46gZQZQV+Kl9oItvl1JZZqJKGr+oEkB08A6BzkiR7593/7IbtuncXHd2YoYeTsG4157ZssMu9KYvUHLcjcDoA==
+  /split-grid/1.0.11:
+    dev: true
+    resolution:
+      integrity: sha512-ELtFtxc3r5we5GZfe6Fi0BFFxIi2M6BY1YEntBscKRDD3zx4JVHqx2VnTRSQu1BixCYSTH3MTjKd4esI2R7EgQ==
   /split-string/3.1.0:
     dependencies:
       extend-shallow: 3.0.2
@@ -10336,4 +10341,5 @@ specifiers:
   railroad-diagrams: ^1.0.0
   solid-js: ^0.26.2
   solid-scripts: 0.0.55
+  split-grid: ^1.0.11
   typescript: 4.2.4
