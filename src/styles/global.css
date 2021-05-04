@@ -4,6 +4,7 @@
     --c3: #fca8d1;
     --c4: #f44336;
     --c5: #39b487;
+    --c3-transparent: rgba(252, 168, 209, 0.35);
 }
 
 .dark-theme {

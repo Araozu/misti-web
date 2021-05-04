@@ -6,6 +6,41 @@ const e = StyleSheet.create({
     }
 });
 
+function SectionTitle(props: { text: string }) {
+    const e = StyleSheet.create({
+        container: {
+            textTransform: "uppercase",
+            opacity: 0.8,
+            padding: "1.75rem 0.25rem 0.5rem 0.25rem",
+        }
+    });
+
+    return (
+        <div className={css(e.container)}>
+            {props.text}
+        </div>
+    );
+}
+
+function SidebarLink(props: { text: string }) {
+    const e = StyleSheet.create({
+        container: {
+            padding: "0.5rem 0.25rem",
+            borderRadius: "2px",
+            cursor: "pointer",
+            ":hover": {
+                backgroundColor: "var(--c3-transparent)"
+            }
+        }
+    });
+
+    return (
+        <div className={css(e.container)}>
+            {props.text}
+        </div>
+    );
+}
+
 export function Sidebar() {
     return (
         <div className={css(e.container)}>
@@ -13,55 +48,70 @@ export function Sidebar() {
             <br/>
             0.0.41
             <hr/>
-            Misti tutorial:
-            <br/>
-            <br/>
-            Motivation
-            <br/>
+            <SidebarLink text={"Motivation"}/>
 
-            Basics
-            <br/>
-            Variables/Constants
-            <br/>
-            Datatypes
-            <br/>
-            Function calls
-            <br/>
-            Operators
-            <br/>
-            Tuples
-            <br/>
+            <SectionTitle text={"Basics"}/>
 
-            Flow control
-            <br/>
-            Conditionals
-            <br/>
-            Arrays
-            <br/>
-            Loops
-            <br/>
+            <SidebarLink text={"Variables & Constants"}/>
+            <SidebarLink text={"Datatypes"}/>
+            <SidebarLink text={"Function Calls"}/>
+            <SidebarLink text={"Operators"}/>
+            <SidebarLink text={"Tuples"}/>
 
-            Functions
-            <br/>
-            Definition
-            <br/>
-            Parameters
-            <br/>
-            Custom operators
-            <br/>
-            Lambdas
-            <br/>
-            Utilities
-            <br/>
+            <SectionTitle text={"Flow control"}/>
 
-            Objects
-            <br/>
+            <SidebarLink text={"Conditionals"} />
+            <SidebarLink text={"Arrays"} />
+            <SidebarLink text={"Loops"} />
 
-            Classes
-            <br/>
+            <SectionTitle text={"Functions"}/>
 
-            Modules
-            <br/>
+            <SidebarLink text={"Definition"}/>
+            <SidebarLink text={"Parameters"}/>
+            <SidebarLink text={"Lambdas"}/>
+            <SidebarLink text={"Utilities"}/>
+            <SidebarLink text={"Partial Application"}/>
+            <SidebarLink text={"Custom operators"}/>
+
+            <SectionTitle text={"Objects"}/>
+
+            <SidebarLink text={"Definition"}/>
+            <SidebarLink text={"Methods"}/>
+            <SidebarLink text={"get & set"}/>
+            <SidebarLink text={"this"}/>
+
+            <SectionTitle text={"Classes"}/>
+
+            <SidebarLink text={"Definition"}/>
+            <SidebarLink text={"Inheritance"}/>
+
+            <SectionTitle text={"Error Handling"}/>
+
+            <SidebarLink text={"Exceptions"}/>
+
+            <SectionTitle text={"Pattern Matching"}/>
+
+            <SidebarLink text={"Switch"}/>
+            <SidebarLink text={"Destructuring declarations"}/>
+            <SidebarLink text={"Destructuring function parameters"}/>
+
+            <SectionTitle text={"Modules"}/>
+
+            <SidebarLink text={"Import"}/>
+            <SidebarLink text={"Export"}/>
+
+            <SectionTitle text={"JSX"}/>
+
+            <SidebarLink text={"Definition"}/>
+
+            <SectionTitle text={"Contracts"}/>
+
+            <SidebarLink text={"Guards"}/>
+            <SidebarLink text={"Preconditions"}/>
+            <SidebarLink text={"Postconditions"}/>
+            <SidebarLink text={"Invariants"}/>
+
+
         </div>
     )
 }
