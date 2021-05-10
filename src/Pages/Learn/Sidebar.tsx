@@ -48,8 +48,6 @@ export function Sidebar() {
             <br/>
             0.0.41
             <hr/>
-            <SidebarLink text={"Motivation"}/>
-
             <SectionTitle text={"Basics"}/>
 
             <SidebarLink text={"Variables & Constants"}/>

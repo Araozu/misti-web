@@ -1,4 +1,4 @@
-import { lazy, Suspense, Switch, Match, createSignal, createEffect, untrack } from "solid-js";
+import { lazy, Suspense, Switch, Match, createSignal, createEffect, untrack, createMemo } from "solid-js";
 import { useRoute } from "./Router";
 import Index from "./Pages/Index";
 import { Header } from "./Header";
@@ -14,20 +14,25 @@ const Learn = lazy(async () => import("./Pages/Learn"));
 const Grammar = lazy(() => import("./Pages/Grammar"));
 
 function Separator() {
-    const e = StyleSheet.create({
-        container: {
-            width: "100%",
-            overflow: "hidden",
-            position: "sticky",
-            top: "-0.75rem",
-        },
-        separator: {
-            height: "1rem",
-            width: "200%",
-            animationName: "gradientBG",
-            animationTimingFunction: "linear",
-            animationIterationCount: "infinite"
-        }
+    const route = useRoute();
+
+    const e = createMemo(() => {
+        const isMainPage = route() === "/";
+        return StyleSheet.create({
+            container: {
+                width: "100%",
+                overflow: "hidden",
+                position: isMainPage ? "sticky" : "fixed",
+                top: isMainPage ? "-0.75rem" : "1.4rem",
+            },
+            separator: {
+                height: isMainPage ? "1rem" : "0.2rem",
+                width: "200%",
+                animationName: "gradientBG",
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite"
+            }
+        });
     });
 
     const [position, setPosition] = createSignal(0);
@@ -82,9 +87,9 @@ function Separator() {
     }
 
     return (
-        <div className={css(e.container)} onClick={animateHelper}>
+        <div className={css(e().container)} onClick={animateHelper}>
             <div
-                className={css(e.separator) + " rainbow-separator"}
+                className={css(e().separator) + " rainbow-separator"}
                 style={{transform: `translateX(-${position()}%)`}}
             />
         </div>
@@ -100,9 +105,21 @@ function App() {
         document.body.className = `${mode}-theme`;
     });
 
+    const whiteSpaceStyles = createMemo(() => {
+        return route() === "/"
+            ? {
+                display: "none"
+            }
+            : {
+                width: "100%",
+                height: "1.6rem"
+            };
+    });
+
     return (
         <div>
             <Header setColorMode={setColorMode}/>
+            <div style={whiteSpaceStyles()}/>
             <Separator/>
 
             <Suspense fallback={<p>Loading...</p>}>

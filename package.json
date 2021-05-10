@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "highlight.js": "^10.7.2",
+    "marked": "^2.0.3",
     "railroad-diagrams": "^1.0.0"
   }
 }

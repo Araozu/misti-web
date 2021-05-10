@@ -8,14 +8,14 @@
 }
 
 .dark-theme {
-    --bg-color: #212121;
+    --bg-color: #202020;
     --color: #dedede;
     --code-bg-color: #151515;
     --code-color: #bababa;
 }
 
 .light-theme {
-    --bg-color: #f3ecea;
+    --bg-color: #fffdfc;
     --color: #404040;
     --code-bg-color: #fdf6e3;
     --code-color: #073642;

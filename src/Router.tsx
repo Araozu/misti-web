@@ -25,9 +25,16 @@ const [route, setRoute] = (() => {
 
 export const useRoute = () => route;
 
-export function RouterLink(props: { to: string, children: JSX.Element, onClick?: () => void }) {
+interface RouterLinkProps {
+    to: string,
+    children: JSX.Element,
+    className?: string,
+    onClick?: () => void
+}
+
+export function RouterLink(props: RouterLinkProps) {
     return (
-        <a href={`/#${props.to}`} onClick={props.onClick}>
+        <a className={props.className || ""} href={`/#${props.to}`} onClick={props.onClick}>
             {props.children}
         </a>
     )
