@@ -11,7 +11,10 @@ const time = (t: number) => new Promise(resolve => {
 
 const Learn = lazy(async () => import("./Pages/Learn"));
 
-const Grammar = lazy(() => import("./Pages/Grammar"));
+const Grammar = lazy(async () => {
+    await time(Math.random() * 1000 + 1000);
+    return import("./Pages/Grammar")
+});
 
 function Separator() {
     const route = useRoute();

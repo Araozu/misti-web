@@ -1,4 +1,5 @@
 import { createSignal, JSX } from "solid-js";
+import { setAnimationActive } from "./loadingAnimationGlobal";
 
 const [route, setRoute] = (() => {
     let rutaPrevia = window.location.hash
@@ -33,8 +34,12 @@ interface RouterLinkProps {
 }
 
 export function RouterLink(props: RouterLinkProps) {
+    const onClickFn = () => {
+        setAnimationActive(true);
+        props.onClick?.();
+    }
     return (
-        <a className={props.className || ""} href={`/#${props.to}`} onClick={props.onClick}>
+        <a className={props.className || ""} href={`/#${props.to}`} onClick={onClickFn}>
             {props.children}
         </a>
     )

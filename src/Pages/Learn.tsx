@@ -4,6 +4,7 @@ import { Title } from "../components/Title";
 import { Sidebar } from "./Learn/Sidebar";
 import Split from "split-grid";
 import { StyleSheet, css } from "aphrodite/no-important";
+import { useRoute } from "../Router";
 
 const e = StyleSheet.create({
     container: {
@@ -19,22 +20,21 @@ const e = StyleSheet.create({
 });
 
 export default function () {
+    const route = useRoute();
 
     setAnimationActive(false);
 
     const sidebarGutter = <div className={css(e.gutter)}/>
 
-    setTimeout(() => {
-        Split({
-            dragInterval: 20,
-            columnGutters: [
-                {
-                    element: sidebarGutter as unknown as HTMLElement,
-                    track: 1
-                }
-            ]
-        })
-    }, 0);
+    Split({
+        dragInterval: 20,
+        columnGutters: [
+            {
+                element: sidebarGutter as unknown as HTMLElement,
+                track: 1
+            }
+        ]
+    });
 
     return (
         <div className={css(e.container)}>

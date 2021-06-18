@@ -13,7 +13,7 @@ const e = StyleSheet.create({
         paddingBottom: "4rem"
     },
     reason: {
-        fontSize: "3rem"
+        fontSize: "2rem"
     },
     reasonDescription: {
         fontSize: "1.5rem"
@@ -40,9 +40,9 @@ function JSFizzBuzz() {
         },
         e: {
             whiteSpace: "pre",
-            fontFamily: "Ubuntu Mono, monospace",
-            fontSize: "1.25rem",
-            lineHeight: "1.75rem",
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "1rem",
+            lineHeight: "1.5rem",
             color: "var(--code-color)",
         }
     })
@@ -75,30 +75,43 @@ export default function Index() {
     return (
         <div>
             <div className={css(e.padded)}>
-                <div className={css(e.reasonsTitle)}>But why?</div>
+                <div className={css(e.reasonsTitle)}>Why?</div>
                 <br/>
 
                 <div className={css(e.reason)}>
-                    JavaScript is&nbsp;
-                    <span style={{color: "#f44336", "font-weight": "bold"}}>cluttered</span>
+                    To make JavaScript
+                    <span style={{color: "var(--c4)", "font-weight": "bold"}}> less cluttered</span>
                 </div>
                 <br/>
                 <JSFizzBuzz/>
-                <p className={css(e.reasonDescription)}>
-                    There's a lot of punctuation marks that obfuscate the logic of our programs
-                </p>
 
-                <br/>
-                <br/>
                 <br/>
 
                 <div className={css(e.reason)}>
-                    JavaScript is not fully&nbsp;
-                    <span style={{color: "#04abfc", "font-weight": "bold"}}>expressive</span>
+                    To make JavaScript
+                    <span style={{color: "var(--c1)", "font-weight": "bold"}}> less weird</span>
                 </div>
-                <p className={css(e.reasonDescription)}>
-                    Our code isn't easily composable, and we are slowed down
-                </p>
+
+                <br/>
+
+                <div className={css(e.reason)}>
+                    To make JavaScript
+                    <span style={{color: "var(--c2)", "font-weight": "bold"}}> more expressive</span>
+                </div>
+
+                <br/>
+
+                <div className={css(e.reason)}>
+                    To make JavaScript
+                    <span style={{color: "var(--c3)", "font-weight": "bold"}}> more functional</span>
+                </div>
+
+                <br/>
+
+                <div className={css(e.reason)}>
+                    To make JavaScript
+                    <span style={{color: "var(--c5)", "font-weight": "bold"}}> more fun</span>
+                </div>
             </div>
         </div>
     )

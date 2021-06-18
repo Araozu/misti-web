@@ -112,10 +112,10 @@ export function Header(props: { setColorMode: (v: string) => string }) {
                         <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
                         &nbsp;programming language
                         <br/>
-                        that increases productivity
+                        that compiles to JavaScript
                     </div>
 
-                    <p className={css(e.motto2)}>Convert your JavaScript today!</p>
+                    <p className={css(e.motto2)}>That's Misti</p>
 
                     <div className={css(e.padded)}>
                         <RouterLink to={"/learn/"} onClick={() => setAnimationActive(true)}>

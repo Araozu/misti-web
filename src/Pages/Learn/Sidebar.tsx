@@ -1,8 +1,13 @@
 import { StyleSheet, css } from "aphrodite/no-important";
+import { createMemo, For } from "solid-js";
+import { currentVersions } from "../../globalValues";
 
 const e = StyleSheet.create({
     container: {
-        padding: "1.5rem 1rem"
+        padding: "1.5rem 1rem",
+        overflowY: "scroll",
+        height: "calc(100vh - 1.6rem)",
+        boxSizing: "border-box"
     }
 });
 
@@ -42,12 +47,27 @@ function SidebarLink(props: { text: string }) {
 }
 
 export function Sidebar() {
+    const versionsElement = createMemo(() => {
+        const v = currentVersions();
+
+        if (v.versions.length === 0) {
+            return <p style={{opacity: 0.5}}>Loading...</p>
+        } else {
+            return (
+                <For each={v.versions}>
+                    {x => <p>{x}</p>}
+                </For>
+            );
+        }
+    });
+
     return (
         <div className={css(e.container)}>
             Language version:
             <br/>
-            0.0.41
+            {versionsElement()}
             <hr/>
+
             <SectionTitle text={"Basics"}/>
 
             <SidebarLink text={"Variables & Constants"}/>
@@ -58,9 +78,9 @@ export function Sidebar() {
 
             <SectionTitle text={"Flow control"}/>
 
-            <SidebarLink text={"Conditionals"} />
-            <SidebarLink text={"Arrays"} />
-            <SidebarLink text={"Loops"} />
+            <SidebarLink text={"Conditionals"}/>
+            <SidebarLink text={"Arrays"}/>
+            <SidebarLink text={"Loops"}/>
 
             <SectionTitle text={"Functions"}/>
 
