@@ -1,7 +1,8 @@
 import { css, StyleSheet } from "aphrodite/no-important";
 import { RouterLink, useRoute } from "./Router";
 import { setAnimationActive } from "./loadingAnimationGlobal";
-import { Show } from "solid-js";
+import { createMemo, Show } from "solid-js";
+import { currentVersions } from "./globalValues";
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -99,6 +100,8 @@ export function Header(props: { setColorMode: (v: string) => string }) {
         props.setColorMode(newMode);
     };
 
+    const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next");
+
     return (
         <div>
             <div>
@@ -118,7 +121,7 @@ export function Header(props: { setColorMode: (v: string) => string }) {
                     <p className={css(e.motto2)}>That's Misti</p>
 
                     <div className={css(e.padded)}>
-                        <RouterLink to={"/learn/"} onClick={() => setAnimationActive(true)}>
+                        <RouterLink to={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
                             <MainButton text={"Learn"} color={"#04abfc"}/>
                         </RouterLink>
                         <MainButton text={"Install"} color={"#e7b711"}/>

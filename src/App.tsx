@@ -119,6 +119,11 @@ function App() {
             };
     });
 
+    const routeFirstComponent = createMemo(() => {
+        const parts = route().substr(1).split("/");
+        return parts[0];
+    });
+
     return (
         <div>
             <Header setColorMode={setColorMode}/>
@@ -130,7 +135,7 @@ function App() {
                     <Match when={route() === "/"}>
                         <Index/>
                     </Match>
-                    <Match when={route() === "/learn/"}>
+                    <Match when={routeFirstComponent() === "learn"}>
                         <Learn/>
                     </Match>
                     <Match when={route() === "/grammar/"}>

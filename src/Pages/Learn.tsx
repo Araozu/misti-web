@@ -3,8 +3,12 @@ import { globalStyles } from "../globalStyles";
 import { Title } from "../components/Title";
 import { Sidebar } from "./Learn/Sidebar";
 import Split from "split-grid";
+import YAML from "yaml";
 import { StyleSheet, css } from "aphrodite/no-important";
-import { useRoute } from "../Router";
+import { useSplitRoute } from "../Router";
+import { createMemo, createSignal } from "solid-js";
+import { Subjects } from "./Learn/Subjects";
+import { language } from "../globalValues";
 
 const e = StyleSheet.create({
     container: {
@@ -20,9 +24,14 @@ const e = StyleSheet.create({
 });
 
 export default function () {
-    const route = useRoute();
-
     setAnimationActive(false);
+
+    const routeParts = useSplitRoute();
+    const version = createMemo(() => routeParts()[1]);
+
+    if (!version()) {
+        window.location.replace(`/#/${routeParts()[0]}/next/`);
+    }
 
     const sidebarGutter = <div className={css(e.gutter)}/>
 
@@ -35,6 +44,16 @@ export default function () {
             }
         ]
     });
+
+    const [subjects, setSubjects] = createSignal<Subjects>([]);
+
+    (async () => {
+        const indexUrl = `/txt/${language()}/docs/${version()}/index.yaml`;
+        const dataRaw = await fetch(indexUrl);
+        const dataTxt = await dataRaw.text();
+        const subjects = YAML.parse(dataTxt) as {subjects: Subjects}
+        setSubjects(subjects.subjects);
+    })();
 
     return (
         <div className={css(e.container)}>

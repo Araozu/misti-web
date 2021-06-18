@@ -1,11 +1,11 @@
-import { createSignal, JSX } from "solid-js";
+import { createMemo, createSignal, JSX } from "solid-js";
 import { setAnimationActive } from "./loadingAnimationGlobal";
 
-const [route, setRoute] = (() => {
+const route = (() => {
     let rutaPrevia = window.location.hash
 
     if (rutaPrevia === "") {
-        window.history.pushState({}, "JAM", "#/")
+        window.history.pushState({}, "Misti", "#/")
         rutaPrevia = "/"
     } else {
         rutaPrevia = rutaPrevia.substr(1)
@@ -20,11 +20,16 @@ const [route, setRoute] = (() => {
 
     window.addEventListener("hashchange", fnEffect)
 
-    const v: [() => string, (v: string) => string] = [rutaActual, setRutaActual];
-    return v;
+    return rutaActual;
 })();
 
 export const useRoute = () => route;
+
+export const useSplitRoute = () => createMemo(() => {
+    const parts = route().substr(1).split("/");
+    if (parts[parts.length - 1] === "") parts.pop();
+    return parts;
+});
 
 interface RouterLinkProps {
     to: string,
