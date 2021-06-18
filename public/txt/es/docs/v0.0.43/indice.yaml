@@ -1,0 +1,46 @@
+ruta: docs/v0.0.43
+temas:
+  - titulo: Introducción
+    ruta: introduccion
+  - titulo: Objetivos
+    ruta: objetivos
+  - titulo: Bases
+    ruta: bases
+    temas:
+      - titulo: Constantes y variables
+        ruta: constantes-y-variables
+      - titulo: Tipos de datos
+        ruta: tipos-de-datos
+      - titulo: Operadores comunes
+        ruta: operadores-comunes
+      - titulo: Expresiones
+        ruta: expresiones
+
+  - titulo: Estructuras Basicas
+    ruta: estructuras
+    temas:
+      - titulo: Condicionales
+        ruta: condicionales
+      - titulo: Arrays
+        ruta: arrays
+      - titulo: Bucles
+        ruta: bucles
+
+  - titulo: Funciones
+    ruta: funciones
+    temas:
+      - titulo: Estructura
+        ruta: estructura
+      - titulo: Funciones anónimas
+        ruta: funciones-anonimas
+
+  - titulo: Objetos
+    ruta: objetos
+
+  - titulo: Módulos
+    ruta: modulos
+    temas:
+      - titulo: Import
+        ruta: import
+      - titulo: Nodejs
+        ruta: nodejs
