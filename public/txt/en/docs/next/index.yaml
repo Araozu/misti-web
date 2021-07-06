@@ -6,3 +6,111 @@ subjects:
     children:
       - title: Variables & Constants
         path: variables-and-constants
+      - title: Datatypes
+        path: datatypes
+      - title: Function Calls
+        path: function-calls
+      - title: Operators
+        path: operators
+      - title: Tuples
+        path: tuples
+  
+  - title: Flow Control
+    path: flow-control
+    children:
+      - title: Conditionals
+        path: conditionals
+      - title: Arrays
+        path: arrays
+      - title: Loops
+        path: loops
+
+  - title: Functions
+    path: functions
+    children:
+      - title: Definition
+        path: definition
+      - title: Parameters
+        path: parameters
+      - title: Lambdas
+        path: lambdas
+      - title: Utilities
+        path: utilities
+      - title: Partial Application
+        path: partial-application
+      - title: Custom operators
+        path: custom-operators
+
+  - title: Objects
+    path: objets
+    children:
+      - title: Definition
+        path: definition
+      - title: Methods
+        path: methods
+      - title: get & set
+        path: get-and-set
+      - title: this
+        path: this
+
+  - title: Classes
+    path: classes
+    children:
+      - title: Definition
+        path: definition
+      - title: Inheritance
+        path: inheritance
+  
+  - title: Error Handling
+    path: error-handling
+    children:
+      - title: Exceptions
+        path: exceptions
+
+  - title: Pattern Matching
+    path: pattern-matching
+    children:
+      - title: Switch
+        path: switch
+      - title: Declaration destructuring
+        path: declaration-destructuring
+      - title: Parameter destructuring
+        path: parameter-destructuring
+      - title: Object destructuring
+        path: object-destructuring
+  
+  - title: Modules
+    path: modules
+    children:
+      - title: Import
+        path: import
+      - title: Export
+        path: export
+
+  - title: JSX
+    path: jsx
+    children:
+      - title: Definition
+        path: definition
+
+  - title: Contracts
+    path: contracts
+    children:
+      - title: Guards
+        path: guards
+      - title: Preconditions
+        path: preconditions
+      - title: Postconditions
+        path: postconditions
+      - title: Invariants
+        path: invariants
+
+  - title: Tagged unions
+    path: tagged-unions
+    children:
+      - title: Definition
+        path: definition
+      - title: Parameters
+        path: parameters
+      - title: Maybe
+        path: maybe

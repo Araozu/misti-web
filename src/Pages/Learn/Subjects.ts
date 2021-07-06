@@ -1,7 +1,7 @@
 interface Subject {
     title: string,
     path?: string,
-    children?: Subject
+    children?: Subject[]
 }
 
 export type Subjects = Subject[]

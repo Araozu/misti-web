@@ -52,13 +52,14 @@ export default function () {
         const dataRaw = await fetch(indexUrl);
         const dataTxt = await dataRaw.text();
         const subjects = YAML.parse(dataTxt) as {subjects: Subjects}
+        console.log(subjects);
         setSubjects(subjects.subjects);
     })();
 
     return (
         <div className={css(e.container)}>
 
-            <Sidebar/>
+            <Sidebar subjects={subjects()}/>
             {sidebarGutter}
             <div className={css(globalStyles.padded)}>
                 <Title title={"Learn Misti"}/>

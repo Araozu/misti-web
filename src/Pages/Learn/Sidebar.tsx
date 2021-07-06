@@ -1,6 +1,7 @@
 import { StyleSheet, css } from "aphrodite/no-important";
 import { createMemo, For } from "solid-js";
 import { currentVersions } from "../../globalValues";
+import { Subjects } from "./Subjects";
 
 const e = StyleSheet.create({
     container: {
@@ -46,7 +47,7 @@ function SidebarLink(props: { text: string }) {
     );
 }
 
-export function Sidebar() {
+export function Sidebar(props: {subjects: Subjects}) {
     const versionsElement = createMemo(() => {
         const v = currentVersions();
 
@@ -68,67 +69,26 @@ export function Sidebar() {
             {versionsElement()}
             <hr/>
 
-            <SectionTitle text={"Basics"}/>
+            <For each={props.subjects}>
+                {(subject) => {
 
-            <SidebarLink text={"Variables & Constants"}/>
-            <SidebarLink text={"Datatypes"}/>
-            <SidebarLink text={"Function Calls"}/>
-            <SidebarLink text={"Operators"}/>
-            <SidebarLink text={"Tuples"}/>
-
-            <SectionTitle text={"Flow control"}/>
-
-            <SidebarLink text={"Conditionals"}/>
-            <SidebarLink text={"Arrays"}/>
-            <SidebarLink text={"Loops"}/>
-
-            <SectionTitle text={"Functions"}/>
-
-            <SidebarLink text={"Definition"}/>
-            <SidebarLink text={"Parameters"}/>
-            <SidebarLink text={"Lambdas"}/>
-            <SidebarLink text={"Utilities"}/>
-            <SidebarLink text={"Partial Application"}/>
-            <SidebarLink text={"Custom operators"}/>
-
-            <SectionTitle text={"Objects"}/>
-
-            <SidebarLink text={"Definition"}/>
-            <SidebarLink text={"Methods"}/>
-            <SidebarLink text={"get & set"}/>
-            <SidebarLink text={"this"}/>
-
-            <SectionTitle text={"Classes"}/>
-
-            <SidebarLink text={"Definition"}/>
-            <SidebarLink text={"Inheritance"}/>
-
-            <SectionTitle text={"Error Handling"}/>
-
-            <SidebarLink text={"Exceptions"}/>
-
-            <SectionTitle text={"Pattern Matching"}/>
-
-            <SidebarLink text={"Switch"}/>
-            <SidebarLink text={"Destructuring declarations"}/>
-            <SidebarLink text={"Destructuring function parameters"}/>
-
-            <SectionTitle text={"Modules"}/>
-
-            <SidebarLink text={"Import"}/>
-            <SidebarLink text={"Export"}/>
-
-            <SectionTitle text={"JSX"}/>
-
-            <SidebarLink text={"Definition"}/>
-
-            <SectionTitle text={"Contracts"}/>
-
-            <SidebarLink text={"Guards"}/>
-            <SidebarLink text={"Preconditions"}/>
-            <SidebarLink text={"Postconditions"}/>
-            <SidebarLink text={"Invariants"}/>
-
+                    if (subject.children) {
+                        const children = (
+                            <For each={subject.children}>
+                                {x => <SidebarLink text={x.title}/>}
+                            </For>
+                        );
+                        return (
+                            <>
+                                <SectionTitle text={subject.title}/>
+                                {children}
+                            </>
+                        )
+                    } else {
+                        return <SidebarLink text={subject.title}/>
+                    }
+                }}
+            </For>
 
         </div>
     )
