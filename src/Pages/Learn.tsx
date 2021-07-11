@@ -9,6 +9,7 @@ import { useSplitRoute } from "../Router";
 import { createMemo, createSignal } from "solid-js";
 import { Subjects } from "./Learn/Subjects";
 import { language } from "../globalValues";
+import { Content } from "./Learn/Content";
 
 const e = StyleSheet.create({
     container: {
@@ -61,8 +62,9 @@ export default function () {
 
             <Sidebar subjects={subjects()}/>
             {sidebarGutter}
+
             <div className={css(globalStyles.padded)}>
-                <Title title={"Learn Misti"}/>
+                <Content subjects={subjects()}/>
             </div>
 
         </div>

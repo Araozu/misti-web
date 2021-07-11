@@ -1,6 +1,7 @@
 
 subjects:
   - title: Start
+    path: start
   - title: Basics
     path: basics
     children:

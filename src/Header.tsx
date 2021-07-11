@@ -137,7 +137,7 @@ export function Header(props: { setColorMode: (v: string) => string }) {
                             <RouterLink className={css(e.headerMainLink)} to={"/"}>Misti</RouterLink>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={"/learn/"}>Learn</RouterLink>
+                            <RouterLink className={css(e.headerNormalLink)} to={`/learn/${docsCurrentVersion()}/`}>Learn</RouterLink>
                         </div>
                         <div className={css(e.headerLink)}>
                             <RouterLink className={css(e.headerNormalLink)} to={"/learn/"}>Install</RouterLink>
