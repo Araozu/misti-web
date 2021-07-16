@@ -66,7 +66,37 @@ h2 {
 }
 
 code, pre {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Source Code Pro", monospace;
     font-variant-ligatures: discretionary-ligatures;
     white-space: pre;
+}
+
+.marked pre {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+    box-shadow: inset 0 0 10px 0 rgba(150, 150, 150, 0.5);
+    border-radius: 3px;
+}
+
+.marked h1 {
+    font-weight: normal;
+}
+
+.marked h2 {
+    font-size: 1.75rem;
+    font-weight: lighter;
+}
+
+.marked table {
+    text-align: center;
+    border-collapse: collapse;
+
+}
+
+.marked table, th, td {
+    border: solid 1px rgba(150, 150, 150, 1);
+}
+
+.marked table td, th {
+    padding: 0.25rem 0.5rem;
 }

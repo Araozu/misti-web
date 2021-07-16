@@ -1,0 +1,49 @@
+# Start
+
+Misti is _yet another programming language_ that compiles to JavaScript.
+
+Its syntax is indentation based (similar to F#/OCaml), and favors functional programming.
+
+```misti
+fun MainTitle props =
+    const title = createMemo #(props.title + "!")
+    #h1 title
+
+const mainTitleElem = MainTitle "misti"     
+```
+
+## Install
+
+The compiler is being rewritten from TypeScript to Kotlin. And old version is available
+in [npm](https://www.npmjs.com/package/kscript) with the old name of the project (kscript).
+
+## Goals
+
+- Be 100% compatible with existing JavaScript
+
+- Reduce noise in JavaScript code
+
+- Use a consistent syntax and semantics
+
+- Include functional constructs like typeclasses
+
+- (Someday) include type checking from typescript definitions
+
+- (Someday) include type inference
+
+- (Someday) export type information to a typescript format
+
+## But why?
+
+In short, no language had the features I wanted, so I just decided to create my own.
+
+| | Indentation based (F# style) | Uses the same JS API | Typed |
+|---|---|---|---|
+|CoffeScript|kind of|yes|no|
+|TypeScript|no|yes|yes|
+|ReasonML|no|no|yes|
+|PureScript|kind of|no|yes|
+|Elm|kind of|no|yes|
+
+The language is meant to be used in personal projects.
+

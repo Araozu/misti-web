@@ -8,7 +8,9 @@ const e = StyleSheet.create({
         padding: "1.5rem 1rem",
         overflowY: "scroll",
         height: "calc(100vh - 1.6rem)",
-        boxSizing: "border-box"
+        boxSizing: "border-box",
+        position: "sticky",
+        top: "1.6rem",
     }
 });
 
