@@ -71,6 +71,10 @@ code, pre {
     white-space: pre;
 }
 
+.marked p {
+    line-height: 1.5rem;
+}
+
 .marked pre {
     font-size: 0.85rem;
     padding: 0.75rem;
