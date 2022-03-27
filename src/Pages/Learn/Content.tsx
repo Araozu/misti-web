@@ -50,11 +50,12 @@ async function loadMDData(path: string, container: JSX.Element) {
     }
 }
 
-export function Content(props: {subjects: Subjects}) {
+export function Content(props: {subjects: Subjects, contentPath?: string}) {
     const routeParts = useSplitRoute()
     const version = createMemo(() => routeParts()[1])
     const parentSubject = createMemo(() => routeParts()[2])
     const subject = createMemo(() => routeParts()[3])
+    const contentPath = props.contentPath ?? "docs"
 
     const elementoContenedor = <div className={"marked"} />
 
@@ -73,14 +74,14 @@ export function Content(props: {subjects: Subjects}) {
                 el.appendChild(loadingElement as unknown as HTMLElement)
             } else {
                 const startPagePath = props.subjects[0].path
-                const indexUrl = `/txt/${language()}/docs/${version()}/${startPagePath}.md`
+                const indexUrl = `/txt/${language()}/${contentPath}/${version()}/${startPagePath}.md`
                 await loadMDData(indexUrl, elementoContenedor)
             }
         } else if (parent && !sub) {
-            const indexUrl = `/txt/${language()}/docs/${version()}/${parent}.md`
+            const indexUrl = `/txt/${language()}/${contentPath}/${version()}/${parent}.md`
             await loadMDData(indexUrl, elementoContenedor)
         } else {
-            const indexUrl = `/txt/${language()}/docs/${version()}/${parentSubject()}/${subject()}.md`
+            const indexUrl = `/txt/${language()}/${contentPath}/${version()}/${parentSubject()}/${subject()}.md`
             await loadMDData(indexUrl, elementoContenedor)
         }
 

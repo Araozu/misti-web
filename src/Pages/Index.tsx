@@ -1,5 +1,6 @@
 import { StyleSheet, css } from "aphrodite/no-important"
 import { JSX } from "solid-js"
+import { setAnimationActive } from "../loadingAnimationGlobal"
 
 const e = StyleSheet.create({
     padded: {
@@ -72,6 +73,7 @@ function JSSwitch() {
 }
 
 export default function Index() {
+    setAnimationActive(false)
     return (
         <div>
             <div className={css(e.padded)}>
