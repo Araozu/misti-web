@@ -47,6 +47,8 @@ async function loadMDData(path: string, container: JSX.Element) {
             el.removeChild(el.lastChild)
         }
         el.innerHTML = html
+        // Apply syntax highlight
+        window.Prism.highlightAllUnder(el)
     }
 }
 

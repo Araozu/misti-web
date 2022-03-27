@@ -57,7 +57,9 @@ function SidebarLink(props: { text: string, to: string }) {
     )
 }
 
-export function Sidebar(props: {subjects: Subjects}) {
+export function Sidebar(props: {subjects: Subjects, contentPath?: string}) {
+    const contentPath = props.contentPath ?? "docs"
+
     const versionsElement = createMemo(() => {
         const v = currentVersions()
 
@@ -85,7 +87,7 @@ export function Sidebar(props: {subjects: Subjects}) {
                     if (subject.children) {
                         const children = (
                             <For each={subject.children}>
-                                {(x) => <SidebarLink to={`/learn/next/${subject.path!}/${x.path!}`} text={x.title} />}
+                                {(x) => <SidebarLink to={`/${contentPath}/next/${subject.path!}/${x.path!}`} text={x.title} />}
                             </For>
                         )
                         return (
@@ -95,7 +97,7 @@ export function Sidebar(props: {subjects: Subjects}) {
                             </>
                         )
                     } else {
-                        return <SidebarLink to={`/learn/next/${subject.path!}`} text={subject.title} />
+                        return <SidebarLink to={`/${contentPath}/next/${subject.path!}`} text={subject.title} />
                     }
                 }}
             </For>

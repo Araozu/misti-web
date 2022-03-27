@@ -69,7 +69,7 @@ export default function() {
     return (
         <div className={css(e.container)}>
 
-            <Sidebar subjects={subjects()} />
+            <Sidebar subjects={subjects()} contentPath={"spec"} />
             {sidebarGutter}
 
             <div className={css(globalStyles.padded)}>

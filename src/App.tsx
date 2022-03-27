@@ -11,10 +11,7 @@ const time = (t: number) => new Promise((resolve) => {
 
 const Learn = lazy(async() => import("./Pages/Learn"))
 
-const Grammar = lazy(async() => {
-    await time(Math.random() * 5000 + 1000)
-    return import("./Pages/Grammar")
-})
+const Grammar = lazy(async() => import("./Pages/Grammar"))
 
 function Separator() {
     const route = useRoute()
@@ -27,6 +24,7 @@ function Separator() {
                 overflow: "hidden",
                 position: isMainPage ? "sticky" : "fixed",
                 top: isMainPage ? "-0.75rem" : "1.4rem",
+                zIndex: 1,
             },
             separator: {
                 height: isMainPage ? "1rem" : "0.25rem",
@@ -45,7 +43,7 @@ function Separator() {
             let variance = 0.06
 
             // accelerate
-            while (true) {
+            do {
                 if (pos >= 50) pos = 0
 
                 setPosition(pos + variance)
@@ -56,8 +54,7 @@ function Separator() {
                 }
                 pos += variance
                 await time(tick)
-                if (!animationActive()) break
-            }
+            } while (animationActive())
 
             // deaccelerate
             while (variance > 0.09) {
@@ -120,7 +117,7 @@ function App() {
             <Separator />
 
             <Suspense fallback={<p>Loading...</p>}>
-                <Switch fallback={<p>404!</p>}>
+                <Switch fallback={<p>404! Route not found</p>}>
                     <Match when={route() === "/"}>
                         <Index />
                     </Match>

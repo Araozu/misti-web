@@ -74,23 +74,18 @@ h2 {
     font-size: 2rem;
 }
 
+pre {
+    border: solid 1px rgba(255, 255, 255, 0.5);
+}
+
 code, pre {
     font-family: Iosevka, "Source Code Pro", monospace !important;
     font-variant-ligatures: discretionary-ligatures;
-    white-space: pre;
 }
 
 .marked p {
     line-height: 1.5rem;
     text-align: justify;
-}
-
-.marked pre {
-    font-size: 0.85rem;
-    padding: 0.75rem;
-    box-shadow: inset 0 0 10px 0 rgba(150, 150, 150, 0.5);
-    border-radius: 3px;
-    line-height: 1.25rem;
 }
 
 .marked h1 {
@@ -101,7 +96,7 @@ code, pre {
 
 .marked h2 {
     font-size: 1.75rem;
-    font-weight: light;
+    font-weight: 300;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
 }
@@ -109,7 +104,6 @@ code, pre {
 .marked table {
     text-align: center;
     border-collapse: collapse;
-
 }
 
 .marked table, th, td {
