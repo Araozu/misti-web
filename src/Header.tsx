@@ -138,10 +138,10 @@ export function Header() {
                             <RouterLink className={css(e.headerNormalLink)} to={"/api/"}>API</RouterLink>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={"/grammar/"}>Grammar</RouterLink>
+                            <RouterLink className={css(e.headerNormalLink)} to={`/grammar/${docsCurrentVersion()}/`}>Grammar</RouterLink>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={"/grammar/"}>GitHub</RouterLink>
+                            <RouterLink className={css(e.headerNormalLink)} to={`/grammar/${docsCurrentVersion()}/`}>GitHub</RouterLink>
                         </div>
                     </div>
                 </Show>

@@ -50,6 +50,9 @@ body {
 }
 
 .rainbow-separator {
+    animation-name: gradientBG;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     background: linear-gradient(
         135deg,
         #e7b711 0%, #e7b711 5%,

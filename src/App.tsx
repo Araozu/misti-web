@@ -12,7 +12,7 @@ const time = (t: number) => new Promise((resolve) => {
 const Learn = lazy(async() => import("./Pages/Learn"))
 
 const Grammar = lazy(async() => {
-    await time(Math.random() * 1000 + 1000)
+    await time(Math.random() * 5000 + 1000)
     return import("./Pages/Grammar")
 })
 
@@ -29,21 +29,17 @@ function Separator() {
                 top: isMainPage ? "-0.75rem" : "1.4rem",
             },
             separator: {
-                height: isMainPage ? "1rem" : "0.2rem",
+                height: isMainPage ? "1rem" : "0.25rem",
                 width: "200%",
-                animationName: "gradientBG",
-                animationTimingFunction: "linear",
-                animationIterationCount: "infinite",
             },
         })
     })
 
     const [position, setPosition] = createSignal(0)
-    const [animationActiveLocal, setAnimationActiveLocal] = createSignal(true)
 
     const animate = async() => {
         untrack(async() => {
-            const tick = 30
+            const tick = 35
             let pos = position()
 
             let variance = 0.06
@@ -85,7 +81,7 @@ function Separator() {
         if (animationActive()) {
             setAnimationActive(false)
         } else {
-            animate()
+            setAnimationActive(true)
         }
     }
 
@@ -131,7 +127,7 @@ function App() {
                     <Match when={routeFirstComponent() === "learn"}>
                         <Learn />
                     </Match>
-                    <Match when={route() === "/grammar/"}>
+                    <Match when={routeFirstComponent() === "grammar"}>
                         <Grammar />
                     </Match>
                 </Switch>
