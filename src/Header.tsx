@@ -1,22 +1,22 @@
-import { css, StyleSheet } from "aphrodite/no-important";
-import { RouterLink, useRoute } from "./Router";
-import { setAnimationActive } from "./loadingAnimationGlobal";
-import { createMemo, Show } from "solid-js";
-import { currentVersions } from "./globalValues";
+import { css, StyleSheet } from "aphrodite/no-important"
+import { RouterLink, useRoute } from "./Router"
+import { setAnimationActive } from "./loadingAnimationGlobal"
+import { createMemo, Show } from "solid-js"
+import { currentVersions } from "./globalValues"
 
 const e = StyleSheet.create({
     titleContainer: {
         backgroundColor: "#212121",
-        color: "#fefefe"
+        color: "#fefefe",
     },
     motto: {
         paddingTop: "3rem",
         paddingBottom: "1rem",
-        fontSize: "3rem"
+        fontSize: "3rem",
     },
     motto2: {
         padding: "0 4rem",
-        fontSize: "1.25rem"
+        fontSize: "1.25rem",
     },
     padded: {
         paddingLeft: "4rem",
@@ -37,7 +37,7 @@ const e = StyleSheet.create({
         display: "flex",
         height: "1.4rem",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
     },
     headerMainLink: {
         fontWeight: "bold",
@@ -46,8 +46,8 @@ const e = StyleSheet.create({
         padding: "0 1rem",
         fontSize: "0.9rem",
         ":hover": {
-            textDecoration: "underline"
-        }
+            textDecoration: "underline",
+        },
     },
     headerNormalLink: {
         textDecoration: "none",
@@ -55,10 +55,10 @@ const e = StyleSheet.create({
         padding: "0 0.5rem",
         fontSize: "0.8rem",
         ":hover": {
-            textDecoration: "underline"
-        }
-    }
-});
+            textDecoration: "underline",
+        },
+    },
+})
 
 function MainButton(props: { text: string, color: string, onClick?: () => void }) {
     const e = StyleSheet.create({
@@ -78,10 +78,10 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
             ":hover": {
                 color: "white",
                 backgroundColor: props.color,
-            }
-        }
-    });
-    const c = css(e.e);
+            },
+        },
+    })
+    const c = css(e.e)
 
     return (
         <button className={c} onClick={props.onClick}>
@@ -91,9 +91,9 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
 }
 
 export function Header() {
-    const route = useRoute();
+    const route = useRoute()
 
-    const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next");
+    const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next")
 
     return (
         <div>
@@ -107,7 +107,7 @@ export function Header() {
                         <span style={{color: "#f44336", "font-weight": "bold"}}>C</span>
                         <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
                         &nbsp;programming language
-                        <br/>
+                        <br />
                         that compiles to Web Assembly
                     </div>
 
@@ -115,11 +115,11 @@ export function Header() {
 
                     <div className={css(e.padded)}>
                         <RouterLink to={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                            <MainButton text={"Learn"} color={"#04abfc"}/>
+                            <MainButton text={"Learn"} color={"#04abfc"} />
                         </RouterLink>
-                        <MainButton text={"Install"} color={"#e7b711"}/>
+                        <MainButton text={"Install"} color={"#e7b711"} />
                         <RouterLink to={"/grammar/"} onClick={() => setAnimationActive(true)}>
-                            <MainButton text={"Grammar"} color={"#39b487"}/>
+                            <MainButton text={"Grammar"} color={"#39b487"} />
                         </RouterLink>
                     </div>
                 </Show>

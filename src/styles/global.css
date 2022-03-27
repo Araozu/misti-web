@@ -43,6 +43,12 @@ body {
     }
 }
 
+.main-container {
+    margin: 0 auto;
+    max-width: 1400px;
+    width: 90%;
+}
+
 .rainbow-separator {
     background: linear-gradient(
         135deg,
@@ -66,7 +72,7 @@ h2 {
 }
 
 code, pre {
-    font-family: "Source Code Pro", monospace;
+    font-family: Iosevka, "Source Code Pro", monospace !important;
     font-variant-ligatures: discretionary-ligatures;
     white-space: pre;
 }
@@ -92,7 +98,7 @@ code, pre {
 
 .marked h2 {
     font-size: 1.75rem;
-    font-weight: lighter;
+    font-weight: light;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
 }

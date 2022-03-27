@@ -1,0 +1,89 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/recommended'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 12
+  sourceType: module
+plugins:
+  - '@typescript-eslint'
+  - react
+rules:
+  "@typescript-eslint/ban-ts-comment": off
+  "@typescript-eslint/no-empty-function": off
+  indent:
+    - error
+    - 4
+    - SwitchCase: 1
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - double
+  semi:
+    - error
+    - never
+  react/jsx-pascal-case: error
+  react/jsx-closing-bracket-location: error
+  react/jsx-closing-tag-location: error
+  no-multi-spaces: error
+  react/jsx-tag-spacing: error
+  react/jsx-boolean-value: error
+  react/jsx-wrap-multilines: error
+  react/self-closing-comp: error
+  prefer-const: error
+  no-const-assign: error
+  no-var: error
+  array-callback-return: error
+  prefer-template: error
+  template-curly-spacing: error
+  no-useless-escape: error
+  wrap-iife: error
+  no-loop-func: error
+  default-param-last: error
+  space-before-function-paren:
+    - error
+    - never
+  space-before-blocks: error
+  no-param-reassign: error
+  function-paren-newline: error
+  comma-dangle:
+    - error
+    - always-multiline
+  arrow-spacing: error
+  arrow-parens: error
+  arrow-body-style: error
+  no-confusing-arrow: error
+  implicit-arrow-linebreak: error
+  no-duplicate-imports: error
+  object-curly-newline: error
+  dot-notation: error
+  one-var:
+    - error
+    - never
+  no-multi-assign: error
+  no-plusplus: error
+  operator-linebreak: error
+  eqeqeq: error
+  no-case-declarations: error
+  no-nested-ternary: error
+  no-unneeded-ternary: error
+  no-mixed-operators: error
+  nonblock-statement-body-position: error
+  brace-style: error
+  keyword-spacing: error
+  space-infix-ops: error
+  eol-last: error
+  newline-per-chained-call: error
+  no-whitespace-before-property: error
+  space-in-parens: error
+  array-bracket-spacing: error
+  key-spacing: error
+  no-trailing-spaces: error
+  comma-style: error
+  radix: error
+  no-new-wrappers: error

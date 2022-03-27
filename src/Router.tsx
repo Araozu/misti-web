@@ -1,5 +1,5 @@
-import { createMemo, createSignal, JSX } from "solid-js";
-import { setAnimationActive } from "./loadingAnimationGlobal";
+import { createMemo, createSignal, JSX } from "solid-js"
+import { setAnimationActive } from "./loadingAnimationGlobal"
 
 const route = (() => {
     let rutaPrevia = window.location.hash
@@ -20,16 +20,17 @@ const route = (() => {
 
     window.addEventListener("hashchange", fnEffect)
 
-    return rutaActual;
-})();
+    return rutaActual
+})()
 
-export const useRoute = () => route;
+export const useRoute = () => route
 
 export const useSplitRoute = () => createMemo(() => {
-    const parts = route().substr(1).split("/");
-    if (parts[parts.length - 1] === "") parts.pop();
-    return parts;
-});
+    const parts = route().substr(1)
+        .split("/")
+    if (parts[parts.length - 1] === "") parts.pop()
+    return parts
+})
 
 interface RouterLinkProps {
     to: string,
@@ -40,8 +41,8 @@ interface RouterLinkProps {
 
 export function RouterLink(props: RouterLinkProps) {
     const onClickFn = () => {
-        setAnimationActive(true);
-        props.onClick?.();
+        setAnimationActive(true)
+        props.onClick?.()
     }
     return (
         <a className={props.className || ""} href={`/#${props.to}`} onClick={onClickFn}>
