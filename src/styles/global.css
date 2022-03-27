@@ -5,20 +5,20 @@
     --c4: #f44336;
     --c5: #39b487;
     --c3-transparent: rgba(252, 168, 209, 0.35);
-}
 
-.dark-theme {
     --bg-color: #202020;
     --color: #dedede;
     --code-bg-color: #151515;
     --code-color: #bababa;
 }
 
-.light-theme {
-    --bg-color: #fffdfc;
-    --color: #404040;
-    --code-bg-color: #fdf6e3;
-    --code-color: #073642;
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #fffdfc;
+        --color: #404040;
+        --code-bg-color: #fdf6e3;
+        --code-color: #073642;
+    }
 }
 
 html {

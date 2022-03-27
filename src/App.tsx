@@ -101,12 +101,6 @@ function Separator() {
 
 function App() {
     const route = useRoute();
-    const [colorMode, setColorMode] = createSignal(localStorage?.getItem("color-mode") ?? "dark");
-
-    createEffect(() => {
-        const mode = colorMode();
-        document.body.className = `${mode}-theme`;
-    });
 
     const whiteSpaceStyles = createMemo(() => {
         return route() === "/"
@@ -126,7 +120,7 @@ function App() {
 
     return (
         <div>
-            <Header setColorMode={setColorMode}/>
+            <Header />
             <div style={whiteSpaceStyles()}/>
             <Separator/>
 

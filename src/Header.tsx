@@ -90,15 +90,8 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
     )
 }
 
-export function Header(props: { setColorMode: (v: string) => string }) {
+export function Header() {
     const route = useRoute();
-
-    const changeColorScheme = () => {
-        const currentMode = localStorage?.getItem("color-mode") ?? "dark";
-        const newMode = currentMode === "dark" ? "light" : "dark";
-        localStorage.setItem("color-mode", newMode);
-        props.setColorMode(newMode);
-    };
 
     const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next");
 
@@ -115,7 +108,7 @@ export function Header(props: { setColorMode: (v: string) => string }) {
                         <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
                         &nbsp;programming language
                         <br/>
-                        that compiles to JavaScript
+                        that compiles to Web Assembly
                     </div>
 
                     <p className={css(e.motto2)}>That's Misti</p>
@@ -128,7 +121,6 @@ export function Header(props: { setColorMode: (v: string) => string }) {
                         <RouterLink to={"/grammar/"} onClick={() => setAnimationActive(true)}>
                             <MainButton text={"Grammar"} color={"#39b487"}/>
                         </RouterLink>
-                        <MainButton text={"Change colors"} color={"var(--c3)"} onClick={changeColorScheme}/>
                     </div>
                 </Show>
                 <Show when={route() !== "/"}>
@@ -150,13 +142,6 @@ export function Header(props: { setColorMode: (v: string) => string }) {
                         </div>
                         <div className={css(e.headerLink)}>
                             <RouterLink className={css(e.headerNormalLink)} to={"/grammar/"}>GitHub</RouterLink>
-                        </div>
-                        <div
-                            className={css(e.headerLink, e.headerNormalLink)}
-                            style={{cursor: "pointer"}}
-                            onClick={changeColorScheme}
-                        >
-                            Color scheme
                         </div>
                     </div>
                 </Show>
