@@ -1,22 +1,21 @@
 import { setAnimationActive } from "../loadingAnimationGlobal"
 import { globalStyles } from "../globalStyles"
 import { css, StyleSheet } from "aphrodite/no-important"
-import { Title } from "../components/Title"
 import type Prism from "prismjs"
-import { marked } from "marked"
 import { language } from "../globalValues"
-import { createEffect, createMemo, createSignal, onMount } from "solid-js"
-import { useSplitRoute } from "../Router"
+import { createEffect, createMemo, createSignal} from "solid-js"
 import Split from "split-grid"
 import { Subjects } from "./Learn/Subjects"
 import YAML from "yaml"
 import { Sidebar } from "./Learn/Sidebar"
 import { Content } from "./Learn/Content"
+import { useParams } from "solid-app-router"
 
 const e = StyleSheet.create({
     container: {
         display: "grid",
         gridTemplateColumns: "1fr 5px 4fr",
+        paddingTop: "1.5rem",
     },
     gutter: {
         gridRow: "1/-1",
@@ -29,16 +28,10 @@ const e = StyleSheet.create({
 export default function() {
     setAnimationActive(false)
 
-    const routeParts = useSplitRoute()
-    const version = createMemo(() => {
-        const parts = routeParts()
-        return parts[1]
-    })
+    const routeParams = useParams()
+    console.log(routeParams.version)
 
-    if (!version()) {
-        console.log("no version")
-        window.location.replace(`/#/${routeParts()[0]}/next/`)
-    }
+    const version = createMemo(() => routeParams.version)
 
     const sidebarGutter = <div className={css(e.gutter)} />
 
@@ -78,27 +71,4 @@ export default function() {
 
         </div>
     )
-
-    /*
-    setAnimationActive(false)
-
-    const mdEl = document.createElement("div")
-
-    fetch(`/txt/${language()}/spec.md`)
-        .then((res) => res.text())
-        .then((mdTxt) => {
-            mdEl.innerHTML = marked.parse(mdTxt)
-            window.Prism.highlightAllUnder(mdEl)
-        })
-
-    const el = <div className="main-container" />
-
-    onMount(() => {
-        const elem = el as HTMLElement
-        window.Prism.highlightAllUnder(el as HTMLElement)
-        elem.appendChild(mdEl)
-    })
-    return el
-
-     */
 }

@@ -1,8 +1,8 @@
 import { css, StyleSheet } from "aphrodite/no-important"
-import { RouterLink, useRoute } from "./Router"
 import { setAnimationActive } from "./loadingAnimationGlobal"
 import { createMemo, Show } from "solid-js"
 import { currentVersions } from "./globalValues"
+import {Link, useLocation} from "solid-app-router"
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -91,14 +91,14 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
 }
 
 export function Header() {
-    const route = useRoute()
+    const route = useLocation()
 
     const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next")
 
     return (
         <div>
             <div>
-                <Show when={route() === "/"}>
+                <Show when={route.pathname === "/"}>
                     <div className={css(e.motto, e.padded)}>
                         A&nbsp;
                         <span style={{color: "#e7b711", "font-weight": "bold"}}>F</span>
@@ -114,34 +114,34 @@ export function Header() {
                     <p className={css(e.motto2)}>That's Misti</p>
 
                     <div className={css(e.padded)}>
-                        <RouterLink to={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
+                        <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
                             <MainButton text={"Learn"} color={"#04abfc"} />
-                        </RouterLink>
+                        </Link>
                         <MainButton text={"Install"} color={"#e7b711"} />
-                        <RouterLink to={"/grammar/"} onClick={() => setAnimationActive(true)}>
-                            <MainButton text={"Grammar"} color={"#39b487"} />
-                        </RouterLink>
+                        <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
+                            <MainButton text={"Spec"} color={"#39b487"} />
+                        </Link>
                     </div>
                 </Show>
-                <Show when={route() !== "/"}>
+                <Show when={route.pathname !== "/"}>
                     <div className={css(e.header2)}>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerMainLink)} to={"/"}>Misti</RouterLink>
+                            <Link className={css(e.headerMainLink)} href={"/"}>Misti</Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={`/learn/${docsCurrentVersion()}/`}>Learn</RouterLink>
+                            <Link className={css(e.headerNormalLink)} href={`/learn/${docsCurrentVersion()}/`}>Learn</Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={"/learn/"}>Install</RouterLink>
+                            <Link className={css(e.headerNormalLink)} href={"/learn/"}>Install</Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={"/api/"}>API</RouterLink>
+                            <Link className={css(e.headerNormalLink)} href={"/api/"}>API</Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={`/grammar/${docsCurrentVersion()}/`}>Grammar</RouterLink>
+                            <Link className={css(e.headerNormalLink)} href={`/spec/${docsCurrentVersion()}/`}>Spec</Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <RouterLink className={css(e.headerNormalLink)} to={`/grammar/${docsCurrentVersion()}/`}>GitHub</RouterLink>
+                            <Link className={css(e.headerNormalLink)} href={`/grammar/${docsCurrentVersion()}/`}>GitHub</Link>
                         </div>
                     </div>
                 </Show>

@@ -2,7 +2,7 @@ import { StyleSheet, css } from "aphrodite/no-important"
 import { createMemo, For } from "solid-js"
 import { currentVersions } from "../../globalValues"
 import { Subjects } from "./Subjects"
-import {RouterLink} from "../../Router"
+import { Link } from "solid-app-router"
 
 const e = StyleSheet.create({
     container: {
@@ -51,14 +51,14 @@ function SectionTitle(props: { text: string }) {
 
 function SidebarLink(props: { text: string, to: string }) {
     return (
-        <RouterLink to={props.to} className={css(sidebarkLinkStyle.container)}>
+        <Link href={props.to} className={css(sidebarkLinkStyle.container)}>
             {props.text}
-        </RouterLink>
+        </Link>
     )
 }
 
-export function Sidebar(props: {subjects: Subjects, contentPath?: string}) {
-    const contentPath = props.contentPath ?? "docs"
+export function Sidebar(props: { subjects: Subjects, contentPath?: string }) {
+    const contentPath = props.contentPath ?? "learn"
 
     const versionsElement = createMemo(() => {
         const v = currentVersions()
@@ -74,7 +74,6 @@ export function Sidebar(props: {subjects: Subjects, contentPath?: string}) {
         }
     })
 
-    // TODO: calcular la ruta correcta D:
     return (
         <div className={css(e.container)}>
             Language version:
@@ -87,7 +86,11 @@ export function Sidebar(props: {subjects: Subjects, contentPath?: string}) {
                     if (subject.children) {
                         const children = (
                             <For each={subject.children}>
-                                {(x) => <SidebarLink to={`/${contentPath}/next/${subject.path!}/${x.path!}`} text={x.title} />}
+                                {(x) => (
+                                    <SidebarLink to={`/${contentPath}/next/${subject.path!}/${x.path!}`}
+                                        text={x.title}
+                                    />
+                                )}
                             </For>
                         )
                         return (

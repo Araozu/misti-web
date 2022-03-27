@@ -1,15 +1,14 @@
 import { setAnimationActive } from "../loadingAnimationGlobal"
 import { globalStyles } from "../globalStyles"
-import { Title } from "../components/Title"
 import { Sidebar } from "./Learn/Sidebar"
 import Split from "split-grid"
 import YAML from "yaml"
 import { StyleSheet, css } from "aphrodite/no-important"
-import { useSplitRoute } from "../Router"
 import { createMemo, createSignal } from "solid-js"
 import { Subjects } from "./Learn/Subjects"
 import { language } from "../globalValues"
 import { Content } from "./Learn/Content"
+import { useParams } from "solid-app-router"
 
 const e = StyleSheet.create({
     container: {
@@ -26,13 +25,10 @@ const e = StyleSheet.create({
 
 export default function() {
     setAnimationActive(false)
+    const routeParams = useParams()
+    console.log(routeParams.version)
 
-    const routeParts = useSplitRoute()
-    const version = createMemo(() => routeParts()[1])
-
-    if (!version()) {
-        window.location.replace(`/#/${routeParts()[0]}/next/`)
-    }
+    const version = createMemo(() => routeParams.version)
 
     const sidebarGutter = <div className={css(e.gutter)} />
 

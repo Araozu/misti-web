@@ -1,23 +1,33 @@
-import { lazy, Suspense, Switch, Match, createSignal, createEffect, untrack, createMemo } from "solid-js"
-import { useRoute } from "./Router"
+import { lazy, createSignal, createEffect, untrack, createMemo } from "solid-js"
 import Index from "./Pages/Index"
 import { Header } from "./Header"
 import { StyleSheet, css } from "aphrodite/no-important"
 import { animationActive, setAnimationActive } from "./loadingAnimationGlobal"
+import { RouteDefinition, useRoutes, useLocation } from "solid-app-router"
+
+const routes = [
+    {
+        path: "/learn/:version/*subject",
+        component: lazy(() => import("./Pages/Learn")),
+    },
+    {
+        path: "/spec/:version/*subject",
+        component: lazy(() => import("./Pages/Spec")),
+    },
+    {
+        path: "/",
+        component: <Index />,
+    },
+]
 
 const time = (t: number) => new Promise((resolve) => {
     setTimeout(resolve, t)
 })
 
-const Learn = lazy(async() => import("./Pages/Learn"))
-
-const Grammar = lazy(async() => import("./Pages/Grammar"))
-
 function Separator() {
-    const route = useRoute()
-
     const e = createMemo(() => {
-        const isMainPage = route() === "/"
+        const route = useLocation()
+        const isMainPage = route.pathname === "/"
         return StyleSheet.create({
             container: {
                 width: "100%",
@@ -93,42 +103,13 @@ function Separator() {
 }
 
 function App() {
-    const route = useRoute()
-
-    const whiteSpaceStyles = createMemo(() => (route() === "/"
-        ? {
-            display: "none",
-        }
-        : {
-            width: "100%",
-            height: "1.6rem",
-        }))
-
-    const routeFirstComponent = createMemo(() => {
-        const parts = route().substr(1)
-            .split("/")
-        return parts[0]
-    })
+    const Routes = useRoutes(routes as RouteDefinition[])
 
     return (
         <div>
             <Header />
-            <div style={whiteSpaceStyles()} />
             <Separator />
-
-            <Suspense fallback={<p>Loading...</p>}>
-                <Switch fallback={<p>404! Route not found</p>}>
-                    <Match when={route() === "/"}>
-                        <Index />
-                    </Match>
-                    <Match when={routeFirstComponent() === "learn"}>
-                        <Learn />
-                    </Match>
-                    <Match when={routeFirstComponent() === "grammar"}>
-                        <Grammar />
-                    </Match>
-                </Switch>
-            </Suspense>
+            <Routes />
         </div>
     )
 }

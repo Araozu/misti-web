@@ -1,55 +1,52 @@
 # Start
 
-Misti is _yet another programming language_ that compiles to JavaScript.
+Misti ~~is~~ will be a 
 
-Its syntax is indentation based (similar to F#/OCaml), and favors functional programming.
+- functional first
+- indentation based
+- statically typed
+
+programming language for web assembly via LLVM written in Java.
 
 ```misti
-fun MainTitle props =
-    const title = createMemo #(props.title + "!")
-    #h1 title
+fun quicksort Array[T] arr -> Array[T] =
+    match arr with
+    | x::xs =
+        val less = arr.collect {x < $}
+        val greater = arr.collect {x > $}
+        (uicksort less) ++ Array x ++ (quicksort greater)
+    | _ = Array()
 
-const mainTitleElem = MainTitle "misti"     
+fun main Array[Str] args =
+    val numbers = Array 10 30 4 897 2 41
+    val sortedNumbers = quicksort numbers
+    for n in sortedNumbers do
+        log n
+```
+
+```misti
+func[type] argument  // Function, type parameter, argument
+func.[idx] argument  // Function, array access, argument
+
+value[Str] // Generic
+value [Str] // Generic
+
+value . [0]  // Array access
+
+// Arrays are created with Array param1 param2 ..., not with [param1, param2]
 ```
 
 ## Install
 
-The compiler is being rewritten from TypeScript to Kotlin. And old version is available
-in [npm](https://www.npmjs.com/package/kscript) with the old name of the project (kscript).
+WIP
 
-## About the documentation
+## About the learn page
 
-The documentation explains concepts for people who already know JavaScript. Both sidebars can be
-resized, and in the right you can enter Misti code, run it or compile it locally.
-No sending the code to a server and waiting for a response.
+It includes topics to begin to learn the language. The formal definition is under the
+Spec page.
 
-## Goals
+## Why Java?
 
-- Be 100% compatible with existing JavaScript
-
-- Reduce noise in JavaScript code
-
-- Use a consistent syntax and semantics
-
-- Include functional constructs like typeclasses
-
-- (Someday) include type checking from typescript definitions
-
-- (Someday) include type inference
-
-- (Someday) export type information to a typescript format
-
-## But why?
-
-In short, no language had the features I wanted, so I just decided to create my own.
-
-|           | Indentation based | Uses the same JS API | Typed |
-|-----------|-------------------|----------------------|-------|
-|CoffeScript|yes                |yes                   |no     |
-|TypeScript |no                 |yes                   |yes    |
-|ReasonML   |no                 |no                    |yes    |
-|PureScript |yes                |no                    |yes    |
-|Elm        |yes                |no                    |yes    |
-
-The language is meant to be used in personal projects.
+The implementation language doesn't matter, if the language
+will eventually be self-hosted.
 

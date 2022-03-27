@@ -1,10 +1,10 @@
-import {useSplitRoute} from "../../Router"
 import { setAnimationActive } from "../../loadingAnimationGlobal"
-import {createEffect, createMemo, JSX} from "solid-js"
+import { createEffect, createMemo, JSX } from "solid-js"
 import { language } from "../../globalValues"
 import { Subjects } from "./Subjects"
 import { Title } from "../../components/Title"
 import { marked } from "marked"
+import { useParams } from "solid-app-router"
 
 const loadingElement = (
     <div>
@@ -52,11 +52,12 @@ async function loadMDData(path: string, container: JSX.Element) {
     }
 }
 
-export function Content(props: {subjects: Subjects, contentPath?: string}) {
-    const routeParts = useSplitRoute()
-    const version = createMemo(() => routeParts()[1])
-    const parentSubject = createMemo(() => routeParts()[2])
-    const subject = createMemo(() => routeParts()[3])
+export function Content(props: { subjects: Subjects, contentPath?: string }) {
+    const params = useParams()
+    const version = createMemo(() => params.version)
+    const paramsPath = createMemo(() => params.subject.split("/"))
+    const parentSubject = createMemo(() => paramsPath()[0])
+    const subject = createMemo(() => paramsPath()[1])
     const contentPath = props.contentPath ?? "docs"
 
     const elementoContenedor = <div className={"marked"} />
