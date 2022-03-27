@@ -23,11 +23,11 @@ function Separator() {
                 width: "100%",
                 overflow: "hidden",
                 position: isMainPage ? "sticky" : "fixed",
-                top: isMainPage ? "-0.75rem" : "1.4rem",
+                top: isMainPage ? "-0.75rem" : "0.6rem",
                 zIndex: 1,
             },
             separator: {
-                height: isMainPage ? "1rem" : "0.25rem",
+                height: "1rem",
                 width: "200%",
             },
         })

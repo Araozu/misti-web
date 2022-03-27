@@ -1,3 +1,7 @@
+@import url("./prism-atom-light.min.css") screen and (prefers-color-scheme: light);
+@import url("./prism-atom-dark.min.css") screen and (prefers-color-scheme: dark);
+@import url("./prism-atom-dark.min.css") screen and (prefers-color-scheme: no-preference);
+
 :root {
     --c1: #e7b711;
     --c2: #04abfc;
@@ -75,7 +79,7 @@ h2 {
 }
 
 pre {
-    border: solid 1px rgba(255, 255, 255, 0.5);
+    border: solid 1px rgba(150, 150, 150, 0.5);
 }
 
 code, pre {

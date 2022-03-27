@@ -7,7 +7,7 @@ export default defineConfig({
         target: "esnext",
         polyfillDynamicImport: false,
         rollupOptions: {
-            external: ["node_modules/prismjs/plugins/line-numbers/prism-line-numbers.min.css"],
+            external: ["/prismjs/prism-line-numbers.min.css"],
         },
     },
 })
