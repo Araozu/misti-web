@@ -63,7 +63,6 @@ async function loadMDData(path: string, container: JSX.Element) {
 
             // Try to eval the railroad code
             try {
-                eval(`console.log(${railroadCode}.toString())`)
                 eval(`${railroadCode}.addTo(window.railroadContainer)`)
             } catch (e) {
                 console.log(e)

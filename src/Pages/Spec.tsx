@@ -3,7 +3,7 @@ import { globalStyles } from "../globalStyles"
 import { css, StyleSheet } from "aphrodite/no-important"
 import type Prism from "prismjs"
 import { language } from "../globalValues"
-import { createEffect, createMemo, createSignal} from "solid-js"
+import { createEffect, createMemo, createSignal } from "solid-js"
 import Split from "split-grid"
 import { Subjects } from "./Learn/Subjects"
 import YAML from "yaml"
@@ -54,8 +54,7 @@ export default function() {
         const indexUrl = `/txt/${language()}/spec/${v}/index.yaml`
         const dataRaw = await fetch(indexUrl)
         const dataTxt = await dataRaw.text()
-        const subjects = YAML.parse(dataTxt) as {subjects: Subjects}
-        console.log(subjects)
+        const subjects = YAML.parse(dataTxt) as { subjects: Subjects }
         setSubjects(subjects.subjects)
     })
 

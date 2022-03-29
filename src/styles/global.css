@@ -14,7 +14,6 @@
     --color: #dedede;
     --code-bg-color: #151515;
     --code-color: #bababa;
-    --railroad-path-color: rgba(0,0,0,0);
 }
 
 @media (prefers-color-scheme: light) {
@@ -51,11 +50,12 @@ svg.railroad-diagram rect {
 
 svg.railroad-diagram text {
     font-family: Inter, sans-serif !important;
+    font-weight: normal !important;
+    fill: var(--bg-color);
 }
 
 g.terminal text {
     font-family: Iosevka, sans-serif !important;
-    font-weight: normal !important;
 }
 
 .railroad-code {
