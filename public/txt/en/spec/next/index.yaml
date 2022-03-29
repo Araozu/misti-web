@@ -1,5 +1,8 @@
 subjects:
   - title: Start
     path: start
-  - title: Number
-    path: number
+  - title: Primitives
+    path: primitives
+    children:
+      - title: Number
+        path: number

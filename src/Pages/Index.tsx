@@ -1,6 +1,7 @@
 import { StyleSheet, css } from "aphrodite/no-important"
 import { JSX } from "solid-js"
 import { setAnimationActive } from "../loadingAnimationGlobal"
+import "../types/railroad.d.ts"
 
 const e = StyleSheet.create({
     padded: {
@@ -66,10 +67,6 @@ function JSFizzBuzz() {
             </code>
         </div>
     )
-}
-
-function JSSwitch() {
-
 }
 
 export default function Index() {

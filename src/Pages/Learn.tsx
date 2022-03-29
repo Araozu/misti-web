@@ -14,6 +14,7 @@ const e = StyleSheet.create({
     container: {
         display: "grid",
         gridTemplateColumns: "1fr 5px 4fr",
+        paddingTop: "1.5rem",
     },
     gutter: {
         gridRow: "1/-1",
@@ -26,7 +27,6 @@ const e = StyleSheet.create({
 export default function() {
     setAnimationActive(false)
     const routeParams = useParams()
-    console.log(routeParams.version)
 
     const version = createMemo(() => routeParams.version)
 
@@ -49,7 +49,6 @@ export default function() {
         const dataRaw = await fetch(indexUrl)
         const dataTxt = await dataRaw.text()
         const subjects = YAML.parse(dataTxt) as {subjects: Subjects}
-        console.log(subjects)
         setSubjects(subjects.subjects)
     })()
 

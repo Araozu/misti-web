@@ -1,17 +1,14 @@
 # Variables and Constants
 
-Misti uses `const` and `let`, and they behave similar to JavaScript.
+Misti uses `val` and `var`. Val creates a constant reference.
 
-At the time of writing, variables and constants must always be initialized.
+Variables and constants must always be initialized.
 
 ```misti
-let accumulator = 0
+var accumulator = 0
 accumulator += 1
 
-const path = "/public/txt/en/docs/next/basics/variables-and-constants.md"
-
-// Will give an error
-let unassigned
+val path = "/public/txt/en/docs/next/basics/variables-and-constants.md"
 ```
 
 ## Identifiers

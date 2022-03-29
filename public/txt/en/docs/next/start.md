@@ -24,6 +24,18 @@ fun main Array[Str] args =
         log n
 ```
 
+```railroad
+Diagram(
+  Optional('+', 'skip'),
+  Choice(0, 
+    NonTerminal('name-start char'), 
+    NonTerminal('escape')),
+    ZeroOrMore(
+      Choice(0, 
+        NonTerminal('name char'), 
+        NonTerminal('escape'))))
+```
+
 ```misti
 func[type] argument  // Function, type parameter, argument
 func.[idx] argument  // Function, array access, argument

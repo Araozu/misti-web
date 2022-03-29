@@ -14,6 +14,7 @@
     --color: #dedede;
     --code-bg-color: #151515;
     --code-color: #bababa;
+    --railroad-path-color: rgba(0,0,0,0);
 }
 
 @media (prefers-color-scheme: light) {
@@ -33,6 +34,37 @@ body {
     font-family: Inter, sans-serif;
     background-color: var(--bg-color);
     color: var(--color);
+}
+
+svg.railroad-diagram {
+    background-color: rgba(0,0,0,0) !important;
+}
+
+svg.railroad-diagram path {
+    stroke: var(--c1) !important;
+}
+
+svg.railroad-diagram rect {
+    stroke: var(--c5) !important;
+    fill: var(--c5) !important;
+}
+
+svg.railroad-diagram text {
+    font-family: Inter, sans-serif !important;
+}
+
+g.terminal text {
+    font-family: Iosevka, sans-serif !important;
+    font-weight: normal !important;
+}
+
+.railroad-code {
+    text-align: center;
+    padding: 1rem;
+}
+
+.railroad-code svg {
+    transform: scale(1.5);
 }
 
 @keyframes gradientBG {
@@ -103,6 +135,10 @@ code, pre {
     font-weight: 300;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
+}
+
+.marked h3, .marked h4, .marked h5 {
+    font-weight: 300;
 }
 
 .marked table {

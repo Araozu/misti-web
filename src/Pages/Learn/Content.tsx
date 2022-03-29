@@ -49,6 +49,30 @@ async function loadMDData(path: string, container: JSX.Element) {
         el.innerHTML = html
         // Apply syntax highlight
         window.Prism.highlightAllUnder(el)
+        // Search for railroad-diagram code, and execute
+        const railroadElems = el.querySelectorAll(".railroad-code")
+        for (let i = 0; i < railroadElems.length; i += 1) {
+            const railroadElem = railroadElems[i] as HTMLElement
+            const railroadCode = railroadElem.innerText
+            railroadElem.innerHTML = ""
+            railroadElem.style.display = "block"
+
+            // Temporarily create a global variable that contains a reference to the railroad container
+            /// @ts-ignore
+            window.railroadContainer = railroadElem
+
+            // Try to eval the railroad code
+            try {
+                eval(`console.log(${railroadCode}.toString())`)
+                eval(`${railroadCode}.addTo(window.railroadContainer)`)
+            } catch (e) {
+                console.log(e)
+            }
+
+            // Remove the global variable
+            /// @ts-ignore
+            delete window.railroadContainer
+        }
     }
 }
 
