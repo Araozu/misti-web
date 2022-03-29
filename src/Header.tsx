@@ -2,7 +2,7 @@ import { css, StyleSheet } from "aphrodite/no-important"
 import { setAnimationActive } from "./loadingAnimationGlobal"
 import { createMemo, Show } from "solid-js"
 import { currentVersions } from "./globalValues"
-import {Link, useLocation} from "solid-app-router"
+import { Link, useLocation } from "solid-app-router"
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -129,7 +129,10 @@ export function Header() {
                             <Link className={css(e.headerMainLink)} href={"/"}>Misti</Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)} href={`/learn/${docsCurrentVersion()}/`}>Learn</Link>
+                            <Link className={css(e.headerNormalLink)}
+                                href={`/learn/${docsCurrentVersion()}/`}
+                            >Learn
+                            </Link>
                         </div>
                         <div className={css(e.headerLink)}>
                             <Link className={css(e.headerNormalLink)} href={"/learn/"}>Install</Link>
@@ -138,10 +141,16 @@ export function Header() {
                             <Link className={css(e.headerNormalLink)} href={"/api/"}>API</Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)} href={`/spec/${docsCurrentVersion()}/`}>Spec</Link>
+                            <Link className={css(e.headerNormalLink)}
+                                href={`/spec/${docsCurrentVersion()}/`}
+                            >Spec
+                            </Link>
                         </div>
                         <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)} href={`/grammar/${docsCurrentVersion()}/`}>GitHub</Link>
+                            <Link className={css(e.headerNormalLink)}
+                                href={`/grammar/${docsCurrentVersion()}/`}
+                            >GitHub
+                            </Link>
                         </div>
                     </div>
                 </Show>

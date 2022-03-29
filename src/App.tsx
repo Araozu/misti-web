@@ -1,5 +1,4 @@
 import { lazy, createSignal, createEffect, untrack, createMemo } from "solid-js"
-import Index from "./Pages/Index"
 import { Header } from "./Header"
 import { StyleSheet, css } from "aphrodite/no-important"
 import { animationActive, setAnimationActive } from "./loadingAnimationGlobal"
@@ -16,7 +15,7 @@ const routes = [
     },
     {
         path: "/",
-        component: <Index />,
+        component: lazy(() => import("./Pages/Index")),
     },
 ]
 
