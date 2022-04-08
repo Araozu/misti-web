@@ -13,14 +13,28 @@ const e = StyleSheet.create({
         paddingTop: "3rem",
         paddingBottom: "1rem",
         fontSize: "3rem",
+        "@media (max-width: 800px)": {
+            paddingTop: "1rem",
+            paddingBottom: "0.5rem",
+            fontSize: "2.5rem",
+            wordBreak: "break-word",
+        },
     },
     motto2: {
         padding: "0 4rem",
         fontSize: "1.25rem",
+        "@media (max-width: 800px)": {
+            padding: "0 1rem",
+            // fontSize: "1rem",
+        },
     },
     padded: {
         paddingLeft: "4rem",
         paddingRight: "4rem",
+        "@media (max-width: 800px)": {
+            paddingLeft: "1rem",
+            paddingRight: "1rem",
+        },
     },
     header2: {
         position: "fixed",
@@ -79,6 +93,12 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
                 color: "white",
                 backgroundColor: props.color,
             },
+            "@media (max-width: 800px)": {
+                padding: "0.5rem 0.75rem",
+                marginRight: "0.5rem",
+                marginBottom: "1rem",
+                marginTop: "1rem",
+            },
         },
     })
     const c = css(e.e)
@@ -106,8 +126,9 @@ export function Header() {
                         <span style={{color: "#fca8d1", "font-weight": "bold"}}>N</span>
                         <span style={{color: "#f44336", "font-weight": "bold"}}>C</span>
                         <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
-                        &nbsp;programming language
-                        <br />
+                        &nbsp;
+                        programming language&nbsp;
+                        <br style={{display: "none"}} />
                         that compiles to Web Assembly
                     </div>
 

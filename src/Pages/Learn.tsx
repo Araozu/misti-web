@@ -22,6 +22,10 @@ const e = StyleSheet.create({
         gridColumn: "2",
         backgroundColor: "var(--color)",
     },
+    content: {
+        // Fix for pre overflow
+        minWidth: 0,
+    },
 })
 
 export default function() {
@@ -58,7 +62,7 @@ export default function() {
             <Sidebar subjects={subjects()} />
             {sidebarGutter}
 
-            <div className={css(globalStyles.padded)}>
+            <div className={css(globalStyles.padded, e.content)}>
                 <Content subjects={subjects()} />
             </div>
 
