@@ -128,7 +128,7 @@ export function Header() {
                         <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
                         &nbsp;
                         programming language&nbsp;
-                        <br style={{display: "none"}} />
+                        <br className="hide-on-small" />
                         that compiles to Web Assembly
                     </div>
 

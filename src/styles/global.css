@@ -14,6 +14,7 @@
     --color: #dedede;
     --code-bg-color: #151515;
     --code-color: #bababa;
+    --border-color: rgba(222, 222, 222, 0.25);
 }
 
 @media (prefers-color-scheme: light) {
@@ -22,6 +23,7 @@
         --color: #404040;
         --code-bg-color: #fdf6e3;
         --code-color: #073642;
+        --border-color: rgba(64, 64, 64, 0.25);
     }
 }
 
@@ -29,9 +31,20 @@ html {
     font-size: 22px;
 }
 
+.hide-on-small {}
+
+.padded {
+    padding-left: 2rem;
+    border-left: solid 1px var(--border-color);
+}
+
 @media screen and (max-width: 800px) {
     html {
         font-size: 18px;
+    }
+
+    .hide-on-small {
+        display: none;
     }
 }
 
@@ -141,6 +154,11 @@ code, pre {
     font-weight: 300;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
+}
+
+.marked h2:target {
+    text-decoration: underline;
+    text-decoration-color: var(--c5);
 }
 
 .marked h3, .marked h4, .marked h5 {

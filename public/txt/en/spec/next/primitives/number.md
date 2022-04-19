@@ -13,8 +13,11 @@ number = double | integer;
 ## Integer
 
 ```ebnf
-integer = decimal integer | hexadecimal integer;
+integer = decimal integer
+        | hexadecimal integer;
 ```
+
+<div class="padded">
 
 ## Decimal Integer
 
@@ -47,10 +50,59 @@ Diagram(
         ),
         OneOrMore(
             Choice(0,
-                NonTerminal("digit", {href: "custom-non-terminal"}),
-                NonTerminal("hexadecimal digit")
+                NonTerminal("digit"),
+                NonTerminal("hexadecimal digit", {href: "number#integer"})
             )
         )
     )
 )
 ```
+
+</div>
+
+## Double
+
+```ebnf
+double = { decimal integer }, ( ".", { decimal integer }, [ scientific notation ] )
+                              | scientific notation
+```
+
+```railroad
+Diagram(
+    Sequence(
+        NonTerminal("decimal integer"),
+        Choice(
+            0,
+            Sequence(
+                Terminal("."),
+                NonTerminal("decimal integer"),
+                Optional(NonTerminal("scientific notation"))
+            ),
+            NonTerminal("scientific notation")
+        )
+    )
+)
+```
+
+<div class="padded">
+
+## Scientific notation
+
+```ebnf
+scientific notation = "e", "+" | "-", { decimal integer }
+```
+
+```railroad
+Diagram(
+    Sequence(
+        Terminal("e"),
+        Choice(0,
+            Terminal("+"),
+            Terminal("-")
+        ),
+        OneOrMore(NonTerminal("decimal integer"))
+    )
+)
+```
+
+</div>
