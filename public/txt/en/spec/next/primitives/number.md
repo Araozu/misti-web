@@ -17,7 +17,7 @@ integer = decimal integer
         | hexadecimal integer;
 ```
 
-<div class="padded">
+<divr class="padded">
 
 ## Decimal Integer
 
@@ -60,7 +60,7 @@ Diagram(
 )
 ```
 
-</div>
+</divr>
 
 ## Double
 
