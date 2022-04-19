@@ -15,17 +15,41 @@ Object.assign(window, rr)
 
 console.log(`Using language=${language()}`)
 
+/**
+ * Checks if the input contains the line
+ * <code>
+ *     /// railroad
+ * </code>
+ *
+ * If so, returns the input from the next line, otherwise null
+ * @param input the block of code to check
+ */
+function tryGetRailroad(input: string): string | null {
+    if (input.startsWith("/// railroad")) {
+        const nextLinePos = input.indexOf("\n")
+        if (nextLinePos !== -1) {
+            return input.substring(nextLinePos)
+        } else {
+            return null
+        }
+    }
+    return null
+}
+
 marked.use({
     renderer: {
         code(code: string, language: string | undefined): string {
             // If the language is railroad, include the code inside a hidden div.
             // This code will be evaluated somewhere else to create the railroad diagram
-            if (language === "railroad") {
-                return `
-                <div class="railroad-code" style="display: none">${code}</div>
-                `
+            if (language === "js") {
+                const possibleRailroad = tryGetRailroad(code)
+                if (possibleRailroad === null) {
+                    return `<pre class="language-javascript"><code class="language-javascript">${possibleRailroad}</code></pre>`
+                } else {
+                    return `<div class="railroad-code" style="display: none">${code}</div>`
+                }
             } else {
-                return `<pre class="language-${language}" tabindex="="><code class="language-${language}">${code}</code></pre>`
+                return `<pre class="language-${language} match-braces" tabindex="="><code class="language-${language}">${code}</code></pre>`
             }
         },
     },

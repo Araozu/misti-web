@@ -25,7 +25,8 @@ integer = decimal integer
 decimal integer = { digit }
 ```
 
-```railroad
+```js
+/// railroad
 Diagram(
     OneOrMore(
         Terminal("0-9")
@@ -39,7 +40,8 @@ Diagram(
 hexadecimal integer = 0 , "x" | "X" , { digit | hexadecimal digit }
 ```
 
-```railroad
+```js
+/// railroad
 Diagram(
     Sequence(
         Terminal("0"),
@@ -67,7 +69,8 @@ double = { decimal integer }, ( ".", { decimal integer }, [ scientific notation 
                               | scientific notation
 ```
 
-```railroad
+```js
+/// railroad
 Diagram(
     Sequence(
         NonTerminal("decimal integer"),
@@ -92,7 +95,8 @@ Diagram(
 scientific notation = "e", "+" | "-", { decimal integer }
 ```
 
-```railroad
+```js
+/// railroad
 Diagram(
     Sequence(
         Terminal("e"),
