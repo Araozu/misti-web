@@ -4,7 +4,7 @@
 
 :root {
     --c1: #e7b711;
-    --c2: #04abfc;
+    --c2: #038dce;
     --c3: #fca8d1;
     --c4: #f44336;
     --c5: #39b487;
@@ -19,6 +19,8 @@
 
 @media (prefers-color-scheme: light) {
     :root {
+        --c2: #04abfc;
+
         --bg-color: #fffdfc;
         --color: #404040;
         --code-bg-color: #fdf6e3;
@@ -63,14 +65,19 @@ svg.railroad-diagram path {
 }
 
 svg.railroad-diagram rect {
-    stroke: var(--c5) !important;
-    fill: var(--c5) !important;
+    stroke: var(--c2) !important;
+    fill: var(--c2) !important;
+}
+
+svg.railroad-diagram g.non-terminal rect {
+    stroke: var(--c4) !important;
+    fill: var(--c4) !important;
 }
 
 svg.railroad-diagram text {
     font-family: Inter, sans-serif !important;
     font-weight: normal !important;
-    fill: var(--bg-color);
+    fill: #dedede;
 }
 
 g.terminal text {
@@ -110,17 +117,17 @@ g.terminal text {
     animation-iteration-count: infinite;
     background: linear-gradient(
         135deg,
-        #e7b711 0%, #e7b711 5%,
-        #04abfc 10%, #04abfc 15%,
-        #fca8d1 20%, #fca8d1 25%,
-        #f44336 30%, #f44336 35%,
-        #39b487 40%, #39b487 45%,
-        #e7b711 50%, #e7b711 55%,
-        #04abfc 60%, #04abfc 65%,
-        #fca8d1 70%, #fca8d1 75%,
-        #f44336 80%, #f44336 85%,
-        #39b487 90%, #39b487 95%,
-        #e7b711 100%
+        var(--c1) 0%, var(--c1) 5%,
+        var(--c2) 10%, var(--c2) 15%,
+        var(--c3) 20%, var(--c3) 25%,
+        var(--c4) 30%, var(--c4) 35%,
+        var(--c5) 40%, var(--c5) 45%,
+        var(--c1) 50%, var(--c1) 55%,
+        var(--c2) 60%, var(--c2) 65%,
+        var(--c3) 70%, var(--c3) 75%,
+        var(--c4) 80%, var(--c4) 85%,
+        var(--c5) 90%, var(--c5) 95%,
+        var(--c1) 100%
     )
 }
 

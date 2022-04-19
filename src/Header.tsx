@@ -121,11 +121,11 @@ export function Header() {
                 <Show when={route.pathname === "/"}>
                     <div className={css(e.motto, e.padded)}>
                         A&nbsp;
-                        <span style={{color: "#e7b711", "font-weight": "bold"}}>F</span>
-                        <span style={{color: "#04abfc", "font-weight": "bold"}}>A</span>
-                        <span style={{color: "#fca8d1", "font-weight": "bold"}}>N</span>
-                        <span style={{color: "#f44336", "font-weight": "bold"}}>C</span>
-                        <span style={{color: "#39b487", "font-weight": "bold"}}>Y</span>
+                        <span style={{color: "var(--c1)", "font-weight": "bold"}}>F</span>
+                        <span style={{color: "var(--c2)", "font-weight": "bold"}}>A</span>
+                        <span style={{color: "var(--c3)", "font-weight": "bold"}}>N</span>
+                        <span style={{color: "var(--c4)", "font-weight": "bold"}}>C</span>
+                        <span style={{color: "var(--c5)", "font-weight": "bold"}}>Y</span>
                         &nbsp;
                         programming language&nbsp;
                         <br className="hide-on-small" />
@@ -136,11 +136,11 @@ export function Header() {
 
                     <div className={css(e.padded)}>
                         <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                            <MainButton text={"Learn"} color={"#04abfc"} />
+                            <MainButton text={"Learn"} color={"var(--c2)"} />
                         </Link>
-                        <MainButton text={"Install"} color={"#e7b711"} />
+                        <MainButton text={"Install"} color={"var(--c1)"} />
                         <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                            <MainButton text={"Spec"} color={"#39b487"} />
+                            <MainButton text={"Spec"} color={"var(--c5)"} />
                         </Link>
                     </div>
                 </Show>
