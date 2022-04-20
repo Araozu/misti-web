@@ -44,9 +44,9 @@ marked.use({
             if (language === "js") {
                 const possibleRailroad = tryGetRailroad(code)
                 if (possibleRailroad === null) {
-                    return `<pre class="language-javascript"><code class="language-javascript">${possibleRailroad}</code></pre>`
+                    return `<pre class="language-javascript"><code class="language-javascript">${code}</code></pre>`
                 } else {
-                    return `<div class="railroad-code" style="display: none">${code}</div>`
+                    return `<div class="railroad-code" style="display: none">${possibleRailroad}</div>`
                 }
             } else {
                 return `<pre class="language-${language} match-braces" tabindex="="><code class="language-${language}">${code}</code></pre>`

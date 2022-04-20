@@ -8,3 +8,13 @@ subjects:
         path: number
       - title: Identifier
         path: identifier
+      - title: Operators
+        path: operators
+      - title: Grouping
+        path: grouping
+      - title: Indentation
+        path: indentation
+      - title: Comments
+        path: comments
+      - title: Keywords
+        path: keywords

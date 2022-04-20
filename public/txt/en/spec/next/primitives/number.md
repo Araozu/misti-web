@@ -17,7 +17,7 @@ integer = decimal integer
         | hexadecimal integer;
 ```
 
-<divr class="padded">
+<div class="padded">
 
 ## Decimal Integer
 
@@ -37,7 +37,7 @@ Diagram(
 ## Hexadecimal Integer
 
 ```ebnf
-hexadecimal integer = 0 , "x" | "X" , { digit | hexadecimal digit }
+hexadecimal integer = "0" , "x" | "X" , { digit | hexadecimal digit }
 ```
 
 ```js
@@ -60,7 +60,7 @@ Diagram(
 )
 ```
 
-</divr>
+</div>
 
 ## Double
 
