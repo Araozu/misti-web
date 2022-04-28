@@ -117,6 +117,7 @@ export function Content(props: { subjects: Subjects, contentPath?: string }) {
     return (
         <div>
             {elementoContenedor}
+            <div style={{"min-height": "25vh"}} />
         </div>
     )
 }

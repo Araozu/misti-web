@@ -29,8 +29,6 @@ const e = StyleSheet.create({
 export default function Index() {
     setAnimationActive(false)
     return (
-        <div>
-            Index page
-        </div>
+        <div />
     )
 }

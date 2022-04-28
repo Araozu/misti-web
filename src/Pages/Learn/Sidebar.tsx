@@ -38,7 +38,8 @@ function SectionTitle(props: { text: string }) {
         container: {
             textTransform: "uppercase",
             opacity: 0.8,
-            padding: "1.75rem 0.25rem 0.5rem 0.25rem",
+            padding: "2rem 0.25rem 0.5rem 0.25rem",
+            fontWeight: 600,
         },
     })
 

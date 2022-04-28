@@ -10,9 +10,10 @@ const e = StyleSheet.create({
         color: "#fefefe",
     },
     motto: {
-        paddingTop: "3rem",
+        paddingTop: "4rem",
         paddingBottom: "1rem",
-        fontSize: "3rem",
+        fontSize: "4rem",
+        fontWeight: 600,
         "@media (max-width: 800px)": {
             paddingTop: "1rem",
             paddingBottom: "0.5rem",
@@ -21,16 +22,11 @@ const e = StyleSheet.create({
         },
     },
     motto2: {
-        padding: "0 4rem",
         fontSize: "1.25rem",
-        "@media (max-width: 800px)": {
-            padding: "0 1rem",
-            // fontSize: "1rem",
-        },
     },
     padded: {
-        paddingLeft: "4rem",
-        paddingRight: "4rem",
+        paddingLeft: "5rem",
+        paddingRight: "5rem",
         "@media (max-width: 800px)": {
             paddingLeft: "1rem",
             paddingRight: "1rem",
@@ -54,7 +50,7 @@ const e = StyleSheet.create({
         justifyContent: "center",
     },
     headerMainLink: {
-        fontWeight: "bold",
+        fontWeight: 600,
         textDecoration: "none",
         color: "var(--color)",
         padding: "0 1rem",
@@ -117,65 +113,64 @@ export function Header() {
 
     return (
         <div>
-            <div>
-                <Show when={route.pathname === "/"}>
-                    <div className={css(e.motto, e.padded)}>
-                        A&nbsp;
-                        <span style={{color: "var(--c1)", "font-weight": "bold"}}>F</span>
-                        <span style={{color: "var(--c2)", "font-weight": "bold"}}>A</span>
-                        <span style={{color: "var(--c3)", "font-weight": "bold"}}>N</span>
-                        <span style={{color: "var(--c4)", "font-weight": "bold"}}>C</span>
-                        <span style={{color: "var(--c5)", "font-weight": "bold"}}>Y</span>
-                        &nbsp;
-                        programming language&nbsp;
-                        <br className="hide-on-small" />
-                        that compiles to Web Assembly
-                    </div>
+            <Show when={route.pathname === "/"}>
+                <div className={css(e.motto, e.padded)}>
+                    A&nbsp;
+                    <span style={{color: "var(--c1)", "font-weight": "bold"}}>F</span>
+                    <span style={{color: "var(--c2)", "font-weight": "bold"}}>A</span>
+                    <span style={{color: "var(--c3)", "font-weight": "bold"}}>N</span>
+                    <span style={{color: "var(--c4)", "font-weight": "bold"}}>C</span>
+                    <span style={{color: "var(--c5)", "font-weight": "bold"}}>Y</span>
+                    <span>
+                        &nbsp;language&nbsp;
+                    </span>
+                    <br className="hide-on-small" />
+                    for Web Assembly
+                </div>
 
-                    <p className={css(e.motto2)}>That's Misti</p>
+                <p className={css(e.motto2, e.padded)}>That's Misti</p>
 
-                    <div className={css(e.padded)}>
-                        <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                            <MainButton text={"Learn"} color={"var(--c2)"} />
-                        </Link>
-                        <MainButton text={"Install"} color={"var(--c1)"} />
-                        <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                            <MainButton text={"Spec"} color={"var(--c5)"} />
+                <div className={css(e.padded)}>
+                    <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
+                        <MainButton text={"Learn"} color={"var(--c2)"} />
+                    </Link>
+                    <MainButton text={"Install"} color={"var(--c1)"} />
+                    <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
+                        <MainButton text={"Spec"} color={"var(--c5)"} />
+                    </Link>
+                </div>
+            </Show>
+            <Show when={route.pathname !== "/"}>
+                <div className={css(e.header2)}>
+                    <div className={css(e.headerLink)}>
+                        <Link className={css(e.headerMainLink)} href={"/"}>Misti</Link>
+                    </div>
+                    <div className={css(e.headerLink)}>
+                        <Link className={css(e.headerNormalLink)}
+                            href={`/learn/${docsCurrentVersion()}/`}
+                        >Learn
                         </Link>
                     </div>
-                </Show>
-                <Show when={route.pathname !== "/"}>
-                    <div className={css(e.header2)}>
-                        <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerMainLink)} href={"/"}>Misti</Link>
-                        </div>
-                        <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)}
-                                href={`/learn/${docsCurrentVersion()}/`}
-                            >Learn
-                            </Link>
-                        </div>
-                        <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)} href={"/learn/"}>Install</Link>
-                        </div>
-                        <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)} href={"/api/"}>API</Link>
-                        </div>
-                        <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)}
-                                href={`/spec/${docsCurrentVersion()}/`}
-                            >Spec
-                            </Link>
-                        </div>
-                        <div className={css(e.headerLink)}>
-                            <Link className={css(e.headerNormalLink)}
-                                href={`/grammar/${docsCurrentVersion()}/`}
-                            >GitHub
-                            </Link>
-                        </div>
+                    <div className={css(e.headerLink)}>
+                        <Link className={css(e.headerNormalLink)} href={"/learn/"}>Install</Link>
                     </div>
-                </Show>
-            </div>
+                    <div className={css(e.headerLink)}>
+                        <Link className={css(e.headerNormalLink)} href={"/api/"}>API</Link>
+                    </div>
+                    <div className={css(e.headerLink)}>
+                        <Link className={css(e.headerNormalLink)}
+                            href={`/spec/${docsCurrentVersion()}/`}
+                        >Spec
+                        </Link>
+                    </div>
+                    <div className={css(e.headerLink)}>
+                        <Link className={css(e.headerNormalLink)}
+                            href={`/grammar/${docsCurrentVersion()}/`}
+                        >GitHub
+                        </Link>
+                    </div>
+                </div>
+            </Show>
         </div>
     )
 
