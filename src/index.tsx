@@ -36,20 +36,41 @@ function tryGetRailroad(input: string): string | null {
     return null
 }
 
+function handleJSCodeBlock(code: string) {
+    const possibleRailroad = tryGetRailroad(code)
+    if (possibleRailroad === null) {
+        return `<pre class="language-javascript"><code class="language-javascript">${code}</code></pre>`
+    } else {
+        return `<div class="railroad-code" style="display: none">${possibleRailroad}</div>`
+    }
+}
+
+function handleMDInfo(code: string): string {
+    return `<div class="md-modifier md-info"><div>INFO</div>${code}</div>`
+}
+
+function handleMDWarning(code: string) {
+    return `<div class="md-modifier md-warning"><div>WARNING</div>${code}</div>`
+}
+
 marked.use({
     renderer: {
         code(code: string, language: string | undefined): string {
             // If the language is railroad, include the code inside a hidden div.
             // This code will be evaluated somewhere else to create the railroad diagram
-            if (language === "js") {
-                const possibleRailroad = tryGetRailroad(code)
-                if (possibleRailroad === null) {
-                    return `<pre class="language-javascript"><code class="language-javascript">${code}</code></pre>`
-                } else {
-                    return `<div class="railroad-code" style="display: none">${possibleRailroad}</div>`
+            switch (language) {
+                case "js": {
+                    return handleJSCodeBlock(code)
                 }
-            } else {
-                return `<pre class="language-${language} match-braces" tabindex="="><code class="language-${language}">${code}</code></pre>`
+                case "md-info": {
+                    return handleMDInfo(code)
+                }
+                case "md-warning": {
+                    return handleMDWarning(code)
+                }
+                default: {
+                    return `<pre class="language-${language} match-braces" tabindex="="><code class="language-${language}">${code}</code></pre>`
+                }
             }
         },
     },
