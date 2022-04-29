@@ -9,12 +9,12 @@ Misti ~~is~~ will be a
 programming language for web assembly via LLVM written in Java.
 
 ```misti
-fun quicksort Array[T] arr -> Array[T] =
+fun qsort Array[T] arr -> Array[T] =
     match arr with
     | x::xs =
-        val less = arr.collect {x < $}
-        val greater = arr.collect {x > $}
-        (uicksort less) ++ Array x ++ (quicksort greater)
+        val less = arr.filter {x < $}
+        val greater = arr.filter {x > $}
+        qsort less ++ Array x ++ qsort greater
     | _ = Array()
 
 fun main Array[Str] args =
@@ -22,18 +22,6 @@ fun main Array[Str] args =
     val sortedNumbers = quicksort numbers
     for n in sortedNumbers do
         log n
-```
-
-```railroad
-Diagram(
-  Optional('+', 'skip'),
-  Choice(0, 
-    NonTerminal('name-start char'), 
-    NonTerminal('escape')),
-    ZeroOrMore(
-      Choice(0, 
-        NonTerminal('name char'), 
-        NonTerminal('escape'))))
 ```
 
 ```misti
@@ -50,7 +38,7 @@ value . [0]  // Array access
 
 ## Install
 
-WIP
+The language is not ready for installation.
 
 ## About the learn page
 

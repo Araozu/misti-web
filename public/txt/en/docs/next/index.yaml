@@ -7,15 +7,15 @@ subjects:
     children:
       - title: Variables & Constants
         path: variables-and-constants
-      - title: Datatypes
-        path: datatypes
+      - title: Simple datatypes
+        path: simple-datatypes
       - title: Function Calls
         path: function-calls
       - title: Operators
         path: operators
       - title: Tuples
         path: tuples
-  
+
   - title: Flow Control
     path: flow-control
     children:
@@ -61,7 +61,7 @@ subjects:
         path: definition
       - title: Inheritance
         path: inheritance
-  
+
   - title: Error Handling
     path: error-handling
     children:
@@ -79,7 +79,7 @@ subjects:
         path: parameter-destructuring
       - title: Object destructuring
         path: object-destructuring
-  
+
   - title: Modules
     path: modules
     children:
