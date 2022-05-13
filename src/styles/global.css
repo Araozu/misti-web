@@ -219,7 +219,15 @@ code, pre {
 }
 
 .md-warning > div {
-    color: var(--c4)
+    color: var(--c4);
+}
+
+.md-implemented {
+    border-color: var(--c2);
+}
+
+.md-implemented > div {
+    color: var(--c2);
 }
 
 @media screen and (max-width: 800px) {

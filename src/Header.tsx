@@ -1,8 +1,8 @@
-import { css, StyleSheet } from "aphrodite/no-important"
-import { setAnimationActive } from "./loadingAnimationGlobal"
-import { createMemo, Show } from "solid-js"
-import { currentVersions } from "./globalValues"
-import { Link, useLocation } from "solid-app-router"
+import { css, StyleSheet } from "aphrodite/no-important";
+import { setAnimationActive } from "./loadingAnimationGlobal";
+import { createMemo, Show } from "solid-js";
+import { currentVersions } from "./globalValues";
+import { Link, useLocation } from "solid-app-router";
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -68,7 +68,7 @@ const e = StyleSheet.create({
             textDecoration: "underline",
         },
     },
-})
+});
 
 function MainButton(props: { text: string, color: string, onClick?: () => void }) {
     const e = StyleSheet.create({
@@ -96,20 +96,20 @@ function MainButton(props: { text: string, color: string, onClick?: () => void }
                 marginTop: "1rem",
             },
         },
-    })
-    const c = css(e.e)
+    });
+    const c = css(e.e);
 
     return (
         <button className={c} onClick={props.onClick}>
             {props.text}
         </button>
-    )
+    );
 }
 
 export function Header() {
-    const route = useLocation()
+    const route = useLocation();
 
-    const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next")
+    const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next");
 
     return (
         <div>
@@ -172,6 +172,6 @@ export function Header() {
                 </div>
             </Show>
         </div>
-    )
+    );
 
 }

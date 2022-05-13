@@ -1,5 +1,9 @@
 # Number
 
+```md-implemented
+69a2f34e7f2baa9aa517d693d07893702a05bc26
+```
+
 Defines a number.
 
 ```ebnf

@@ -1,5 +1,9 @@
 # Identifier
 
+```md-implemented
+64f39c3d25af925a195303db7693ea9bde3c1d5b
+```
+
 Defines the syntax of identifiers.
 
 An identifier starts with underscore or a lowercase letter.

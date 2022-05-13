@@ -1,5 +1,9 @@
 # Keywords
 
+```md-implemented
+64f39c3d25af925a195303db7693ea9bde3c1d5b
+```
+
 All keywords of the language have their respective token.
 More keywords will be added as they are implemented.
 
