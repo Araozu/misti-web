@@ -8,6 +8,8 @@ subjects:
         path: number
       - title: Identifier
         path: identifier
+      - title: Strings
+        path: strings
       - title: Operators
         path: operators
       - title: Grouping

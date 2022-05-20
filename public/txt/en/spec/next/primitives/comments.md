@@ -11,9 +11,8 @@ single line comment = "//", ? any char except new line ? ;
 ```ebnf
 multiline comment content = { ? any except '*' ?
                             | ( "*", ? any except '/' ? )
-                            | ( "/"
-                              , ? any except '*' ? 
-                                | ( "*", [ multiline comment content ], "*/" ) 
+                            | ( "/" , ? any except '*' ? 
+                                      | ( "*", [ multiline comment content ], "*/" ) 
                               ) 
                             } ;
 ```
