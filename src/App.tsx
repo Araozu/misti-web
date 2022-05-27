@@ -92,9 +92,9 @@ function Separator() {
     };
 
     return (
-        <div className={css(e().container)} onClick={animateHelper}>
+        <div class={css(e().container)} onClick={animateHelper}>
             <div
-                className={`${css(e().separator)} rainbow-separator`}
+                class={`${css(e().separator)} rainbow-separator`}
                 style={{transform: `translateX(-${position()}%)`}}
             />
         </div>

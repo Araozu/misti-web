@@ -113,5 +113,5 @@ subjects:
         path: definition
       - title: Parameters
         path: parameters
-      - title: Maybe
-        path: maybe
+      - title: Option
+        path: option

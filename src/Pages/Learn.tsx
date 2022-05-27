@@ -1,14 +1,14 @@
-import { setAnimationActive } from "../loadingAnimationGlobal"
-import { globalStyles } from "../globalStyles"
-import { Sidebar } from "./Learn/Sidebar"
-import Split from "split-grid"
-import YAML from "yaml"
-import { StyleSheet, css } from "aphrodite/no-important"
-import { createMemo, createSignal } from "solid-js"
-import { Subjects } from "./Learn/Subjects"
-import { language } from "../globalValues"
-import { Content } from "./Learn/Content"
-import { useParams } from "solid-app-router"
+import { setAnimationActive } from "../loadingAnimationGlobal";
+import { globalStyles } from "../globalStyles";
+import { Sidebar } from "./Learn/Sidebar";
+import Split from "split-grid";
+import YAML from "yaml";
+import { StyleSheet, css } from "aphrodite/no-important";
+import { createMemo, createSignal } from "solid-js";
+import { Subjects } from "./Learn/Subjects";
+import { language } from "../globalValues";
+import { Content } from "./Learn/Content";
+import { useParams } from "solid-app-router";
 
 const e = StyleSheet.create({
     container: {
@@ -26,15 +26,15 @@ const e = StyleSheet.create({
         // Fix for pre overflow
         minWidth: 0,
     },
-})
+});
 
 export default function() {
-    setAnimationActive(false)
-    const routeParams = useParams()
+    setAnimationActive(false);
+    const routeParams = useParams();
 
-    const version = createMemo(() => routeParams.version)
+    const version = createMemo(() => routeParams.version);
 
-    const sidebarGutter = <div className={css(e.gutter)} />
+    const sidebarGutter = <div class={css(e.gutter)} />;
 
     Split({
         dragInterval: 20,
@@ -44,28 +44,28 @@ export default function() {
                 track: 1,
             },
         ],
-    })
+    });
 
     const [subjects, setSubjects] = createSignal<Subjects>([]);
 
     (async() => {
-        const indexUrl = `/txt/${language()}/docs/${version()}/index.yaml`
-        const dataRaw = await fetch(indexUrl)
-        const dataTxt = await dataRaw.text()
-        const subjects = YAML.parse(dataTxt) as {subjects: Subjects}
-        setSubjects(subjects.subjects)
-    })()
+        const indexUrl = `/txt/${language()}/docs/${version()}/index.yaml`;
+        const dataRaw = await fetch(indexUrl);
+        const dataTxt = await dataRaw.text();
+        const subjects = YAML.parse(dataTxt) as {subjects: Subjects};
+        setSubjects(subjects.subjects);
+    })();
 
     return (
-        <div className={css(e.container)}>
+        <div class={css(e.container)}>
 
             <Sidebar subjects={subjects()} />
             {sidebarGutter}
 
-            <div className={css(globalStyles.padded, e.content)}>
+            <div class={css(globalStyles.padded, e.content)}>
                 <Content subjects={subjects()} />
             </div>
 
         </div>
-    )
+    );
 }

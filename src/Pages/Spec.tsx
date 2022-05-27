@@ -1,15 +1,14 @@
-import { setAnimationActive } from "../loadingAnimationGlobal"
-import { globalStyles } from "../globalStyles"
-import { css, StyleSheet } from "aphrodite/no-important"
-import type Prism from "prismjs"
-import { language } from "../globalValues"
-import { createEffect, createMemo, createSignal } from "solid-js"
-import Split from "split-grid"
-import { Subjects } from "./Learn/Subjects"
-import YAML from "yaml"
-import { Sidebar } from "./Learn/Sidebar"
-import { Content } from "./Learn/Content"
-import { useParams } from "solid-app-router"
+import { setAnimationActive } from "../loadingAnimationGlobal";
+import { globalStyles } from "../globalStyles";
+import { css, StyleSheet } from "aphrodite/no-important";
+import { language } from "../globalValues";
+import { createEffect, createMemo, createSignal } from "solid-js";
+import Split from "split-grid";
+import { Subjects } from "./Learn/Subjects";
+import YAML from "yaml";
+import { Sidebar } from "./Learn/Sidebar";
+import { Content } from "./Learn/Content";
+import { useParams } from "solid-app-router";
 
 const e = StyleSheet.create({
     container: {
@@ -27,17 +26,17 @@ const e = StyleSheet.create({
         // Fix for pre overflow
         minWidth: 0,
     },
-})
+});
 
 export default function() {
-    setAnimationActive(false)
+    setAnimationActive(false);
 
-    const routeParams = useParams()
-    console.log(routeParams.version)
+    const routeParams = useParams();
+    console.log(routeParams.version);
 
-    const version = createMemo(() => routeParams.version)
+    const version = createMemo(() => routeParams.version);
 
-    const sidebarGutter = <div className={css(e.gutter)} />
+    const sidebarGutter = <div class={css(e.gutter)} />;
 
     Split({
         dragInterval: 20,
@@ -47,28 +46,28 @@ export default function() {
                 track: 1,
             },
         ],
-    })
+    });
 
-    const [subjects, setSubjects] = createSignal<Subjects>([])
+    const [subjects, setSubjects] = createSignal<Subjects>([]);
 
     createEffect(async() => {
-        const v = version()
-        if (!v) return
+        const v = version();
+        if (!v) return;
 
-        const indexUrl = `/txt/${language()}/spec/${v}/index.yaml`
-        const dataRaw = await fetch(indexUrl)
-        const dataTxt = await dataRaw.text()
-        const subjects = YAML.parse(dataTxt) as { subjects: Subjects }
-        setSubjects(subjects.subjects)
-    })
+        const indexUrl = `/txt/${language()}/spec/${v}/index.yaml`;
+        const dataRaw = await fetch(indexUrl);
+        const dataTxt = await dataRaw.text();
+        const subjects = YAML.parse(dataTxt) as { subjects: Subjects };
+        setSubjects(subjects.subjects);
+    });
 
     return (
-        <div className={css(e.container)}>
+        <div class={css(e.container)}>
             <Sidebar subjects={subjects()} contentPath={"spec"} />
             {sidebarGutter}
-            <div className={css(globalStyles.padded, e.content)}>
+            <div class={css(globalStyles.padded, e.content)}>
                 <Content subjects={subjects()} contentPath={"spec"} />
             </div>
         </div>
-    )
+    );
 }

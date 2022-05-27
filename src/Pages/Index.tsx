@@ -1,5 +1,5 @@
-import { StyleSheet, css } from "aphrodite/no-important"
-import { setAnimationActive } from "../loadingAnimationGlobal"
+import { StyleSheet, css } from "aphrodite/no-important";
+import { setAnimationActive } from "../loadingAnimationGlobal";
 
 
 const e = StyleSheet.create({
@@ -24,11 +24,11 @@ const e = StyleSheet.create({
         width: "200%",
         animation: "gradientBG 60s linear infinite",
     },
-})
+});
 
 export default function Index() {
-    setAnimationActive(false)
+    setAnimationActive(false);
     return (
         <div />
-    )
+    );
 }

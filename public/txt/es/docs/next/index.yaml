@@ -1,107 +1,106 @@
-# Formato para rutas: /txt/{idioma}/{raiz}/{ruta}.yaml
-ruta: docs/next
-temas:
-  - titulo: Introducción
-    ruta: introduccion
 
-  - titulo: Bases
-    ruta: bases # Un resumen rápido
-    temas:
-      - titulo: Constantes y variables
-        ruta: constantes
-      - titulo: Tipos de datos
-        ruta: tipos
-      - titulo: Operadores comunes
-        ruta: operadores-comunes
-      - titulo: Anotaciones de tipos
-        ruta: anotaciones-de-tipos
-      - titulo: Expresiones
-        ruta: expresiones
-      - titulo: Interpolacion de strings
-        ruta: interpolacion-strings
+subjects:
+  - title: Introducción
+    path: introduccion
 
-  - titulo: Estructuras básicas
-    ruta: estructuras # Un resumen rápido
-    temas:
-      - titulo: Arrays
-        ruta: arrays
-      - titulo: Tuplas
-        ruta: tuplas
-      - titulo: Condicionales
-        ruta: condicionales
-      - titulo: Switch # Hablar de pattern matching
-        ruta: switch
-      - titulo: Bucles
-        ruta: bucles
+  - title: Bases
+    path: bases # Un resumen rápido
+    children:
+      - title: Constantes y variables
+        path: constantes
+      - title: Tipos de datos
+        path: tipos
+      - title: Operadores comunes
+        path: operadores-comunes
+      - title: Anotaciones de tipos
+        path: anotaciones-de-tipos
+      - title: Expresiones
+        path: expresiones
+      - title: Interpolacion de strings
+        path: interpolacion-strings
 
-  - titulo: Tipos nulos
-    ruta: tipos-nulos
+  - title: Estructuras básicas
+    path: estructuras # Un resumen rápido
+    children:
+      - title: Arrays
+        path: arrays
+      - title: Tuplas
+        path: tuplas
+      - title: Condicionales
+        path: condicionales
+      - title: Switch # Hablar de pattern matching
+        path: switch
+      - title: Bucles
+        path: bucles
 
-  - titulo: Funciones
-    ruta: funciones # Un resumen rápido
-    temas:
-      - titulo: Estructura # Incluir como llamar una funcion
-        ruta: estructura
-      - titulo: Signatura
-        ruta: signatura
-      - titulo: Parámetros por defecto
-        ruta: parametros-por-defecto
-      - titulo: Aplicación parcial
-        ruta: aplicacion-parcial
-      - titulo: Funciones anónimas
-        ruta: funciones-anonimas
-      - titulo: Operadores
-        ruta: operadores
-      - titulo: Tuberías
-        ruta: tuberias
-      - titulo: Composición de funciones
-        ruta: composicion-de-funciones
-      - titulo: Rest/Spread
-        ruta: rest-spread
+  - title: Tipos nulos
+    path: tipos-nulos
 
-  - titulo: Objetos
-    ruta: objetos
-  - titulo: Genéricos
-    ruta: genericos
+  - title: Funciones
+    path: funciones # Un resumen rápido
+    children:
+      - title: Estructura # Incluir como llamar una funcion
+        path: estructura
+      - title: Signatura
+        path: signatura
+      - title: Parámetros por defecto
+        path: parametros-por-defecto
+      - title: Aplicación parcial
+        path: aplicacion-parcial
+      - title: Funciones anónimas
+        path: funciones-anonimas
+      - title: Operadores
+        path: operadores
+      - title: Tuberías
+        path: tuberias
+      - title: Composición de funciones
+        path: composicion-de-funciones
+      - title: Rest/Spread
+        path: rest-spread
 
-  - titulo: Tipos de Datos Algebraicos
-    ruta: tipos-de-datos-algebraicos
+  - title: Objetos
+    path: objetos
+  - title: Genéricos
+    path: genericos
 
-  - titulo: Pattern Matching
-    ruta: pattern-matching
-    temas:
-      - titulo: Cuando ..
-        ruta: cuando
-      - titulo: Desestructuración
-        ruta: desestructuracion
+  - title: Tipos de Datos Algebraicos
+    path: tipos-de-datos-algebraicos
 
-  - titulo: Errores
-    ruta: errores
+  - title: Pattern Matching
+    path: pattern-matching
+    children:
+      - title: Cuando ..
+        path: cuando
+      - title: Desestructuración
+        path: desestructuracion
 
-  - titulo: Módulos
-    ruta: modulos
-    temas:
-      - titulo: Import
-        ruta: import
-      - titulo: Export
-        ruta: export
-      - titulo: Nodejs
-        ruta: nodejs
+  - title: Errores
+    path: errores
 
-  - titulo: Clases
-    ruta: clases
-    temas:
-      - titulo: Estructura
-        ruta: estructura
-      - titulo: Rasgos
-        ruta: rasgos
-      - titulo: Genéricos
-        ruta: genericos
-      - titulo: Herencia
-        ruta: herencia
+  - title: Módulos
+    path: modulos
+    children:
+      - title: Import
+        path: import
+      - title: Export
+        path: export
+      - title: Nodejs
+        path: nodejs
 
-  - titulo: Contratos
-    ruta: contratos
+  - title: Clases
+    path: clases
+    children:
+      - title: Estructura
+        path: estructura
+      - title: Rasgos
+        path: rasgos
+      - title: Genéricos
+        path: genericos
+      - title: Herencia
+        path: herencia
 
-  - titulo: JSX
-    ruta: jsx
+  - title: Contratos
+    path: contratos
+
+  - title: JSX
+    path: jsx

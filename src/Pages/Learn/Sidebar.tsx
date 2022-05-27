@@ -46,7 +46,7 @@ function SectionTitle(props: { text: string }) {
     });
 
     return (
-        <div className={css(e.container)}>
+        <div class={css(e.container)}>
             {props.text}
         </div>
     );
@@ -54,7 +54,7 @@ function SectionTitle(props: { text: string }) {
 
 function SidebarLink(props: { text: string, to: string }) {
     return (
-        <Link href={props.to} className={css(sidebarLinkStyle.container)}>
+        <Link href={props.to} class={css(sidebarLinkStyle.container)}>
             {props.text}
         </Link>
     );
@@ -78,7 +78,7 @@ export function Sidebar(props: { subjects: Subjects, contentPath?: string }) {
     });
 
     return (
-        <div className={css(e.container)}>
+        <div class={css(e.container)}>
             Language version:
             <br />
             {versionsElement()}

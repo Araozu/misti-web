@@ -87,7 +87,8 @@ Str var age = 20
 // is not equivalent to
 Str age = 20
 
-// the previous statement is not reassignable
+// the previous statement is equivalent to:
+// Str val age = 20
 ```
 
 The second statement will declare a constant, not a variable.

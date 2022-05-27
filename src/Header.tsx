@@ -102,7 +102,7 @@ function MainButton(props: { text: string, colorIndex: string, onClick?: () => v
     const c = css(e.e);
 
     return (
-        <button className={c} onClick={props.onClick}>
+        <button class={c} onClick={props.onClick}>
             {props.text}
         </button>
     );
@@ -116,7 +116,7 @@ export function Header() {
     return (
         <div>
             <Show when={route.pathname === "/"}>
-                <div className={css(e.motto, e.padded)}>
+                <div class={css(e.motto, e.padded)}>
                     A&nbsp;
                     <span style={{color: "var(--c1)", "font-weight": "bold"}}>F</span>
                     <span style={{color: "var(--c2)", "font-weight": "bold"}}>A</span>
@@ -126,13 +126,13 @@ export function Header() {
                     <span>
                         &nbsp;language&nbsp;
                     </span>
-                    <br className="hide-on-small" />
+                    <br class="hide-on-small" />
                     for Web Assembly
                 </div>
 
-                <p className={css(e.motto2, e.padded)}>That's Misti</p>
+                <p class={css(e.motto2, e.padded)}>That's Misti</p>
 
-                <div className={css(e.padded)}>
+                <div class={css(e.padded)}>
                     <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
                         <MainButton text={"Learn"} colorIndex={"c2"} />
                     </Link>
@@ -143,30 +143,30 @@ export function Header() {
                 </div>
             </Show>
             <Show when={route.pathname !== "/"}>
-                <div className={css(e.header2)}>
-                    <div className={css(e.headerLink)}>
-                        <Link className={css(e.headerMainLink)} href={"/"}>Misti</Link>
+                <div class={css(e.header2)}>
+                    <div class={css(e.headerLink)}>
+                        <Link class={css(e.headerMainLink)} href={"/"}>Misti</Link>
                     </div>
-                    <div className={css(e.headerLink)}>
-                        <Link className={css(e.headerNormalLink)}
+                    <div class={css(e.headerLink)}>
+                        <Link class={css(e.headerNormalLink)}
                             href={`/learn/${docsCurrentVersion()}/`}
                         >Learn
                         </Link>
                     </div>
-                    <div className={css(e.headerLink)}>
-                        <Link className={css(e.headerNormalLink)} href={"/learn/"}>Install</Link>
+                    <div class={css(e.headerLink)}>
+                        <Link class={css(e.headerNormalLink)} href={"/learn/"}>Install</Link>
                     </div>
-                    <div className={css(e.headerLink)}>
-                        <Link className={css(e.headerNormalLink)} href={"/api/"}>API</Link>
+                    <div class={css(e.headerLink)}>
+                        <Link class={css(e.headerNormalLink)} href={"/api/"}>API</Link>
                     </div>
-                    <div className={css(e.headerLink)}>
-                        <Link className={css(e.headerNormalLink)}
+                    <div class={css(e.headerLink)}>
+                        <Link class={css(e.headerNormalLink)}
                             href={`/spec/${docsCurrentVersion()}/`}
                         >Spec
                         </Link>
                     </div>
-                    <div className={css(e.headerLink)}>
-                        <Link className={css(e.headerNormalLink)}
+                    <div class={css(e.headerLink)}>
+                        <Link class={css(e.headerNormalLink)}
                             href={`/grammar/${docsCurrentVersion()}/`}
                         >GitHub
                         </Link>
