@@ -2,7 +2,7 @@ import { StyleSheet, css } from "aphrodite/no-important";
 import { createMemo, For } from "solid-js";
 import { currentVersions } from "../../globalValues";
 import { Subjects } from "./Subjects";
-import { Link } from "solid-app-router";
+import { Link, useLocation } from "solid-app-router";
 
 const e = StyleSheet.create({
     container: {
@@ -33,6 +33,10 @@ const sidebarLinkStyle = StyleSheet.create({
             color: "var(--c3-on-secondary-container)",
         },
     },
+    highlighted: {
+        backgroundColor: "var(--c3-secondary-container)",
+        color: "var(--c3-on-secondary-container)",
+    },
 });
 
 function SectionTitle(props: { text: string }) {
@@ -52,9 +56,20 @@ function SectionTitle(props: { text: string }) {
     );
 }
 
-function SidebarLink(props: { text: string, to: string }) {
+function SidebarLink(props: { text: string, to: string, subjectPath: string, childrenPath: string, currentPath: () => [string, string] }) {
+    const additionalCssClass = createMemo(() => {
+        const [subject, children] = props.currentPath();
+        if (subject === props.subjectPath && children === props.childrenPath) {
+            return css(sidebarLinkStyle.container, sidebarLinkStyle.highlighted);
+        } else {
+            return css(sidebarLinkStyle.container);
+        }
+    });
     return (
-        <Link href={props.to} class={css(sidebarLinkStyle.container)}>
+        <Link
+            href={`${props.to}${props.subjectPath}/${props.childrenPath}`}
+            class={additionalCssClass()}
+        >
             {props.text}
         </Link>
     );
@@ -62,6 +77,11 @@ function SidebarLink(props: { text: string, to: string }) {
 
 export function Sidebar(props: { subjects: Subjects, contentPath?: string }) {
     const contentPath = props.contentPath ?? "learn";
+    const location = useLocation();
+    const currentPath = createMemo<[string, string]>(() => {
+        const pathArray = location.pathname.split("/");
+        return [pathArray[3], pathArray[4] ?? ""];
+    });
 
     const versionsElement = createMemo(() => {
         const v = currentVersions();
@@ -90,8 +110,12 @@ export function Sidebar(props: { subjects: Subjects, contentPath?: string }) {
                         const children = (
                             <For each={subject.children}>
                                 {(x) => (
-                                    <SidebarLink to={`/${contentPath}/next/${subject.path!}/${x.path!}`}
+                                    <SidebarLink
+                                        to={`/${contentPath}/next/`}
                                         text={x.title}
+                                        currentPath={currentPath}
+                                        subjectPath={subject.path!}
+                                        childrenPath={x.path!}
                                     />
                                 )}
                             </For>
@@ -103,7 +127,15 @@ export function Sidebar(props: { subjects: Subjects, contentPath?: string }) {
                             </>
                         );
                     } else {
-                        return <SidebarLink to={`/${contentPath}/next/${subject.path!}`} text={subject.title} />;
+                        return (
+                            <SidebarLink
+                                to={`/${contentPath}/next/`}
+                                text={subject.title}
+                                currentPath={currentPath}
+                                subjectPath={subject.path!}
+                                childrenPath={""}
+                            />
+                        );
                     }
                 }}
             </For>

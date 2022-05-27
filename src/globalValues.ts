@@ -7,6 +7,13 @@ export interface DocsVersions {
     versions: string[]
 }
 
+export const time = (ms: number) => new Promise<void>((resolve) => {
+    setTimeout(
+        () => resolve(),
+        ms,
+    );
+});
+
 export const [currentVersions, setCurrentVersions] = createSignal<DocsVersions>({versions: []});
 (async() => {
     const docsInfoPath = `/txt/${language()}/docs/index.yaml`;
@@ -15,5 +22,4 @@ export const [currentVersions, setCurrentVersions] = createSignal<DocsVersions>(
     const versions = YAML.parse(dataTxt) as DocsVersions;
     setCurrentVersions(versions);
 })();
-
 
