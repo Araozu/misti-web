@@ -325,8 +325,8 @@ html {
 
 body {
     font-family: Inter, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--color);
+    background-color: var(--c2-background);
+    color: var(--c2-on-background);
 }
 
 svg.railroad-diagram {
