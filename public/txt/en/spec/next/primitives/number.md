@@ -66,10 +66,10 @@ Diagram(
 
 </div>
 
-## Double
+## Floating point decimal
 
 ```ebnf
-double = { decimal integer }, ( ".", { decimal integer }, [ scientific notation ] )
+floating = { decimal integer }, ( ".", { decimal integer }, [ scientific notation ] )
                               | scientific notation
 ```
 
