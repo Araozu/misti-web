@@ -3,27 +3,28 @@
 An expression is any code that produces a value.
 
 ```ebnf
-expression = integer
-           | floating
-           | string
-           | identifier
-           | unit
-           | enclosed expr
-           | function call
-           | expression, operator, expression
+Expression = Primitive
+           | Enclosed expression
            ;
-
-// v2
-expression    = operator call;
-operator call = primary, operator, primary;
-unary         = ("!" | "-"), (unary | call);
-primary       = integer
-              | floating
-              | string
-              | identifier
-              | unit
-              | enclosed expr
-
-enclosed expr = left paren, expression, right paren;
 ```
 
+## Primitive
+
+Represents a primitive value.
+
+```ebnf
+Primitive = integer
+          | floating
+          | string
+          | identifier
+          | unit
+          ;
+```
+
+## Enclosed expression
+
+Represents an expression wrapped in parentheses.
+
+```ebnf
+Enclosed expression = "(", Expression, ")" ;
+```
