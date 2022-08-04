@@ -3,7 +3,7 @@
 A function call is 2 expressions separated by whitespace.
 
 ```ebnf
-Function call = Expression Expression ;
+Function call = Primitive, Expression ;
 ```
 
 This means that, as far as the syntax is concerned, any expression

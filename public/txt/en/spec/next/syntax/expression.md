@@ -5,8 +5,15 @@ An expression is any code that produces a value.
 ```ebnf
 Expression = Function call
            | Primitive
-           | Enclosed expression
            ;
+```
+
+## Function call
+
+A primitive followed by an expression.
+
+```ebnf
+Function call = Primitive, Expression ;
 ```
 
 ## Primitive
@@ -19,13 +26,6 @@ Primitive = integer
           | string
           | identifier
           | unit
+          | "(", Expression, ")"
           ;
-```
-
-## Enclosed expression
-
-Represents an expression wrapped in parentheses.
-
-```ebnf
-Enclosed expression = "(", Expression, ")" ;
 ```
