@@ -1,23 +1,15 @@
 # Function call
 
-A function call can either be:
-- An identifier, followed by 1 expression
-- An expression enclosed by parens, followed by 1 expression
-- A function call, followed by 1 expression
+A function call is 2 expressions separated by whitespace.
 
 ```ebnf
-function call = identifier, expression
-              | enclosed expr, expression
-              | function call, expression
-              ;
+Function call = Expression Expression ;
 ```
 
-This is done to simplify the parsing.
+This means that, as far as the syntax is concerned, any expression
+can be used as a function.
 
-The only way to reference a function is by its name, or as the result
-of other operation.
-
-Technically, one could do the following:
+It's implemented this way to allow first-class functions, currying and partial application.
 
 ```misti
 // Here, `10` would be the function and `20` the parameter
@@ -28,4 +20,15 @@ Technically, one could do the following:
 10 20
 ```
 
-That would provoke an error, but in the semantic phase of the compiler.
+However, it is still semantically incorrect.
+
+## Currying
+
+Misti implements currying, and function calls are left-associative.
+
+```misti
+add 10 20
+
+// Equivalent
+(add 10) 20
+```

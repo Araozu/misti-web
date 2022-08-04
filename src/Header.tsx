@@ -136,7 +136,9 @@ export function Header() {
                     <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
                         <MainButton text={"Learn"} colorIndex={"c2"} />
                     </Link>
+                    {/*
                     <MainButton text={"Install"} colorIndex={"c1"} />
+                    */}
                     <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
                         <MainButton text={"Spec"} colorIndex={"c5"} />
                     </Link>
@@ -153,12 +155,14 @@ export function Header() {
                         >Learn
                         </Link>
                     </div>
+                    {/*
                     <div class={css(e.headerLink)}>
                         <Link class={css(e.headerNormalLink)} href={"/learn/"}>Install</Link>
                     </div>
                     <div class={css(e.headerLink)}>
                         <Link class={css(e.headerNormalLink)} href={"/api/"}>API</Link>
                     </div>
+                    */}
                     <div class={css(e.headerLink)}>
                         <Link class={css(e.headerNormalLink)}
                             href={`/spec/${docsCurrentVersion()}/`}
@@ -166,10 +170,13 @@ export function Header() {
                         </Link>
                     </div>
                     <div class={css(e.headerLink)}>
-                        <Link class={css(e.headerNormalLink)}
-                            href={`/grammar/${docsCurrentVersion()}/`}
-                        >GitHub
-                        </Link>
+                        <a
+                            class={css(e.headerNormalLink)}
+                            href={"https://github.com/Araozu/Misti"}
+                            target="_blank"
+                        >
+                            GitHub
+                        </a>
                     </div>
                 </div>
             </Show>
