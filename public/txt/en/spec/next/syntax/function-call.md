@@ -2,11 +2,14 @@
 
 A function call is 2 expressions separated by whitespace.
 
+However, if the parser only finds a `Primitive` it will return the `Primitive`,
+without emitting an error.
+
 ```ebnf
-Function call = Primitive, Expression ;
+Function call = Primitive, Primitive* ;
 ```
 
-This means that, as far as the syntax is concerned, any expression
+As far as the syntax is concerned, any expression
 can be used as a function.
 
 It's implemented this way to allow first-class functions, currying and partial application.

@@ -3,17 +3,15 @@
 An expression is any code that produces a value.
 
 ```ebnf
-Expression = Function call
-           | Primitive
-           ;
+Expression = Function call ;
 ```
 
 ## Function call
 
-A primitive followed by an expression.
+It may be a primitive, or a function call
 
 ```ebnf
-Function call = Primitive, Expression ;
+Function call = Primitive, Primitive* ;
 ```
 
 ## Primitive
