@@ -127,7 +127,7 @@ export function Header() {
                         &nbsp;language&nbsp;
                     </span>
                     <br class="hide-on-small" />
-                    for Web Assembly
+                    for the web
                 </div>
 
                 <p class={css(e.motto2, e.padded)}>That's Misti</p>

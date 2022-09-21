@@ -6,7 +6,7 @@ Misti ~~is~~ will be a
 - indentation based
 - statically typed
 
-programming language for web assembly via LLVM written in Java.
+toy programming language for the web written in Java.
 
 ```misti
 fun qsort Array[T] arr -> Array[T] =

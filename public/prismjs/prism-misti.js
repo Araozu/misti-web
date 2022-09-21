@@ -18,5 +18,8 @@ Prism.languages.misti = {
     "keyword": /\b(?:break|catch|continue|do|else|elif|finally|for|fun|if|in|fn|nil|return|throw|try|while|val|var|type|match|with|of|abstract|class|interface|private|public|override)\b/,
     "number": /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
     "operator": /[<>]=?|[!=]=?=?|--?|\$|\+\+?|&&?|\|\|?|[?*/~^%]/,
-    "punctuation": /[{}[\];(),.:]/,
+    "punctuation": /[{}[\];(),.]/,
+    "boolean": /\b(?:false|true)\b/,
+    "class-name": /\b[A-Z][a-zA-Z_0-9]+\b/,
+    "variable": /\b[a-z_0-9][a-zA-Z_0-9]+:/,
 };

@@ -35,12 +35,6 @@ subjects:
         path: parameters
       - title: Lambdas
         path: lambdas
-      - title: Utilities
-        path: utilities
-      - title: Partial Application
-        path: partial-application
-      - title: Custom operators
-        path: custom-operators
 
   - title: Objects
     path: objets

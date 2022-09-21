@@ -1,76 +1,63 @@
-# Lambdas / Anonymous Functions
+# Lambdas
 
-## Long form
-
-A lambda is created with `fn` followed by parameters, and the body inside
-curly braces.
+A lambda consists of the `fn` keyword, parameters and body.
 
 ```misti
-fn x, y {
-    // Body of the lambda
+fn (x, y) {
+    // Body
     x + y
 }
 ```
 
-```misti
-addOnClickListener fn event {
-    // do something
-}
-```
+The following are optional in a lambda:
+
+- The types of the parameters
+- The return type
+
+If used, they would look like this:
 
 ```misti
-val function = fn { /* code */ }
-```
-
-The datatypes are optional.
-
-```misti
-fn Int x, Int y {
+fn (Int x, Int y) -> Int {
+    // Body
     x + y
 }
 ```
 
+## Lambda without parameters
 
-## Short form
-
-The short form omits the `fn` keyword and parameters. 
-
-```misti
-// A lambda that returns 20
-val lambda = { 20 }
-```
-
-Inside it there are special values that act as parameters.
+If a lambda doesn't have parameters, the `fn` keyword may be omitted.
+This is called a short lambda.
 
 ```misti
-// The following
-{ $1 + 10 }
+{ doSomething() }
 
-// is the same as
-fn Int p {
-    p + 10
+// The above lambda is equivalent to:
+fn () {
+    doSomething()
 }
 ```
 
-## Function type
+## Inferred arguments
+
+If the arguments of the lambda don't need names, the following
+syntax can be used.
 
 ```misti
-() -> Unit
-() -> Str
-Int -> Int
-// 2 ints as parameters and returns a float
-Int, Int -> Float
-// A tuple as a parameter has parens.
-// 1 tuple as paramater and returns a float. The tuple has 2 ints inside
-(Int, Int) -> Float
-// Generics
-Array['T], Int -> 'T
-String, Bool -> T
-
-// Functions as parameters
-fun createArrayList['T] Int size -> ArrayList['T] =
-    ...
-
-Int -> ArrayList['T]
+{ $1 + $2 }
 ```
+
+Inside a short lambda you can use `$1`, `$2`, `$3`, etc. to refer to the
+parameters of the lambda.
+
+So the following lambdas are the same:
+
+```misti
+{ $1 + $2 }
+
+// The same as:
+fn (x, y) {
+    x + y
+}
+```
+
 

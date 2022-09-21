@@ -5,9 +5,9 @@ Instead, a global function is used.
 
 ```misti
 // Array[Int]
-val numbers = arrayOf 10 20 30
+val numbers = arrayOf(10, 20, 30)
 // Array[Str]
-val names = arrayOf "Pablo" "Kim" "Mike"
+val names = arrayOf("Pablo", "Kim", "Mike")
 ```
 
 Accessing or mutating the array use a similar syntax to other languages.
