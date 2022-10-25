@@ -63,7 +63,7 @@ fun getLuckyNumber() -> Float =
     7
 
 
-val number = getLuckyNumber(  // number = 7
+val number = getLuckyNumber()  // number = 7
 ```
 
 ## Return multiple values
@@ -71,16 +71,16 @@ val number = getLuckyNumber(  // number = 7
 We can use a tuple if we need to return multiple values.
 
 ```misti
-fun getObject() -> {Str, Int} =
+fun getObject() -> #{Str, Int} =
     // Logic...
-    {"Kim", 33}
+    #{"Kim", 33}
 
-fun tupleContains({Str, Int} data, Str key) -> {Bool, Int} =
-    val {currentKey, value} = data
-    if currentKey == key do {true, value}
-    else {false, 0}
+fun tupleContains(#{Str, Int} data, Str key) -> #{Bool, Int} =
+    val #{currentKey, value} = data
+    if currentKey == key do #{true, value}
+    else #{false, 0}
 
-tupleContains({"Test", 200}, "Test")
+tupleContains(#{"Test", 200}, "Test")
 ```
 
 

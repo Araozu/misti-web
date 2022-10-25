@@ -39,7 +39,7 @@ const e = StyleSheet.create({
         height: "1.4rem",
         width: "100%",
         zIndex: 100,
-        backgroundColor: "var(--bg-color)",
+        backgroundColor: "var(--c2-background)",
         display: "flex",
         alignItems: "center",
     },
