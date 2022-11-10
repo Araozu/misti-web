@@ -25,17 +25,17 @@ const sidebarLinkStyle = StyleSheet.create({
         width: "100%",
         textDecoration: "none",
         color: "var(--color)",
+        border: "solid 2px transparent",
         "&:visited": {
             textDecoration: "none",
         },
         ":hover": {
-            backgroundColor: "var(--c3-secondary-container)",
-            color: "var(--c3-on-secondary-container)",
+            color: "var(--js-color)",
         },
     },
     highlighted: {
-        backgroundColor: "var(--c3-secondary-container)",
-        color: "var(--c3-on-secondary-container)",
+        border: "solid 2px var(--js-color)",
+        color: "var(--js-color)",
     },
 });
 

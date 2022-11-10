@@ -37,7 +37,7 @@ subjects:
         path: lambdas
 
   - title: Objects
-    path: objets
+    path: objects
     children:
       - title: Definition
         path: definition

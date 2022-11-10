@@ -39,7 +39,7 @@ const e = StyleSheet.create({
         height: "1.4rem",
         width: "100%",
         zIndex: 100,
-        backgroundColor: "var(--c2-background)",
+        backgroundColor: "var(--bg-color)",
         display: "flex",
         alignItems: "center",
     },
@@ -52,9 +52,11 @@ const e = StyleSheet.create({
     headerMainLink: {
         fontWeight: 600,
         textDecoration: "none",
-        color: "var(--color)",
+        color: "#FFE70B",
         padding: "0 1rem",
-        fontSize: "0.9rem",
+        fontSize: "1.5rem",
+        letterSpacing: "0.1rem",
+        fontFamily: "Heaters, Inter, sans-serif",
         ":hover": {
             textDecoration: "underline",
         },
@@ -64,8 +66,18 @@ const e = StyleSheet.create({
         color: "var(--color)",
         padding: "0 0.5rem",
         fontSize: "0.8rem",
+        fontWeight: 500,
         ":hover": {
             textDecoration: "underline",
+        },
+    },
+    coloredLetter: {
+        fontWeight: "bold",
+        fontFamily: "Heaters, Inter, sans-serif",
+        fontSize: "6rem",
+        "::selection": {
+            backgroundColor: "#FFE70B",
+            color: "var(--bg-color)",
         },
     },
 });
@@ -118,11 +130,11 @@ export function Header() {
             <Show when={route.pathname === "/"}>
                 <div class={css(e.motto, e.padded)}>
                     A&nbsp;
-                    <span style={{color: "var(--c1)", "font-weight": "bold"}}>F</span>
-                    <span style={{color: "var(--c2)", "font-weight": "bold"}}>A</span>
-                    <span style={{color: "var(--c3)", "font-weight": "bold"}}>N</span>
-                    <span style={{color: "var(--c4)", "font-weight": "bold"}}>C</span>
-                    <span style={{color: "var(--c5)", "font-weight": "bold"}}>Y</span>
+                    <span class={css(e.coloredLetter)} style={{color: "var(--c1)"}}>F</span>
+                    <span class={css(e.coloredLetter)} style={{color: "var(--c2)"}}>A</span>
+                    <span class={css(e.coloredLetter)} style={{color: "var(--c3)"}}>N</span>
+                    <span class={css(e.coloredLetter)} style={{color: "var(--c4)"}}>C</span>
+                    <span class={css(e.coloredLetter)} style={{color: "var(--c5)"}}>Y</span>
                     <span>
                         &nbsp;language&nbsp;
                     </span>
@@ -134,13 +146,13 @@ export function Header() {
 
                 <div class={css(e.padded)}>
                     <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                        <MainButton text={"Learn"} colorIndex={"c2"} />
+                        <MainButton text={"Learn"} colorIndex={"c1"} />
                     </Link>
                     {/*
                     <MainButton text={"Install"} colorIndex={"c1"} />
                     */}
                     <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                        <MainButton text={"Spec"} colorIndex={"c5"} />
+                        <MainButton text={"Spec"} colorIndex={"c1"} />
                     </Link>
                 </div>
             </Show>
