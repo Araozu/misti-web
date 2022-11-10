@@ -1,0 +1,11 @@
+#header-no-index  {
+    --header-main-link-color: var(--js-color);
+    --header-main-link-bg-color: transparent;
+}
+
+@media (prefers-color-scheme: light) {
+    #header-no-index {
+        --header-main-link-color: var(--dark-color);
+        --header-main-link-bg-color: var(--js-color);
+    }
+}

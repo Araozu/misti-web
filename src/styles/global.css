@@ -156,18 +156,6 @@ g.terminal text {
     transform: scale(1.5);
 }
 
-@keyframes gradientBG {
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(-25%);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
 .main-container {
     margin: 0 auto;
     max-width: 1400px;
@@ -175,23 +163,7 @@ g.terminal text {
 }
 
 .rainbow-separator {
-    animation-name: gradientBG;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    background: linear-gradient(
-        135deg,
-        var(--c1) 0%, var(--c1) 5%,
-        var(--c2) 10%, var(--c2) 15%,
-        var(--c3) 20%, var(--c3) 25%,
-        var(--c4) 30%, var(--c4) 35%,
-        var(--c5) 40%, var(--c5) 45%,
-        var(--c1) 50%, var(--c1) 55%,
-        var(--c2) 60%, var(--c2) 65%,
-        var(--c3) 70%, var(--c3) 75%,
-        var(--c4) 80%, var(--c4) 85%,
-        var(--c5) 90%, var(--c5) 95%,
-        var(--c1) 100%
-    )
+    background-color: var(--js-color);
 }
 
 h2 {

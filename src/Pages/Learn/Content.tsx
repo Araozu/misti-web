@@ -1,4 +1,3 @@
-import { setAnimationActive } from "../../loadingAnimationGlobal";
 import { createEffect, createMemo, JSX } from "solid-js";
 import { language } from "../../globalValues";
 import { Subjects } from "./Subjects";
@@ -20,9 +19,6 @@ const errorElement = (
 
 async function loadMDData(path: string, container: JSX.Element) {
     const el = container as unknown as HTMLElement;
-
-    console.log("Loading MD");
-    console.log(path);
 
     // Replace content with a loading message
     while (el.lastChild) {
@@ -89,8 +85,6 @@ export function Content(props: { subjects: Subjects, contentPath?: string }) {
         const parent = parentSubject();
         const sub = subject();
 
-        setAnimationActive(true);
-
         if (!parent && !sub) {
             if (props.subjects[0] === undefined) {
                 const el = elementoContenedor as unknown as HTMLDivElement;
@@ -110,8 +104,6 @@ export function Content(props: { subjects: Subjects, contentPath?: string }) {
             const indexUrl = `/txt/${language()}/${contentPath}/${version()}/${parentSubject()}/${subject()}.md`;
             await loadMDData(indexUrl, elementoContenedor);
         }
-
-        setAnimationActive(false);
     });
 
     return (

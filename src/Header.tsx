@@ -1,8 +1,9 @@
 import { css, StyleSheet } from "aphrodite/no-important";
-import { setAnimationActive } from "./loadingAnimationGlobal";
 import { createMemo, Show } from "solid-js";
 import { currentVersions } from "./globalValues";
 import { Link, useLocation } from "solid-app-router";
+
+import "./styles/header.css";
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -52,7 +53,8 @@ const e = StyleSheet.create({
     headerMainLink: {
         fontWeight: 600,
         textDecoration: "none",
-        color: "#FFE70B",
+        backgroundColor: "var(--header-main-link-bg-color)",
+        color: "var(--header-main-link-color)",
         padding: "0 1rem",
         fontSize: "1.5rem",
         letterSpacing: "0.1rem",
@@ -140,19 +142,19 @@ export function Header() {
                 <p class={css(e.motto2, e.padded)}>That's Misti</p>
 
                 <div class={css(e.padded)}>
-                    <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
+                    <Link href={`/learn/${docsCurrentVersion()}/`}>
                         <MainButton text={"Learn"} />
                     </Link>
                     {/*
                     <MainButton text={"Install"} colorIndex={"c1"} />
                     */}
-                    <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
+                    <Link href={`/spec/${docsCurrentVersion()}/`}>
                         <MainButton text={"Spec"} />
                     </Link>
                 </div>
             </Show>
             <Show when={route.pathname !== "/"}>
-                <div class={css(e.header2)}>
+                <div id="header-no-index" class={css(e.header2)}>
                     <div class={css(e.headerLink)}>
                         <Link class={css(e.headerMainLink)} href={"/"}>Misti</Link>
                     </div>

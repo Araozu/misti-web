@@ -1,4 +1,3 @@
-import { setAnimationActive } from "../loadingAnimationGlobal";
 import { globalStyles } from "../globalStyles";
 import { css, StyleSheet } from "aphrodite/no-important";
 import { language } from "../globalValues";
@@ -29,10 +28,7 @@ const e = StyleSheet.create({
 });
 
 export default function() {
-    setAnimationActive(false);
-
     const routeParams = useParams();
-    console.log(routeParams.version);
 
     const version = createMemo(() => routeParams.version);
 

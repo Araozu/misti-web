@@ -1,4 +1,3 @@
-import { setAnimationActive } from "../loadingAnimationGlobal";
 import { globalStyles } from "../globalStyles";
 import { Sidebar } from "./Learn/Sidebar";
 import Split from "split-grid";
@@ -29,7 +28,6 @@ const e = StyleSheet.create({
 });
 
 export default function() {
-    setAnimationActive(false);
     const routeParams = useParams();
 
     const version = createMemo(() => routeParams.version);
