@@ -4,6 +4,8 @@ import { currentVersions } from "../../globalValues";
 import { Subjects } from "./Subjects";
 import { Link, useLocation } from "solid-app-router";
 
+import "../../styles/sidebar.css";
+
 const e = StyleSheet.create({
     container: {
         padding: "1.5rem 0.25rem",
@@ -30,12 +32,14 @@ const sidebarLinkStyle = StyleSheet.create({
             textDecoration: "none",
         },
         ":hover": {
-            color: "var(--js-color)",
+            color: "var(--highlighted-color)",
+            borderColor: "var(--highlighted-border-color_hover)",
         },
     },
     highlighted: {
-        border: "solid 2px var(--js-color)",
-        color: "var(--js-color)",
+        borderColor: "var(--highlighted-border-color) !important",
+        backgroundColor: "var(--highlighted-bg-color) !important",
+        color: "var(--highlighted-color) !important",
     },
 });
 
@@ -98,7 +102,7 @@ export function Sidebar(props: { subjects: Subjects, contentPath?: string }) {
     });
 
     return (
-        <div class={css(e.container)}>
+        <div id="sidebar-container" class={css(e.container)}>
             Language version:
             <br />
             {versionsElement()}

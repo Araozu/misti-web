@@ -75,14 +75,11 @@ const e = StyleSheet.create({
         fontWeight: "bold",
         fontFamily: "Heaters, Inter, sans-serif",
         fontSize: "6rem",
-        "::selection": {
-            backgroundColor: "#FFE70B",
-            color: "var(--bg-color)",
-        },
+        letterSpacing: "0.1rem",
     },
 });
 
-function MainButton(props: { text: string, colorIndex: string, onClick?: () => void }) {
+function MainButton(props: { text: string, onClick?: () => void }) {
     const e = StyleSheet.create({
         e: {
             padding: "0.6rem 1.25rem",
@@ -91,17 +88,15 @@ function MainButton(props: { text: string, colorIndex: string, onClick?: () => v
             marginRight: "1rem",
             marginBottom: "2rem",
             marginTop: "2rem",
-            border: "solid 0px var(--border-color)",
             borderRadius: "1.5rem",
             textDecoration: "none",
-            backgroundColor: `var(--${props.colorIndex}-secondary-container)`,
-            // backgroundColor: "var(--bg-color)",
-            // color: props.color,
-            color: `var(--${props.colorIndex}-on-secondary-container)`,
+            border: "solid 2px var(--js-color)",
+            backgroundColor: "var(--bg-color)",
+            color: "var(--color)",
             cursor: "pointer",
             ":hover": {
-                color: `var(--${props.colorIndex}-on-primary)`,
-                backgroundColor: `var(--${props.colorIndex}-primary)`,
+                color: "var(--dark-color)",
+                backgroundColor: "var(--js-color)",
             },
             "@media (max-width: 800px)": {
                 padding: "0.5rem 0.75rem",
@@ -146,13 +141,13 @@ export function Header() {
 
                 <div class={css(e.padded)}>
                     <Link href={`/learn/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                        <MainButton text={"Learn"} colorIndex={"c1"} />
+                        <MainButton text={"Learn"} />
                     </Link>
                     {/*
                     <MainButton text={"Install"} colorIndex={"c1"} />
                     */}
                     <Link href={`/spec/${docsCurrentVersion()}/`} onClick={() => setAnimationActive(true)}>
-                        <MainButton text={"Spec"} colorIndex={"c1"} />
+                        <MainButton text={"Spec"} />
                     </Link>
                 </div>
             </Show>

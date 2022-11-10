@@ -1,0 +1,17 @@
+#sidebar-container {
+    --highlighted-color: var(--js-color);
+    --highlighted-bg-color: var(--bg-color);
+    --highlighted-border-color: var(--js-color);
+
+    --highlighted-border-color_hover: transparent;
+}
+
+@media (prefers-color-scheme: light) {
+    #sidebar-container {
+        --highlighted-color: var(--dark-color);
+        --highlighted-bg-color: var(--js-color);
+        --highlighted-border-color: var(--dark-color);
+
+        --highlighted-border-color_hover: var(--dark-color);
+    }
+}
