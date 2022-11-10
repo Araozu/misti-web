@@ -1,6 +1,4 @@
-@import url("./prism-atom-light.min.css") screen and (prefers-color-scheme: light);
-@import url("./prism-atom-dark.min.css") screen and (prefers-color-scheme: dark);
-@import url("./prism-atom-dark.min.css") screen and (prefers-color-scheme: no-preference);
+@import url("./prism-xcode-like.css");
 
 body ::selection {
     background-color: var(--js-color);

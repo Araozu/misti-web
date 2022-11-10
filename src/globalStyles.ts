@@ -1,4 +1,4 @@
-import { StyleSheet } from "aphrodite/no-important"
+import { StyleSheet } from "aphrodite/no-important";
 
 export const globalStyles = StyleSheet.create({
     padded: {
@@ -9,5 +9,5 @@ export const globalStyles = StyleSheet.create({
             paddingRight: "1rem",
         },
     },
-})
+});
 
