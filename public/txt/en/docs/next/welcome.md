@@ -1,12 +1,15 @@
 # Welcome
 
-Misti ~~is~~ will be a 
+Misti is _yet another_ toy language to replace JavaScript.
 
-- functional first
-- indentation based
-- statically typed
+It's objectives are:
 
-toy programming language for the web.
+- Reduce compilation time by using Rust.
+
+- Improve code quality by making the language more expressive.
+- Make the language easy to understand by using a consistent syntax (at the expense of familiarity).
+- Integrate with existing TypeScript definitions by importing and exporting `.d.ts` files.
+- Serve as a side project.
 
 ## Syntax summary
 
