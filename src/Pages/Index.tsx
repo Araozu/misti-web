@@ -168,7 +168,7 @@ declare function filter(
     users: User[], 
     minAge: number, 
     maxAge: number
-): User
+): User;
 
     `.trim();
     return (

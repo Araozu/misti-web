@@ -13,11 +13,13 @@ const loadingElement = (
 
 const errorElement = (
     <div>
-        <Title title={"404: Subject not fond"} />
+        <Title title={"404: Page not found"} />
+        <p>This page couldn't be found.</p>
+        <p>You can use the sidebar to see the available pages.</p>
     </div>
 );
 
-async function loadMDData(path: string, container: JSX.Element) {
+function loadMDData(path: string, container: JSX.Element) {
     const el = container as unknown as HTMLElement;
 
     // Replace content with a loading message
@@ -26,49 +28,57 @@ async function loadMDData(path: string, container: JSX.Element) {
     }
     el.appendChild(loadingElement as unknown as HTMLElement);
 
-    const request = await fetch(path);
-    const md = await request.text();
-    const html = marked(md);
+    fetch(path)
+        .then((request) => {
+            if (!request.ok) throw new Error("Error loading");
+            return request.text();
+        })
+        .then((md) => {
+            //const md = await request.text();
+            const html = marked(md);
 
-    // DEV: if it is an html document, show error
-    if (html.startsWith("<!DOCTYPE html>")) {
-        while (el.lastChild) {
-            el.removeChild(el.lastChild);
-        }
-        el.appendChild(errorElement as unknown as HTMLElement);
-        return;
-    } else {
-        // Replace loading message with content
-        while (el.lastChild) {
-            el.removeChild(el.lastChild);
-        }
-        el.innerHTML = html;
-        // Apply syntax highlight
-        window.Prism.highlightAllUnder(el);
-        // Search for railroad-diagram code, and execute
-        const railroadElems = el.querySelectorAll(".railroad-code");
-        for (let i = 0; i < railroadElems.length; i += 1) {
-            const railroadElem = railroadElems[i] as HTMLElement;
-            const railroadCode = railroadElem.innerText;
-            railroadElem.innerHTML = "";
-            railroadElem.style.display = "block";
+            // DEV: if it is an html document, show error
+            if (html.startsWith("<!DOCTYPE html>")) {
+                throw new Error("Error loading.");
+            } else {
+                // Replace loading message with content
+                while (el.lastChild) {
+                    el.removeChild(el.lastChild);
+                }
+                el.innerHTML = html;
+                // Apply syntax highlight
+                window.Prism.highlightAllUnder(el);
+                // Search for railroad-diagram code, and execute
+                const railroadElems = el.querySelectorAll(".railroad-code");
+                for (let i = 0; i < railroadElems.length; i += 1) {
+                    const railroadElem = railroadElems[i] as HTMLElement;
+                    const railroadCode = railroadElem.innerText;
+                    railroadElem.innerHTML = "";
+                    railroadElem.style.display = "block";
 
-            // Temporarily create a global variable that contains a reference to the railroad container
-            /// @ts-ignore
-            window.railroadContainer = railroadElem;
+                    // Temporarily create a global variable that contains a reference to the railroad container
+                    /// @ts-ignore
+                    window.railroadContainer = railroadElem;
 
-            // Try to eval the railroad code
-            try {
-                eval(`${railroadCode}.addTo(window.railroadContainer)`);
-            } catch (e) {
-                console.log(e);
+                    // Try to eval the railroad code
+                    try {
+                        eval(`${railroadCode}.addTo(window.railroadContainer)`);
+                    } catch (e) {
+                        console.log(e);
+                    }
+
+                    // Remove the global variable
+                    /// @ts-ignore
+                    delete window.railroadContainer;
+                }
             }
-
-            // Remove the global variable
-            /// @ts-ignore
-            delete window.railroadContainer;
-        }
-    }
+        })
+        .catch(() => {
+            while (el.lastChild) {
+                el.removeChild(el.lastChild);
+            }
+            el.appendChild(errorElement as unknown as HTMLElement);
+        });
 }
 
 export function Content(props: { subjects: Subjects, contentPath?: string }) {
@@ -81,7 +91,7 @@ export function Content(props: { subjects: Subjects, contentPath?: string }) {
 
     const elementoContenedor = <div class={"marked"} />;
 
-    createEffect(async() => {
+    createEffect(() => {
         const parent = parentSubject();
         const sub = subject();
 
@@ -95,14 +105,14 @@ export function Content(props: { subjects: Subjects, contentPath?: string }) {
             } else {
                 const startPagePath = props.subjects[0].path;
                 const indexUrl = `/txt/${language()}/${contentPath}/${version()}/${startPagePath}.md`;
-                await loadMDData(indexUrl, elementoContenedor);
+                loadMDData(indexUrl, elementoContenedor);
             }
         } else if (parent && !sub) {
             const indexUrl = `/txt/${language()}/${contentPath}/${version()}/${parent}.md`;
-            await loadMDData(indexUrl, elementoContenedor);
+            loadMDData(indexUrl, elementoContenedor);
         } else {
             const indexUrl = `/txt/${language()}/${contentPath}/${version()}/${parentSubject()}/${subject()}.md`;
-            await loadMDData(indexUrl, elementoContenedor);
+            loadMDData(indexUrl, elementoContenedor);
         }
     });
 

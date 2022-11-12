@@ -182,6 +182,10 @@ code, pre {
     font-variant-ligatures: discretionary-ligatures;
 }
 
+.marked pre {
+    font-size: 0.85rem;
+}
+
 .marked p {
     line-height: 1.5rem;
     text-align: justify;
