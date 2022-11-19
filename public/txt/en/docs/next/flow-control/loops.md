@@ -3,21 +3,30 @@
 ## For each
 
 ```misti
-// Loop through an array
-for x in arr do
-    print(x)
-
 // Loop through an object
-for (key, value) in obj do
-    print(key, value)
+for key in object {
+    print(key)
+}
 
+// Loop through an array
+for value of array {
+    print(value)
+}
 ```
 
 ## While
 
 ```misti
-while condition do
+while condition {
     print("loop")
+}
 ```
 
+## Infinite loop
+
+```misti
+loop {
+    // Operations
+}
+```
 

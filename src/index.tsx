@@ -36,6 +36,19 @@ function tryGetRailroad(input: string): string | null {
     return null;
 }
 
+/*
+fun tryGetRailroad(Str input) -> Str? {
+    if !input.startsWith("/// railroad") {return None}
+
+    val nextLinePos = input.indexOf("\n")
+    if nextLinePos != -1 {
+        Some <| input.substring(nextLinePos)
+    } else {
+        None
+    }
+}
+*/
+
 function handleJSCodeBlock(code: string) {
     const possibleRailroad = tryGetRailroad(code);
     if (possibleRailroad === null) {

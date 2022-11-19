@@ -9,7 +9,7 @@ fn (x, y) {
 }
 ```
 
-The following are optional in a lambda:
+The following types are optional, if we can be able to infer them:
 
 - The types of the parameters
 - The return type

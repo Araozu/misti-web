@@ -49,20 +49,23 @@ In function parameters
 
 ```misti
 // Without parameter destructuring
-fun destructure(#{Str, Int} data) =
+fun destructure(#{Str, Int} data) {
     val #{name, age} = data
     // Computations with name, age
+}
 
 
 // With parameter destructuring
-fun destructure(#{Str name, Int age}) =
+fun destructure(#{Str name, Int age}) {
     // Computations with name, age
     // Note that now there is no way to refer to the whole tuple
+}
 
 
 // Parameter destructuring with tuple preservation
-fun destructure(#{Str name, Int age} data) =
+fun destructure(#{Str name, Int age} data) {
     // Computations with name, age
     // The tuple `data` can still be referred to
+}
 ```
 

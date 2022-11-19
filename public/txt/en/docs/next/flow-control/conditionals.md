@@ -3,18 +3,19 @@
 Conditionals in Misti surround the condition with keywords.
 
 ```Misti
-if condition do
+if condition {
     // Expressions
-elif anotherCondition do
+} else if anotherCondition {
     // Other expressions
-else
+} else {
     // More expressions
+}
 ```
 
 Conditionals are expressions, they evaluate to the last expression
 in each branch.
 
 ```misti
-val result = if condition do value1 else value2
+val result = if condition {value1} else {value2}
 ```
 

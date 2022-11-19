@@ -10,8 +10,9 @@ The syntax is a bit different from other languages.
 To declare a function with no parameters include `()`, and call it with `()`.
 
 ```misti
-fun getName() -> Str =
+fun getName() -> Str {
     "John"
+}
 
 val name = getName()
 ```
@@ -24,8 +25,9 @@ So a function that doesn't return anything, would return `Unit`.
 
 ```misti
 // This function just prints Hello and returns
-fun printHello() -> Unit =
+fun printHello() -> Unit {
     print("Hello")
+}
 ```
 
 This type, `Unit`, is treated like `void`, so it is ignored.
@@ -34,12 +36,14 @@ If a function doesn't return anything, `Unit` can be omitted.
 
 ```misti
 // This first declaration
-fun doSomething() -> Unit =
+fun doSomething() -> Unit {
     something()
+}
 
 // is equivalent to this one
-fun doSomething() =
+fun doSomething() {
     something()
+}
 ```
 
 ## Function with return
@@ -50,17 +54,19 @@ Let's say that a function `getLuckyNumber` returns a Float, then it
 would be declared like this:
 
 ```misti
-fun getLuckyNumber() -> Float =
+fun getLuckyNumber() -> Float {
     // Body of the function
+}
 ```
 
 And finally, the return value is the last expression in the function.
 The following function will return 7.
 
 ```misti
-fun getLuckyNumber() -> Float =
+fun getLuckyNumber() -> Float {
     // This '7' is the last expression, so it will be returned
     7
+}
 
 
 val number = getLuckyNumber()  // number = 7
@@ -71,14 +77,19 @@ val number = getLuckyNumber()  // number = 7
 We can use a tuple if we need to return multiple values.
 
 ```misti
-fun getObject() -> #{Str, Int} =
+fun getObject() -> #{Str, Int} {
     // Logic...
     #{"Kim", 33}
+}
 
-fun tupleContains(#{Str, Int} data, Str key) -> #{Bool, Int} =
+fun tupleContains(#{Str, Int} data, Str key) -> #{Bool, Int} {
     val #{currentKey, value} = data
-    if currentKey == key do #{true, value}
-    else #{false, 0}
+    if currentKey == key {
+        #{true, value}
+    } else {
+        #{false, 0}
+    }
+}
 
 tupleContains(#{"Test", 200}, "Test")
 ```
