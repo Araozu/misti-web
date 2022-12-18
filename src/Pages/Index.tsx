@@ -78,9 +78,9 @@ export default function Index() {
 function Rusty() {
     const code = `
 $ time misti index.misti
-real\t0m0,004s
-user\t0m0,003s
-sys \t0m0,001s
+real\t0m0,100s
+user\t0m0,093s
+sys \t0m0,007s
     `.trim();
     return (
         <div class={css(s.container)} style={{"background-color": "#6E2A00"}}>
