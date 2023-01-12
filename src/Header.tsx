@@ -1,9 +1,13 @@
 import { css, StyleSheet } from "aphrodite/no-important";
-import { createMemo, Show } from "solid-js";
+import { createMemo, onMount, Show } from "solid-js";
 import { currentVersions } from "./globalValues";
 import { Link, useLocation } from "solid-app-router";
 
 import "./styles/header.css";
+// @ts-ignore
+import logoColor from "./assets/logo_color.svg";
+// @ts-ignore
+import logoBlack from "./assets/logo_black.svg";
 
 const e = StyleSheet.create({
     titleContainer: {
@@ -53,7 +57,7 @@ const e = StyleSheet.create({
     headerMainLink: {
         fontWeight: 600,
         textDecoration: "none",
-        backgroundColor: "var(--header-main-link-bg-color)",
+        backgroundColor: "var(--js-color)",
         color: "var(--header-main-link-color)",
         padding: "0 1rem",
         fontSize: "1.5rem",
@@ -78,6 +82,13 @@ const e = StyleSheet.create({
         fontFamily: "Heaters, Inter, sans-serif",
         fontSize: "6rem",
         letterSpacing: "0.1rem",
+    },
+
+    center: {
+        textAlign: "center",
+    },
+    mainLogoContainer: {
+        padding: "3rem 0",
     },
 });
 
@@ -123,40 +134,37 @@ export function Header() {
     const docsCurrentVersion = createMemo(() => currentVersions().versions[0] || "next");
 
     return (
-        <div>
+        <>
             <Show when={route.pathname === "/"}>
-                <div class={css(e.motto, e.padded)}>
-                    A&nbsp;
-                    <span class={css(e.coloredLetter)} style={{color: "var(--c1)"}}>F</span>
-                    <span class={css(e.coloredLetter)} style={{color: "var(--c2)"}}>A</span>
-                    <span class={css(e.coloredLetter)} style={{color: "var(--c3)"}}>N</span>
-                    <span class={css(e.coloredLetter)} style={{color: "var(--c4)"}}>C</span>
-                    <span class={css(e.coloredLetter)} style={{color: "var(--c5)"}}>Y</span>
-                    <span>
-                        &nbsp;language&nbsp;
-                    </span>
-                    <br class="hide-on-small" />
-                    for the web
+                <div class={css(e.center)}>
+                    <div class={css(e.mainLogoContainer)}>
+                        <img src={logoColor} alt="Misti" height={200} />
+                    </div>
+
+                    <h2><b>A type-safe, consistent, compiled language for JS</b></h2>
+
+                    <Demo />
+
+                    <div class={css(e.padded)}>
+                        <Link href={`/learn/${docsCurrentVersion()}/`}>
+                            <MainButton text={"Learn"} />
+                        </Link>
+                        {/*
+                        <MainButton text={"Install"} colorIndex={"c1"} />
+                        */}
+                        <Link href={`/spec/${docsCurrentVersion()}/`}>
+                            <MainButton text={"Spec"} />
+                        </Link>
+                    </div>
                 </div>
 
-                <p class={css(e.motto2, e.padded)}>That's Misti</p>
-
-                <div class={css(e.padded)}>
-                    <Link href={`/learn/${docsCurrentVersion()}/`}>
-                        <MainButton text={"Learn"} />
-                    </Link>
-                    {/*
-                    <MainButton text={"Install"} colorIndex={"c1"} />
-                    */}
-                    <Link href={`/spec/${docsCurrentVersion()}/`}>
-                        <MainButton text={"Spec"} />
-                    </Link>
-                </div>
             </Show>
             <Show when={route.pathname !== "/"}>
                 <div id="header-no-index" class={css(e.header2)}>
                     <div class={css(e.headerLink)}>
-                        <Link class={css(e.headerMainLink)} href={"/"}>Misti</Link>
+                        <Link class={css(e.headerMainLink)} href={"/"}>
+                            <img src={logoBlack} alt="Misti" width={55} />
+                        </Link>
                     </div>
                     <div class={css(e.headerLink)}>
                         <Link class={css(e.headerNormalLink)}
@@ -175,7 +183,15 @@ export function Header() {
                     <div class={css(e.headerLink)}>
                         <Link class={css(e.headerNormalLink)}
                             href={`/spec/${docsCurrentVersion()}/`}
-                        >Spec
+                        >
+                            Spec
+                        </Link>
+                    </div>
+                    <div class={css(e.headerLink)}>
+                        <Link class={css(e.headerNormalLink)}
+                            href={`/stdlib/${docsCurrentVersion()}/`}
+                        >
+                            Stdlib
                         </Link>
                     </div>
                     <div class={css(e.headerLink)}>
@@ -189,7 +205,39 @@ export function Header() {
                     </div>
                 </div>
             </Show>
+        </>
+    );
+
+}
+
+function Demo() {
+    const code = `
+// AOC 22 day 1 part 1.
+// https://adventofcode.com/2022/day/1
+fun findMaximum(Str input) -> Num {
+    input.split("\\n\\n")
+        .map { 
+            $.split("\\n") 
+             .map(parseInt)
+             .reduce { $1 + $2 }
+        }
+        .reduce fun (acc, next) {
+            if next > acc { next }
+            else { acc }
+        }
+}
+    `.trim();
+    const tree = (
+        <div style={{"max-width": "30rem", "margin": "0 auto"}}>
+            <pre class="language-misti no-line-numbers match-braces" style={{"font-size": "0.85rem"}}>
+                <code>{code}</code>
+            </pre>
         </div>
     );
 
+    onMount(() => {
+        window.Prism.highlightAllUnder(tree as unknown as HTMLElement);
+    })
+
+    return tree;
 }
