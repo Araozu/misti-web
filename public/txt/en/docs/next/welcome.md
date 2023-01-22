@@ -36,7 +36,7 @@ Num aConstant = 30       //  <- `val` is optional
 Num var aVariable = 20   // <- `var` required
 
 // You can assign the result of many operations to a variable
-val roi = {
+val roi = do {
     val income = someIncomeCalculation()
     val investment = 25000
     income / investment   // This will be the value of `roi`
@@ -59,9 +59,11 @@ Str string = "John Doe"
 if name == "John Doe" {
     val message = "Hello John"
     console.log(message)
-} elif name == "Mark" {
+}
+else if name == "Mark" {
     console.log("Hi Mark!")
-} else {
+}
+else {
     console.log("Hello there")
 }
 
@@ -96,13 +98,13 @@ Array[Num] dates = Array(1990, 1995, 2014, 2015, 2017)
 //
 // Tuples
 //
-val person = #{"John", 30, true}
+val person = #("John", 30, true)
 
 // Destructuring
-var #{name, age, isMarried} = person
+var #(name, age, isMarried) = person
 
 // Tuple signature
-#{Str, Num, Bool} signature = #{"John", 30, true}
+#(Str, Num, Bool) signature = #("John", 30, true)
 ```
 
 ```misti
@@ -154,25 +156,25 @@ calculate(100)        // "Your total is 100$"
 // Objects
 //
 
-type Person = {
+type Person = #{
     Str name,
     Num age,
 }
 
-val john = Person {
+val john = Person #{
     name: "John",
     age: 21,
 }
 
 // An object with arbitrary keys/values
-val randomObject = Obj {
+val randomObject = #{
     key1: "Any value"
     key2: 322,
     key3: true,
-    key4: Obj {
+    key4: #{
         key5: "zzz",
     },
-    key6: Person {
+    key6: Person #{
         name: "Sarah",
         age: 20,
     },
@@ -188,57 +190,66 @@ val randomObject = Obj {
 // Declare a simple class
 class Shape
 
-// Declare a class open for inheritance
-open class Shape {
-    // Method that can be overrided
-    open fun printName() {
+
+// Classes can not be extended by default.
+// To allow inheritance, use @open
+@open
+class Shape {
+    // By default methods can not be overrided.
+    // To allow it, use @open
+    @open
+    fun printName() {
         print("Generic Shape")
     }
 }
 
 val shape = Shape()
-//          | There's no `new` keyword
+//          | There's no `new` keyword, just call the class
 
 shape.printName()   // "Generic Shape"
 
 
+@open
 class Rectangle(Num height, Num length) -> Shape() {
 //             | Constructor parameters
 
-    // Properties are private
+    // Properties are always private
     val vertexCount = 4
 
-    // Methods are public by default
-    fun perimeter() {
+    // Methods are private by default
+    fun perimeter() -> Num {
         (height + length) * 2
     }
 
-    // Private method
-    private fun area() {
+    // To make a method public add @pub
+    @pub
+    fun area() -> Num {
         height * length
     }
 
     // Method override
-    override fun printName() {
+    @override
+    fun printName() {
         print("A rectangle")
     }
 }
 
 val rectangle = Rectangle(10, 20)
-rectangle.perimeter()   // 60
-rectangle.printName()   // "A rectangle"
+rectangle.area()       // 200
+rectangle.printName()  // "A rectangle"
 
 
 class Square(Num length) -> Rectangle(length, length) {
 //                       | Inheritance
 
-    override fun printName() {
+    @override
+    fun printName() {
         console.log("A square")
     }
 
     fun printInfo() {
-        // Use @ to refer to methods/properties of the parent class
-        console.log("A square with perimeter = {@perimeter()} and area = {@area()}")
+        // Use $ to refer to methods/properties of the parent class
+        console.log("A square with perimeter = {$perimeter()} and area = {$area()}")
     }
 }
 ```
@@ -261,7 +272,8 @@ val possibleResult = divide(10, 5)
 
 if val Some(result) = possibleResult {
     print("The result of the division is {result}")
-} else {
+}
+else {
     print("Division by zero")
 }
 
@@ -278,14 +290,16 @@ Num? roi = divide(income, investment)
 fun testVersionNumber(Str version) -> Result[Int, Str] {
     if version == "10" {
         Ok(10)
-    } elif version == "11" {
+    }
+    else if version == "11" {
         Ok(11)
-    } else {
+    }
+    else {
         Err("Invalid version")
     }
 }
 
-// Traditional try-catch (may change)
+// Legacy try-catch (may change)
 try {
     // some operation
     10
@@ -295,6 +309,71 @@ try {
     10
 }
 ```
+
+```misti
+//
+// Pattern matching
+//
+
+when age {
+    10 {
+        // executes when age == 10
+    }
+    11 {
+        // when age == 11
+    }
+    $ > 12 {
+        // when age > 12
+    }
+    else {
+        // when none of the conditions match
+    }
+}
+
+Str? result = someOperation()
+when result {
+    Some(value) {
+        // value is a Str
+        // do operations with v
+    }
+    None {
+        // Handle empty return
+    }
+}
+
+Result[Num, Str] result = someOtherOperation()
+when result {
+    Ok(number) {
+        // number is Num
+    }
+    Err(reason) {
+        // reason is Str
+    }
+}
+
+when result {
+    Ok(number) && number > 18 {
+        // This matches if number > 18
+    }
+    Ok(number) {
+        // This matches if number <= 18
+    }
+    Err(reason) {
+        // ...
+    }
+}
+```
+
+```misti
+//
+// JSX
+//
+
+val element = &lt;div>This is JSX&lt;/div>
+val list = items.map fun (item, count) {&lt;li key={count}>{item}&lt;/li>}
+```
+
+
 
 
 
