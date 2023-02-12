@@ -214,18 +214,17 @@ function Demo() {
     const code = `
 // AOC 22 day 1 part 1.
 // https://adventofcode.com/2022/day/1
-fun findMaximum(Str input) -> Num {
+fun findMaximum(Str input) -> Num =
     input.split("\\n\\n")
-        .map { 
-            $.split("\\n") 
-             .map(parseInt)
-             .reduce { $1 + $2 }
-        }
-        .reduce fun (acc, next) {
-            if next > acc { next }
-            else { acc }
-        }
-}
+         .map { 
+             $.split("\\n") 
+              .map(parseInt)
+              .reduce { $1 + $2 }
+         }
+         .reduce(fn (acc, next) {
+             if next > acc do next
+             else acc
+         })
     `.trim();
     const tree = (
         <div style={{"max-width": "30rem", "margin": "0 auto"}}>

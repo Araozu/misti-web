@@ -157,7 +157,7 @@ fun filter(
     Array[User] users, 
     Num minAge, 
     Num maxAge
-) -> User {
+) -> User =
     // code
 }
     `.trim();

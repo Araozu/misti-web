@@ -44,9 +44,10 @@ a Datatype.
 
 ```misti
 Str
-Float
-Int
+Num
 Bool
+Array
+Map
 
 CustomDatatype
 ```
@@ -93,3 +94,15 @@ Str age = 20
 
 The second statement will declare a constant, not a variable.
 
+
+## Assign a block to a variable
+
+Assigning a block to a variable will execute the block,
+and the last expression will be the value of the variable.
+
+```misti
+val roi =
+    val income = someIncomeCalculation()
+    val investment = 25000
+    income / investment   // This will be the value of `roi`
+```

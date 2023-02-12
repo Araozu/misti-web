@@ -14,8 +14,3 @@ val remainder = substract(50, 30)
 val total = add(60, -30, 90)
 ```
 
-## Execute calculations inside the parameter
-
-```misti
-print("The result is:", 10 + 20 - 30)
-```

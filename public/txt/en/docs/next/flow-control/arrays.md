@@ -1,13 +1,13 @@
 # Arrays
 
 Arrays in Misti don't have special syntax for declaration.
-Instead, a global function is used.
+They are created the following way instead:
 
 ```misti
 // Array[Int]
-val numbers = arrayOf(10, 20, 30)
+val numbers = Array(10, 20, 30)
 // Array[Str]
-val names = arrayOf("Pablo", "Kim", "Mike")
+val names = Array("Pablo", "Kim", "Mike")
 ```
 
 Accessing or mutating the array use a similar syntax to other languages.

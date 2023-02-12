@@ -2,6 +2,8 @@
 
 Misti is _yet another_ toy language to replace JavaScript.
 
+__Misti is indentation based.__
+
 It's objectives are:
 
 - Reduce compilation times using Rust.
@@ -36,11 +38,10 @@ Num aConstant = 30       //  <- `val` is optional
 Num var aVariable = 20   // <- `var` required
 
 // You can assign the result of many operations to a variable
-val roi = do {
+val roi =
     val income = someIncomeCalculation()
     val investment = 25000
     income / investment   // This will be the value of `roi`
-}
 ```
 
 ```misti
@@ -56,20 +57,17 @@ Str string = "John Doe"
 //
 // Conditionals
 //
-if name == "John Doe" {
+if name == "John Doe" do
     val message = "Hello John"
     console.log(message)
-}
-else if name == "Mark" {
+else if name == "Mark" do
     console.log("Hi Mark!")
-}
-else {
+else
     console.log("Hello there")
-}
+
 
 // You can use conditionals as expressions
-val response = if risk < 0.2 { "Go ahead" } else { "Don't" }
-//                           | Braces are required
+val response = if risk < 0.2 do "Go ahead" else "Don't"
 
 // There is no ternary conditional
 ```
@@ -111,17 +109,16 @@ var #(name, age, isMarried) = person
 //
 // Loops
 //
-for key in object {
+for key in object do
     console.log("key: {key}, value: {object.[key]}")
-}
 
-for value of array {
+
+for value of array do
     console.log("value: {value}")
-}
 
-while condition {
+
+while condition do
     print("while")
-}
 ```
 
 ```misti
@@ -136,15 +133,15 @@ add(10, 20)
 substring(input: "Hello, world!", start: 7, end: 12)
 
 // Funtion declaration
-fun add(Num x, Num y) -> Num {
+fun add(Num x, Num y) -> Num =
     x + y
-}
+
 
 // Function with default value
-fun calculate(Num price, Num discount = 0.0) {
+fun calculate(Num price, Num discount = 0.0) =
     val total = price * (1.0 - discount)
     console.log("Your total is {total}$")
-}
+
 
 calculate(100, 0.25)  // "Your total is 75$"
 calculate(100)        // "Your total is 100$"
@@ -194,14 +191,13 @@ class Shape
 // Classes can not be extended by default.
 // To allow inheritance, use @open
 @open
-class Shape {
+class Shape =
     // By default methods can not be overrided.
     // To allow it, use @open
     @open
-    fun printName() {
+    fun printName() =
         print("Generic Shape")
-    }
-}
+
 
 val shape = Shape()
 //          | There's no `new` keyword, just call the class
@@ -210,48 +206,45 @@ shape.printName()   // "Generic Shape"
 
 
 @open
-class Rectangle(Num height, Num length) -> Shape() {
+class Rectangle(Num height, Num length) -> Shape() =
 //             | Constructor parameters
 
     // Properties are always private
     val vertexCount = 4
 
     // Methods are private by default
-    fun perimeter() -> Num {
+    fun perimeter() -> Num =
         (height + length) * 2
-    }
+    
 
     // To make a method public add @pub
     @pub
-    fun area() -> Num {
+    fun area() -> Num =
         height * length
-    }
+    
 
     // Method override
     @override
-    fun printName() {
+    fun printName() =
         print("A rectangle")
-    }
-}
+
 
 val rectangle = Rectangle(10, 20)
 rectangle.area()       // 200
 rectangle.printName()  // "A rectangle"
 
 
-class Square(Num length) -> Rectangle(length, length) {
+class Square(Num length) -> Rectangle(length, length) =
 //                       | Inheritance
 
     @override
-    fun printName() {
+    fun printName() =
         console.log("A square")
-    }
+    
 
-    fun printInfo() {
+    fun printInfo() =
         // Use $ to refer to methods/properties of the parent class
         console.log("A square with perimeter = {$perimeter()} and area = {$area()}")
-    }
-}
 ```
 
 ```misti
@@ -260,22 +253,20 @@ class Square(Num length) -> Rectangle(length, length) {
 //
 
 // Operations that may fail return an Option value
-fun divide(Int numerator, Int denominator) -> Option[Num] {
-    if denominator == 0 {
+fun divide(Int numerator, Int denominator) -> Option[Num] =
+    if denominator == 0 do
         None    // Equivalent to `null`
-    } else {
+    else
         Some(numerator / denominator)
-    }
-}
+
 
 val possibleResult = divide(10, 5)
 
-if val Some(result) = possibleResult {
+if val Some(result) = possibleResult do
     print("The result of the division is {result}")
-}
-else {
+else
     print("Division by zero")
-}
+
 
 // `Type?` is syntax sugar for Option[Type]
 Num? roi = divide(income, investment)
@@ -287,27 +278,21 @@ Num? roi = divide(income, investment)
 //
 
 // A recoverable error
-fun testVersionNumber(Str version) -> Result[Int, Str] {
-    if version == "10" {
+fun testVersionNumber(Str version) -> Result[Int, Str] =
+    if version == "10" do
         Ok(10)
-    }
-    else if version == "11" {
+    else if version == "11" do
         Ok(11)
-    }
-    else {
+    else
         Err("Invalid version")
-    }
-}
+
 
 // Legacy try-catch (may change)
-try {
-    // some operation
-    10
-} catch (Error e) {
+try problematicExpression() with
+| Error(e) ->
     // do something
     // must return an expression
     10
-}
 ```
 
 ```misti
@@ -315,53 +300,40 @@ try {
 // Pattern matching
 //
 
-when age {
-    10 {
-        // executes when age == 10
-    }
-    11 {
-        // when age == 11
-    }
-    $ > 12 {
-        // when age > 12
-    }
-    else {
-        // when none of the conditions match
-    }
-}
+match age with
+| 10 ->
+    // executes when age == 10
+| 11 | 12 | 13 ->
+    // when age == 11, 12 or 13
+| _ ->
+    // when none of the conditions match
+
 
 Str? result = someOperation()
-when result {
-    Some(value) {
-        // value is a Str
-        // do operations with v
-    }
-    None {
-        // Handle empty return
-    }
-}
+match result with
+| Some(value) ->
+    // value is a Str
+    // do operations with v
+| None ->
+    // Handle empty return
+
 
 Result[Num, Str] result = someOtherOperation()
-when result {
-    Ok(number) {
-        // number is Num
-    }
-    Err(reason) {
-        // reason is Str
-    }
-}
+match result with
+| Ok(number) ->
+    // number is Num
+| Err(reason) ->
+    // reason is Str
 
-when result {
-    Ok(number) && number > 18 {
-        // This matches if number > 18
-    }
-    Ok(number) {
-        // This matches if number <= 18
-    }
-    Err(reason) {
-        // ...
-    }
-}
+
+Result[Num, Str] result = someOtherOperation()
+match result with
+| Ok(number) if number > 18 ->
+    // This matches if number > 18
+| Ok(number) ->
+    // This matches if number <= 18
+| Err(reason) ->
+    // reason is Str
 ```
 
 ```misti

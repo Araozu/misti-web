@@ -2,22 +2,12 @@
 
 The following are the primitive datatypes. They have literal representations.
 
-## Int
+## Num
 
-A (length to be specified) integer value. Supports hexadecimal notation.
-
-```misti
-val i1 = 10
-val i2 = -50
-val i3 = 0xff
-val i4 = 0XDaDaDa
-```
-
-## Float
-
-A single precision floating point number.
+Equivalent to a number in JS.
 
 ```misti
+val f0 = 322
 val f1 = 10.304
 val f2 = -34.343223
 val f3 = 0.234234e+2
@@ -43,7 +33,3 @@ True and false
 true
 false
 ```
-
-## Other datatypes
-
-will be dealt with in their own sections.

@@ -1,6 +1,10 @@
-# Lambdas
+# Anonymous functions/Lambdas
 
-A lambda consists of the `fn` keyword, parameters and body.
+```md-info
+Subject to change
+```
+
+An anonymous consists of the `fn` keyword, parameters and body.
 
 ```misti
 fn (x, y) {
@@ -23,10 +27,10 @@ fn (Int x, Int y) -> Int {
 }
 ```
 
-## Lambda without parameters
+## Lambdas
 
-If a lambda doesn't have parameters, the `fn` keyword may be omitted.
-This is called a short lambda.
+If an anonymous function doesn't have parameters, the `fn` keyword may be omitted.
+This is called a lambda.
 
 ```misti
 { doSomething() }
@@ -49,7 +53,7 @@ syntax can be used.
 Inside a short lambda you can use `$1`, `$2`, `$3`, etc. to refer to the
 parameters of the lambda.
 
-So the following lambdas are the same:
+So the following are the same:
 
 ```misti
 { $1 + $2 }
